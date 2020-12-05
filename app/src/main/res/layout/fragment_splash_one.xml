@@ -6,7 +6,6 @@
     android:id="@+id/splash_welc"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:clipToOutline="true"
     android:background="@color/splash_blue"
     >
 
@@ -59,11 +58,11 @@
 
     <TextView
         android:id="@+id/splash_desc"
+        style="@style/splash_desc"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="32dp"
         android:text="@string/lorem_ipsum"
-        style="@style/splash_desc"
         app:layout_constraintStart_toStartOf="@id/tv_selamat"
         app:layout_constraintTop_toBottomOf="@+id/tv_di" />
 
