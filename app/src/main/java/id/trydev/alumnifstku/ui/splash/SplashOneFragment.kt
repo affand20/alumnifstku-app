@@ -1,4 +1,4 @@
-package id.trydev.alumnifstku.splash
+package id.trydev.alumnifstku.ui.splash
 
 import id.trydev.alumnifstku.R
 import android.os.Bundle

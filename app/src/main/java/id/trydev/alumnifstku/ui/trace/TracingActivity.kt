@@ -1,12 +1,11 @@
-package id.trydev.alumnifstku.dashboard
+package id.trydev.alumnifstku.ui.trace
 
-import id.trydev.alumnifstku.R
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 
-class DashboardActivity : AppCompatActivity() {
+class TracingActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_dashboard)
+        setContentView(R.layout.activity_tracing)
     }
 }

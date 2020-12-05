@@ -1,4 +1,4 @@
-package id.trydev.alumnifstku.splash
+package id.trydev.alumnifstku.ui.splash
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity

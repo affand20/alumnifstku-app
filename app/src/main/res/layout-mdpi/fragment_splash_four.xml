@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/splash_yellow"
-    tools:context=".splash.SplashFourFragment">
+    tools:context=".ui.splash.SplashFourFragment">
 
     <ImageView
         android:id="@+id/imageView4"

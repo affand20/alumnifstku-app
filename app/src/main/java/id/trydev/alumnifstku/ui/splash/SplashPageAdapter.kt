@@ -1,10 +1,11 @@
-package id.trydev.alumnifstku.splash
+package id.trydev.alumnifstku.ui.splash
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 
 class SplashPageAdapter(fm: FragmentManager): FragmentPagerAdapter(fm) {
+
 
     private val pages = listOf(
         SplashOneFragment(),
