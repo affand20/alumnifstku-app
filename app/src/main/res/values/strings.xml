@@ -1,3 +1,24 @@
 <resources>
     <string name="app_name">AlumniFSTku</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string-array name="major">
+        <item>Biologi</item>
+        <item>Fisika</item>
+        <item>Kimia</item>
+        <item>Matematika</item>
+        <item>Sistem Informasi</item>
+        <item>Statistika</item>
+        <item>Teknik Biomedis</item>
+        <item>Teknik Lingkungan</item>
+    </string-array>
+
+    <string-array name="cluster">
+        <item>Akademisi/Studi Lanjut</item>
+        <item>ASN/PNS</item>
+        <item>Enterpreneur</item>
+        <item>Freelance</item>
+        <item>NGO/LSM</item>
+        <item>Professional</item>
+    </string-array>
 </resources>

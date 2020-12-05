@@ -92,6 +92,7 @@ class LoginActivity : AppCompatActivity() {
                     prefs.userId = response.data?.id
                     // debug only
                     Log.d("PREFERENCES", "${prefs.token}, ${prefs.userId}")
+                    // TODO: Do checking whether user has filled their biodata or not
                     startActivity(Intent(this, BiodataActivity::class.java))
                 } else {
                     binding.errorMsg.visibility = View.VISIBLE
