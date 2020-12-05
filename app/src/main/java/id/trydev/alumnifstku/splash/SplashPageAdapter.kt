@@ -7,7 +7,6 @@ import androidx.fragment.app.FragmentPagerAdapter
 class SplashPageAdapter(fm: FragmentManager): FragmentPagerAdapter(fm) {
 
     private val pages = listOf(
-        SplashLogoFragment(),
         SplashOneFragment(),
         SplashTwoFragment(),
         SplashThreeFragment(),

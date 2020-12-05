@@ -4,6 +4,63 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg_dashboard"
     tools:context=".dashboard.DashboardActivity">
+
+    <ImageView
+        android:id="@+id/logo_dashboard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/logo_dashboard"
+        android:layout_marginTop="32dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <ImageView
+        android:id="@+id/img_tracing"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/tracing_alumni"
+        android:layout_marginTop="64dp"
+        app:layout_constraintTop_toBottomOf="@id/logo_dashboard"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <ImageView
+        android:id="@+id/img_loker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/info_loker"
+        app:layout_constraintStart_toStartOf="@id/img_tracing"
+        app:layout_constraintTop_toBottomOf="@id/img_tracing" />
+
+    <ImageView
+        android:id="@+id/img_sharing"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/sharing_memory"
+        app:layout_constraintEnd_toEndOf="@id/img_tracing"
+        app:layout_constraintTop_toBottomOf="@id/img_tracing" />
+
+    <ImageView
+        android:id="@+id/img_kelas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/kelas_alumni"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="@id/img_tracing"
+        app:layout_constraintTop_toBottomOf="@id/img_loker"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/fst_news"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="@id/img_tracing"
+        app:layout_constraintTop_toBottomOf="@id/img_sharing"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,16 +9,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AlumniFSTku">
-        <activity android:name=".dashboard.DashboardActivity"></activity>
-        <activity android:name=".splash.SplashActivity">
+        <activity android:name=".splash.WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity">
-        </activity>
+        <activity android:name=".dashboard.DashboardActivity" />
+        <activity
+            android:name=".splash.SplashActivity"
+            android:noHistory="true" />
+
+
+
+        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>
