@@ -1,6 +1,8 @@
 package id.trydev.alumnifstku.network
 
 import android.util.Log
+import com.squareup.moshi.*
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import id.trydev.alumnifstku.model.*
 import okhttp3.MultipartBody
 import okhttp3.OkHttpClient
@@ -8,6 +10,7 @@ import okhttp3.RequestBody
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Response
 import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
 
 object ApiFactory {
@@ -29,13 +32,30 @@ object ApiFactory {
         val retrofit = Retrofit.Builder()
             .client(client)
             .baseUrl(BASE_URL)
-            .addConverterFactory(MoshiConverterFactory.create())
+//            .addConverterFactory(MoshiConverterFactory.create(
+//                Moshi.Builder()
+//                    .add(KotlinJsonAdapterFactory())
+//                    .add(object : Any() {
+//                        @ToJson
+//                        fun toJson(writer: JsonWriter, o: Nothing?) {
+//                            writer.nullValue()
+//                        }
+//
+//                        @FromJson
+//                        fun fromJson(reader: JsonReader): Nothing? {
+//                            reader.skipValue()
+//                            return null
+//                        }
+//                    })
+//                    .build()
+//            ))
+            .addConverterFactory(GsonConverterFactory.create())
             .build()
 
         this.apiService = retrofit.create(ApiService::class.java)
     }
 
-    suspend fun <T: Any> safeApiCall(call: suspend () -> Response<T>): Result<T> {
+    private suspend fun <T: Any> safeApiCall(call: suspend () -> Response<T>): Result<T> {
         return try {
             val myResp = call.invoke()
             if (myResp.isSuccessful) {
@@ -53,7 +73,7 @@ object ApiFactory {
 
     ////////////// AUTH ENDPOINT //////////////
     /* Login function */
-    suspend fun login(username: String, email: String, password: String): Result<DefaultResponse<Alumni>> {
+    suspend fun login(username: String? = null, email: String? = null, password: String): Result<DefaultResponse<Alumni>> {
         return safeApiCall { apiService.login(username, email, password) }
     }
 
@@ -70,6 +90,7 @@ object ApiFactory {
     * 2. email      => required kalau username null
     * */
     suspend fun forgotPassword(username: String? = null, email: String? = null): Result<DefaultResponse<Nothing>> {
+        Log.d("API FACTORY", "EXECUTED")
         return safeApiCall { apiService.forgotPassword(username, email) }
     }
 

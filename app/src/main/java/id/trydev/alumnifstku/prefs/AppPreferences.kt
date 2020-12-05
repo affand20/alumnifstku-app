@@ -11,6 +11,7 @@ class AppPreferences(context: Context) {
     private val TOKEN = "TOKEN"
     private val USER_ID = "USER_ID"
     private val USER_NAME = "USER_NAME"
+    private val FIRST_OPEN = "FIRST_OPEN"
 
     var token: String?
         get() = prefs.getString(TOKEN, null)
@@ -23,6 +24,10 @@ class AppPreferences(context: Context) {
     var userName: String?
         get() = prefs.getString(USER_NAME, null)
         set(value) = prefs.edit().putString(USER_NAME, value).apply()
+
+    var firstOpen: Boolean
+        get() = prefs.getBoolean(FIRST_OPEN, true)
+        set(value) = prefs.edit().putBoolean(FIRST_OPEN, value).apply()
 
     fun resetPreference() {
         prefs.edit().clear().apply()
