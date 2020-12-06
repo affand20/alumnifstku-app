@@ -14,7 +14,9 @@
         android:roundIcon="@mipmap/ic_fst_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AlumniFSTku">
-        <activity android:name=".ui.tracedetails.TraceDetailsActivity"></activity>
+        <activity android:name=".ui.kelasdetails.KelasDetailsActivity"></activity>
+        <activity android:name=".ui.kelas.KelasListActivity" />
+        <activity android:name=".ui.tracedetails.TraceDetailsActivity" />
         <activity android:name=".ui.tracelist.TraceListActivity" />
         <activity android:name=".ui.splash.WelcomeActivity">
             <intent-filter>

@@ -22,6 +22,8 @@
         <item>Professional</item>
     </string-array>
     <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur\nadipiscing elit. Nam dictum vestibulum\ndolor nec maximus. </string>
+    <string name="long_lorem">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</string>
+    <string name="title_kelas_alumni">KELAS ALUMNI</string>
 
     <string-array name="list_jurusan">
         <item>Jurusan</item>
@@ -40,5 +42,12 @@
         <item>Budi</item>
         <item>Caca</item>
         <item>Doni</item>
+    </string-array>
+
+    <string-array name="dummy_list_temakelas">
+        <item>Cara Bikin CV</item>
+        <item>Tips Hadapi HRD Saat Wawancara</item>
+        <item>Giat-giat menjadi staff baru</item>
+        <item>Atasi Insecurity dalam Persaingan</item>
     </string-array>
 </resources>

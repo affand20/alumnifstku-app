@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import id.trydev.alumnifstku.ui.kelas.KelasListActivity
 import id.trydev.alumnifstku.ui.tracelist.TraceListActivity
 import kotlinx.android.synthetic.main.activity_dashboard.*
 
@@ -27,7 +28,7 @@ class DashboardActivity : AppCompatActivity(), View.OnClickListener {
 
             // Tracing Alumni
             R.id.img_tracing -> {
-//                panggang("Tracing Alumni")
+                // panggang("Tracing Alumni")
                 intent = Intent(this, TraceListActivity::class.java)
                 startActivity(intent)
             }
@@ -44,7 +45,9 @@ class DashboardActivity : AppCompatActivity(), View.OnClickListener {
 
             // Kelas Alumni
             R.id.img_kelas -> {
-                panggang("Kelas Alumni")
+                // panggang("Kelas Alumni")
+                intent = Intent(this, KelasListActivity::class.java)
+                startActivity(intent)
             }
 
             // FST NEWS
