@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="splash_desc">
+
+        <item name="android:textSize">
+            14sp
+        </item>
+
+        <item name="android:textColor">
+            #FFFFFF
+        </item>
+
+        <item name="fontFamily">
+            @font/montserrat_medium
+        </item>
+
+    </style>
+
+    <style name="splash_desc_dark" parent="splash_desc">
+
+        <item name="android:textColor">
+            #313F7E
+        </item>
+
+    </style>
+
+    <style name="splash_title">
+
+        <item name="android:textSize">
+            24sp
+        </item>
+
+        <item name="android:textColor">
+            #FFFFFF
+        </item>
+
+        <item name="fontFamily">
+            @font/montserrat_extrabold
+        </item>
+
+    </style>
+
+    <style name="splash_title_dark" parent="splash_title">
+
+        <item name="android:textColor">
+            #313F7E
+        </item>
+
+    </style>
+
+    <style name="edittext_normal">
+        <item name="color">
+            #B5B6B9
+        </item>
+
+        <item name="android:textSize">
+            14sp
+        </item>
+
+        <item name="fontFamily">
+            @font/montserrat_medium
+        </item>
+    </style>
+
+    <style name="button_normal">
+        <item name="android:textSize">
+            18sp
+        </item>
+
+        <item name="android:textColor">
+            #FFFFFF
+        </item>
+
+        <item name="fontFamily">
+            @font/montserrat_extrabold
+        </item>
+    </style>
+
+</resources>

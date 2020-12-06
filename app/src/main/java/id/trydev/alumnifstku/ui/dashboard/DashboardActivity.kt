@@ -1,10 +1,12 @@
 package id.trydev.alumnifstku.ui.dashboard
 
+import android.content.Intent
 import id.trydev.alumnifstku.R
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import id.trydev.alumnifstku.ui.trace.TracingActivity
 import kotlinx.android.synthetic.main.activity_dashboard.*
 
 class DashboardActivity : AppCompatActivity(), View.OnClickListener {
@@ -26,6 +28,8 @@ class DashboardActivity : AppCompatActivity(), View.OnClickListener {
             // Tracing Alumni
             R.id.img_tracing -> {
                 panggang("Tracing Alumni")
+                intent = Intent(this, TracingActivity::class.java)
+                startActivity(intent)
             }
 
             // Info Loker
@@ -48,6 +52,7 @@ class DashboardActivity : AppCompatActivity(), View.OnClickListener {
                 panggang("FST News")
             }
         }
+
 
     }
 

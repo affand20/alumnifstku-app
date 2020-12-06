@@ -22,4 +22,16 @@
         <item>Professional</item>
     </string-array>
     <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur\nadipiscing elit. Nam dictum vestibulum\ndolor nec maximus. </string>
+
+    <string-array name="list_jurusan">
+        <item>Jurusan</item>
+        <item>Matematika</item>
+        <item>Sistem Informasi</item>
+        <item>Teknik Biomedis</item>
+        <item>Teknik Lingkungan</item>
+        <item>Statistika</item>
+        <item>Kimia</item>
+        <item>Biologi</item>
+        <item>Fisika</item>
+    </string-array>
 </resources>
