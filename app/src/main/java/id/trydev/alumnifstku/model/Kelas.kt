@@ -1,34 +1,34 @@
 package id.trydev.alumnifstku.model
 
-import com.squareup.moshi.Json
+import com.google.gson.annotations.SerializedName
 
 data class Kelas (
 
-    @Json(name="id")
+    @SerializedName("id")
     val id: String? = null,
 
-    @Json(name="judul")
+    @SerializedName("judul")
     val judul: String? = null,
 
-    @Json(name="kuota")
+    @SerializedName("kuota")
     val kuota: String? = null,
 
-    @Json(name="tanggal")
+    @SerializedName("tanggal")
     val tanggal: String? = null,
 
-    @Json(name="poster")
+    @SerializedName("poster")
     val poster: String? = null,
 
-    @Json(name="deskripsi")
+    @SerializedName("deskripsi")
     val deskripsi: String? = null,
 
-    @Json(name="uploader")
+    @SerializedName("uploader")
     val uploader: Admin? = null,
 
-    @Json(name="data_speaker")
+    @SerializedName("data_speaker")
     val speaker: List<DataSpeaker>? = null,
 
-    @Json(name="participants")
+    @SerializedName("participants")
     val participants: List<BookingKelas>? = null,
 
 )

@@ -1,25 +1,26 @@
 package id.trydev.alumnifstku.model
 
-import com.squareup.moshi.Json
+import com.google.gson.annotations.SerializedName
+
 
 data class News (
 
-    @Json(name = "id")
+    @SerializedName("id")
     val id: String? = null,
 
-    @Json(name = "judul")
+    @SerializedName("judul")
     val judul: String? = null,
 
-    @Json(name = "link")
+    @SerializedName("link")
     val link: String? = null,
 
-    @Json(name = "gambar")
+    @SerializedName("gambar")
     val gambar: String? = null,
 
-    @Json(name = "created_at")
+    @SerializedName("created_at")
     val createdAt: String? = null,
 
-    @Json(name = "uploader")
+    @SerializedName("uploader")
     val uploader: Alumni? = null,
 
 )

@@ -1,19 +1,19 @@
 package id.trydev.alumnifstku.model
 
-import com.squareup.moshi.Json
+import com.google.gson.annotations.SerializedName
 
 data class Likes (
 
-    @Json(name = "id")
+    @SerializedName("id")
     val id: String? = null,
 
-    @Json(name = "sharing_alumni_id")
+    @SerializedName("sharing_alumni_id")
     val postId: String? = null,
 
     /*
     * User ID orang yang ngelike postingannya
     * */
-    @Json(name = "alumni_id")
+    @SerializedName("alumni_id")
     val alumniId: String? = null,
 
 )

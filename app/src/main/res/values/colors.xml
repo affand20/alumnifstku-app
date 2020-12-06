@@ -22,4 +22,5 @@
     <color name="bg_input">#F2F5FA</color>
     <color name="blue_start_gradient">#579EFE</color>
     <color name="blue_end_gradient">#3E6BF3</color>
+    <color name="blue_soft">#F2F5FA</color>
 </resources>

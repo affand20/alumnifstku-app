@@ -19,6 +19,7 @@ import id.trydev.alumnifstku.model.DefaultResponse
 import id.trydev.alumnifstku.network.RequestState
 import id.trydev.alumnifstku.prefs.AppPreferences
 import id.trydev.alumnifstku.ui.biodata.BiodataActivity
+import id.trydev.alumnifstku.ui.loker.LokerActivity
 import id.trydev.alumnifstku.ui.trace.TracingActivity
 import kotlinx.android.synthetic.main.activity_dashboard.*
 
@@ -39,13 +40,16 @@ class DashboardActivity : AppCompatActivity(), View.OnClickListener {
         val dialogView = LayoutInflater.from(this).inflate(R.layout.progress_dialog, null)
         builder.setView(dialogView)
         val alertDialog = builder.create()
-        alertDialog.show()
         val scale = resources.displayMetrics.density
         alertDialog.window?.setLayout((300 * scale).toInt(), ConstraintLayout.LayoutParams.WRAP_CONTENT)
 
 
         viewModel = ViewModelProvider(this).get(DashboardViewModel::class.java)
-        viewModel.isUserHasFillBiodata(prefs.token.toString())
+
+        if (!prefs.hasFillBio) {
+            alertDialog.show()
+            viewModel.isUserHasFillBiodata(prefs.token.toString())
+        }
         /* Observe Request state changes */
         viewModel.state.observe({ lifecycle }, { state ->
             Log.d("OBSERVE", "state $state")
@@ -75,6 +79,8 @@ class DashboardActivity : AppCompatActivity(), View.OnClickListener {
                     panggang("Mohon isi biodata anda terlebih dahulu.")
                     startActivity(Intent(this, BiodataActivity::class.java))
                     finish()
+                } else {
+                    prefs.hasFillBio = true
                 }
             }
         })
@@ -106,7 +112,8 @@ class DashboardActivity : AppCompatActivity(), View.OnClickListener {
 
             // Info Loker
             R.id.img_loker -> {
-                panggang("Info Loker")
+                intent = Intent(this, LokerActivity::class.java)
+                startActivity(intent)
             }
 
             // Sharing Memory

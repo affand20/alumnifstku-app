@@ -12,6 +12,7 @@ class AppPreferences(context: Context) {
     private val USER_ID = "USER_ID"
     private val USER_NAME = "USER_NAME"
     private val FIRST_OPEN = "FIRST_OPEN"
+    private val HAS_FILL_BIODATA = "HAS_FILL_BIODATA"
 
     var token: String?
         get() = prefs.getString(TOKEN, null)
@@ -28,6 +29,10 @@ class AppPreferences(context: Context) {
     var firstOpen: Boolean
         get() = prefs.getBoolean(FIRST_OPEN, true)
         set(value) = prefs.edit().putBoolean(FIRST_OPEN, value).apply()
+
+    var hasFillBio: Boolean
+        get() = prefs.getBoolean(HAS_FILL_BIODATA, false)
+        set(value) = prefs.edit().putBoolean(HAS_FILL_BIODATA, value).apply()
 
     fun resetPreference() {
         prefs.edit().clear().apply()

@@ -107,6 +107,8 @@ class Page2Fragment : Fragment() {
                 // if success, navigate to dashboard page
                 // else, show error Toast
                 if (response.success == true) {
+                    // save preference to prevent checking status everytime
+                    prefs.hasFillBio = true
                     // send greeting message
                     Toast.makeText(requireContext(), "Selamat datang, ${response.data?.nama}!", Toast.LENGTH_LONG).show()
                     startActivity(Intent(requireContext(), DashboardActivity::class.java))

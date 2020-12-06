@@ -43,7 +43,7 @@ class WelcomeActivity : AppCompatActivity() {
 //            var intent = Intent(this, SplashActivity::class.java)
 //            startActivity(intent)
 //            finish()
-        }, 3000)
+        }, 1500)
 
     }
 }

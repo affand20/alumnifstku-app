@@ -1,22 +1,22 @@
 package id.trydev.alumnifstku.model
 
-import com.squareup.moshi.Json
+import com.google.gson.annotations.SerializedName
 
 data class DataSpeaker (
 
-    @Json(name = "id")
+    @SerializedName("id")
     val id: String? = null,
 
-    @Json(name = "kelas_alumni_id")
+    @SerializedName("kelas_alumni_id")
     val kelasId: String? = null,
 
-    @Json(name = "pembicara")
+    @SerializedName("pembicara")
     val pembicara: String? = null,
 
-    @Json(name = "tentang")
+    @SerializedName("tentang")
     val tentang: String? = null,
 
-    @Json(name = "foto")
+    @SerializedName("foto")
     val foto: String? = null,
 
 )

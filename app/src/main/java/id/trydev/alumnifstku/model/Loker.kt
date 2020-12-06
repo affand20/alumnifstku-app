@@ -1,34 +1,38 @@
 package id.trydev.alumnifstku.model
 
-import com.squareup.moshi.Json
+import com.google.gson.annotations.SerializedName
+import java.util.*
 
 data class Loker (
 
-    @Json(name = "id")
+    @SerializedName("id")
     val id: String? = null,
 
-    @Json(name = "jabatan")
+    @SerializedName("jabatan")
     val jabatan: String? = null,
 
-    @Json(name = "perusahaan")
+    @SerializedName("perusahaan")
     val perusahaan: String? = null,
 
-    @Json(name = "deskripsi")
+    @SerializedName("deskripsi")
     val deskripsi: String? = null,
 
-    @Json(name = "poster")
+    @SerializedName("poster")
     val poster: String? = null,
 
-    @Json(name = "link")
+    @SerializedName("link")
     val link: String? = null,
 
-    @Json(name = "cluster")
+    @SerializedName("cluster")
     val cluster: String? = null,
 
-    @Json(name = "jurusan")
+    @SerializedName("jurusan")
     val jurusan: String? = null,
 
-    @Json(name = "uploader")
-    val uploader: Admin? = null
+    @SerializedName("uploader")
+    val uploader: Admin? = null,
+
+    @SerializedName("updated_at")
+    val updatedAt: String? = null
 
 )

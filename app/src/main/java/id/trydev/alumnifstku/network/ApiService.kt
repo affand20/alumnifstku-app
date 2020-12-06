@@ -191,7 +191,7 @@ interface ApiService {
     @GET("loker")
     suspend fun listLoker(
         @Header("Authorization") apiToken: String,
-        @QueryMap query: Map<String, String>,
+        @QueryMap query: Map<String, String?>,
         @Header("Accept") accept: String = "application/json",
     ): Response<DefaultResponse<List<Loker>>>
 

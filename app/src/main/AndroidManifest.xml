@@ -14,7 +14,8 @@
         android:roundIcon="@mipmap/ic_fst_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AlumniFSTku">
-        <activity android:name=".ui.trace.TracingActivity"></activity>
+        <activity android:name=".ui.loker.LokerActivity"></activity>
+        <activity android:name=".ui.trace.TracingActivity" />
         <activity android:name=".ui.splash.WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,7 +23,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.forgotpass.ForgotPasswordActivity"></activity>
+        <activity android:name=".ui.forgotpass.ForgotPasswordActivity" />
         <activity android:name=".ui.login.LoginActivity" />
         <activity android:name=".ui.biodata.BiodataActivity" />
         <activity android:name=".ui.register.RegisterActivity" />
@@ -30,8 +31,6 @@
         <activity
             android:name=".ui.splash.SplashActivity"
             android:noHistory="true" />
-<!--        <activity android:name=".MainActivity" />-->
-
     </application>
 
 </manifest>
