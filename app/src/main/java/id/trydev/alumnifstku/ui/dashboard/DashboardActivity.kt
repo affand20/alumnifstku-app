@@ -20,7 +20,8 @@ import id.trydev.alumnifstku.network.RequestState
 import id.trydev.alumnifstku.prefs.AppPreferences
 import id.trydev.alumnifstku.ui.biodata.BiodataActivity
 import id.trydev.alumnifstku.ui.loker.LokerActivity
-import id.trydev.alumnifstku.ui.trace.TracingActivity
+import id.trydev.alumnifstku.ui.kelas.KelasListActivity
+import id.trydev.alumnifstku.ui.tracelist.TraceListActivity
 import kotlinx.android.synthetic.main.activity_dashboard.*
 
 class DashboardActivity : AppCompatActivity(), View.OnClickListener {
@@ -105,8 +106,8 @@ class DashboardActivity : AppCompatActivity(), View.OnClickListener {
 
             // Tracing Alumni
             R.id.img_tracing -> {
-                panggang("Tracing Alumni")
-                intent = Intent(this, TracingActivity::class.java)
+                // panggang("Tracing Alumni")
+                intent = Intent(this, TraceListActivity::class.java)
                 startActivity(intent)
             }
 
@@ -123,7 +124,9 @@ class DashboardActivity : AppCompatActivity(), View.OnClickListener {
 
             // Kelas Alumni
             R.id.img_kelas -> {
-                panggang("Kelas Alumni")
+                // panggang("Kelas Alumni")
+                intent = Intent(this, KelasListActivity::class.java)
+                startActivity(intent)
             }
 
             // FST NEWS

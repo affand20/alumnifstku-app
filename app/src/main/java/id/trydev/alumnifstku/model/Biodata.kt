@@ -11,7 +11,7 @@ data class Biodata (
     val alumniId: String? = null,
 
     @SerializedName("nama")
-    val nama: String? = null,
+    var nama: String? = null,
 
     @SerializedName("alamat")
     val alamat: String? = null,
