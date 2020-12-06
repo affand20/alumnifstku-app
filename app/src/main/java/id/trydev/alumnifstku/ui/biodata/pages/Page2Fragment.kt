@@ -110,6 +110,7 @@ class Page2Fragment : Fragment() {
                     // send greeting message
                     Toast.makeText(requireContext(), "Selamat datang, ${response.data?.nama}!", Toast.LENGTH_LONG).show()
                     startActivity(Intent(requireContext(), DashboardActivity::class.java))
+                    requireActivity().finish()
                 } else {
                     binding.errorMsg.visibility = View.VISIBLE
                     binding.errorMsg.text = response.message

@@ -189,7 +189,7 @@ object ApiFactory {
 
     /* Get Self Biodata function */
     suspend fun myBio(apiToken: String): Result<DefaultResponse<Biodata>> {
-        return safeApiCall { apiService.myBio(apiToken) }
+        return safeApiCall { apiService.myBio("Bearer $apiToken") }
     }
 
     /* Get List Alumni function */
