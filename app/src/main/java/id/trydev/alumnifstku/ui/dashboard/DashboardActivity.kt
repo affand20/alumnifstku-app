@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
-import id.trydev.alumnifstku.ui.trace.TracingActivity
+import id.trydev.alumnifstku.ui.tracelist.TraceListActivity
 import kotlinx.android.synthetic.main.activity_dashboard.*
 
 class DashboardActivity : AppCompatActivity(), View.OnClickListener {
@@ -27,8 +27,8 @@ class DashboardActivity : AppCompatActivity(), View.OnClickListener {
 
             // Tracing Alumni
             R.id.img_tracing -> {
-                panggang("Tracing Alumni")
-                intent = Intent(this, TracingActivity::class.java)
+//                panggang("Tracing Alumni")
+                intent = Intent(this, TraceListActivity::class.java)
                 startActivity(intent)
             }
 

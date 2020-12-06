@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import id.trydev.alumnifstku.R
+import id.trydev.alumnifstku.ui.dashboard.DashboardActivity
 
 class WelcomeActivity : AppCompatActivity() {
 
@@ -14,8 +15,9 @@ class WelcomeActivity : AppCompatActivity() {
         setContentView(R.layout.activity_welcome)
 
         Handler().postDelayed({
-            var intent = Intent(this, SplashActivity::class.java)
-            startActivity(intent)
+//            var intent = Intent(this, SplashActivity::class.java)
+//            startActivity(intent)
+            startActivity(Intent(this, DashboardActivity::class.java))
             finish()
         }, 3000)
 

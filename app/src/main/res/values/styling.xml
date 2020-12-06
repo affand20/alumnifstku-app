@@ -76,4 +76,11 @@
         </item>
     </style>
 
+    <style name="bottom_sheet_dialog" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="buttonStyle">@style/bottom_sheet_modal</item>
+    </style>
+
+    <style name="bottom_sheet_modal" parent="Widget.Design.BottomSheet.Modal">
+        <item name="background">@color/light_transparent</item>
+    </style>
 </resources>

@@ -11,7 +11,7 @@ data class Biodata (
     val alumniId: String? = null,
 
     @Json(name = "nama")
-    val nama: String? = null,
+    var nama: String? = null,
 
     @Json(name = "alamat")
     val alamat: String? = null,

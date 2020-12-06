@@ -34,4 +34,11 @@
         <item>Biologi</item>
         <item>Fisika</item>
     </string-array>
+
+    <string-array name="dummy_list_tracing_nama">
+        <item>Ahmad</item>
+        <item>Budi</item>
+        <item>Caca</item>
+        <item>Doni</item>
+    </string-array>
 </resources>
