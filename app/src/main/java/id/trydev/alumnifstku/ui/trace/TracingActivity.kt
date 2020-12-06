@@ -20,6 +20,7 @@ class TracingActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener 
     private lateinit var nama: String
     private lateinit var angkatan: String
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tracing)

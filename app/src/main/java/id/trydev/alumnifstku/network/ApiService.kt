@@ -81,11 +81,39 @@ interface ApiService {
     suspend fun uploadBio(
         @Header("Authorization") apiToken: String,
         @Part("nama") name: RequestBody,
+        @Part("alamat") alamat: RequestBody,
+        @Part("umur") umur: RequestBody,
+        @Part("ttl") ttl: RequestBody,
+        @Part("jenis_kelamin") jenisKelamin: RequestBody,
         @Part("angkatan") angkatan: RequestBody,
         @Part("jurusan") major: RequestBody,
         @Part("linkedin") linkedin: RequestBody? = null,
-        @Part("foto") foto: MultipartBody.Part,
+        @Part foto: MultipartBody.Part? = null,
         @Header("Accept") accept: String = "application/json"
+    ): Response<DefaultResponse<Biodata>>
+
+    /*
+    * Upload Biodata and Tracing in one
+    * =======================
+    * */
+    @POST("biodata/create-with-tracing")
+    @Multipart
+    suspend fun uploadBioAndTracing(
+            @Header("Authorization") apiToken: String,
+            @Part("nama") name: RequestBody,
+            @Part("alamat") alamat: RequestBody,
+            @Part("umur") umur: RequestBody,
+            @Part("ttl") ttl: RequestBody,
+            @Part("jenis_kelamin") jenisKelamin: RequestBody,
+            @Part("angkatan") angkatan: RequestBody,
+            @Part("jurusan") major: RequestBody,
+            @Part("linkedin") linkedin: RequestBody? = null,
+            @Part foto: MultipartBody.Part? = null,
+            @Part("perusahaan") company: RequestBody,
+            @Part("tahun_masuk") yearJoined: RequestBody,
+            @Part("cluster") cluster: RequestBody,
+            @Part("jabatan") position: RequestBody,
+            @Header("Accept") accept: String = "application/json"
     ): Response<DefaultResponse<Biodata>>
 
     /*
@@ -97,10 +125,14 @@ interface ApiService {
     suspend fun updateBio(
         @Header("Authorization") apiToken: String,
         @Part("nama") name: RequestBody,
+        @Part("alamat") alamat: RequestBody,
+        @Part("umur") umur: RequestBody,
+        @Part("ttl") ttl: RequestBody,
+        @Part("jenis_kelamin") jenisKelamin: RequestBody,
         @Part("angkatan") angkatan: RequestBody,
         @Part("jurusan") major: RequestBody,
         @Part("linkedin") linkedin: RequestBody? = null,
-        @Part("foto") foto: MultipartBody.Part,
+        @Part foto: MultipartBody.Part? = null,
         @Header("Accept") accept: String = "application/json",
     ): Response<DefaultResponse<Biodata>>
 
@@ -334,7 +366,7 @@ interface ApiService {
     suspend fun uploadPost(
         @Header("Authorization") apiToken: String,
         @Part("deskripsi") deskripsi: RequestBody,
-        @Part("foto") foto: MultipartBody.Part,
+        @Part foto: MultipartBody.Part,
         @Header("Accept") accept: String = "application/json",
     ): Response<DefaultResponse<Post>>
 
@@ -348,7 +380,7 @@ interface ApiService {
         @Header("Authorization") apiToken: String,
         @Path("id") id: Int,
         @Part("deskripsi") deskripsi: RequestBody,
-        @Part("foto") foto: MultipartBody.Part,
+        @Part foto: MultipartBody.Part,
         @Header("Accept") accept: String = "application/json",
     ): Response<DefaultResponse<Post>>
 
