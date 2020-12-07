@@ -13,7 +13,9 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import id.trydev.alumnifstku.R
 import id.trydev.alumnifstku.databinding.ActivityTraceListBinding
 import id.trydev.alumnifstku.model.Biodata
+import kotlinx.android.synthetic.main.layout_bottom_sheet_filtertrace.view.*
 import kotlinx.android.synthetic.main.layout_bottom_sheet_trace.view.*
+import kotlinx.android.synthetic.main.layout_bottom_sheet_trace.view.btn_search_tracing
 
 class TraceListActivity : AppCompatActivity() {
 
@@ -30,6 +32,14 @@ class TraceListActivity : AppCompatActivity() {
     private var filterwaktu: String? = null
 
     private var listData = ArrayList<Biodata>()
+
+    private var query = hashMapOf<String,String?>(
+            "angkatan" to "",
+            "perusahaan" to "",
+            "filter" to "",
+            "nama" to "",
+            "cluster" to "",
+    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,23 +61,9 @@ class TraceListActivity : AppCompatActivity() {
         setDummyData()
         vAdapter.setData(listData)
 
-        binding.spinnerTraceJurusan.adapter = ArrayAdapter.createFromResource(this, R.array.list_jurusan, R.layout.spinner_tracefilter).also {
-            it.setDropDownViewResource(R.layout.spinner_tracefilter)
-        }
 
-        binding.spinnerTraceJurusan.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
-            override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
-                filterjurusan = parent.selectedItem as String
-                Toast.makeText(view.context, "Filter : ${filterjurusan}", Toast.LENGTH_SHORT).show()
-            }
-
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-
-            }
-
-        }
-
-        binding.btnCariAlumni.setOnClickListener {
+        // tombol cari orang untuk memunculkan bottom dilaog
+        binding.floating.btnCarii.setOnClickListener {
 
             val view = layoutInflater.inflate(R.layout.layout_bottom_sheet_trace, null)
 
@@ -90,10 +86,13 @@ class TraceListActivity : AppCompatActivity() {
                 }
 
             }
+
             view.btn_search_tracing.setOnClickListener {
 
                 cariOrang.nama = view.et_tracing_nama.text.toString()
+                query["nama"] = cariOrang.nama
                 cariOrang.angkatan = view.et_tracing_angkatan.text.toString()
+                query["angkatan"] = cariOrang.angkatan
 
                 var str = "Nama : ${cariOrang.nama}, Angkatan : ${cariOrang.angkatan}, Jurusan ${cariOrang.jurusan}"
 
@@ -104,6 +103,72 @@ class TraceListActivity : AppCompatActivity() {
             dialog.setContentView(view)
             dialog.show()
 
+        }
+
+        // tombol filter untuk memunculkan bottom dialog
+        binding.floating.btnFilterr.setOnClickListener {
+
+            val view = layoutInflater.inflate(R.layout.layout_bottom_sheet_filtertrace, null)
+
+            val dialog = BottomSheetDialog(this)
+
+            ArrayAdapter.createFromResource(
+                    this, R.array.list_jurusan, R.layout.spinner_layout
+            ).also { adapter ->
+                adapter.setDropDownViewResource(R.layout.spinner_layout)
+                view.spinner_jurusan.adapter = adapter
+            }
+
+            ArrayAdapter.createFromResource(
+                    this, R.array.cluster, R.layout.spinner_layout
+            ).also { adapter ->
+                adapter.setDropDownViewResource(R.layout.spinner_layout)
+                view.spinner_cluster.adapter = adapter
+            }
+
+            ArrayAdapter.createFromResource(
+                    this, R.array.order_by, R.layout.spinner_layout
+            ).also { adapter ->
+                adapter.setDropDownViewResource(R.layout.spinner_layout)
+                view.spinner_urutkan.adapter = adapter
+            }
+
+            view.spinner_jurusan.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+                override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
+                    query["cluster"] = parent.selectedItem as String
+                }
+
+                override fun onNothingSelected(parent: AdapterView<*>?) {
+                    TODO("Not yet implemented")
+                }
+            }
+
+            view.spinner_cluster.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+                override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
+                    query["cluster"] = parent.selectedItem as String
+                }
+
+                override fun onNothingSelected(parent: AdapterView<*>?) {
+                    TODO("Not yet implemented")
+                }
+            }
+
+            view.spinner_urutkan.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+                override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
+                    query["sortby"] = parent.selectedItem as String
+                }
+
+                override fun onNothingSelected(parent: AdapterView<*>?) {
+                    TODO("Not yet implemented")
+                }
+            }
+
+            view.btn_set_filter.setOnClickListener {
+                dialog.dismiss()
+            }
+
+            dialog.setContentView(view)
+            dialog.show()
         }
 
 
