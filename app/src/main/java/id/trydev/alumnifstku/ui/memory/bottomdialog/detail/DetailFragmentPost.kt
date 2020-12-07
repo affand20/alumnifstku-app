@@ -5,6 +5,7 @@ import android.content.res.Resources
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.PopupMenu
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
@@ -37,7 +38,9 @@ class DetailFragmentPost(private val postId:Int): BottomSheetDialogFragment() {
         binding = FragmentDetailPostBinding.inflate(layoutInflater)
 
         prefs = AppPreferences(requireContext())
-        adapter = CommentAdapter(requireContext())
+        adapter = CommentAdapter(requireContext(), prefs) { comment ->
+            viewModel.removeComment(prefs.token.toString(), postId, comment.id.toString().toInt())
+        }
         viewModel = ViewModelProvider(this).get(DetailFragmentViewModel::class.java)
 
         binding.toolbar.title = "Posting"

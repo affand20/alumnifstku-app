@@ -161,5 +161,29 @@ class DetailFragmentViewModel: ViewModel() {
         }
     }
 
+    fun removeComment(apiToken: String, postId: Int, commentId: Int) {
+        _stateComment.postValue(RequestState.REQUEST_START)
+        uiScope.launch {
+            try {
+                when(val response = ApiFactory.removeComment(apiToken, postId, commentId)) {
+                    is Result.Success -> {
+                        _stateComment.postValue(RequestState.REQUEST_END)
+                        _responseComment.postValue(response.data)
+                    }
+
+                    is Result.Error -> {
+                        _stateComment.postValue(RequestState.REQUEST_ERROR)
+//                        _responseComment.postValue(Gson().fromJson(response.exception, DefaultResponse::class.java) as DefaultResponse<List<Loker>>?)
+                        _error.postValue(response.exception)
+                    }
+                }
+            } catch (t: Throwable) {
+                _stateComment.postValue(RequestState.REQUEST_ERROR)
+                _error.postValue(t.localizedMessage)
+            }
+        }
+    }
+
+
 
 }

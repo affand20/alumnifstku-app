@@ -13,6 +13,9 @@ data class Post (
     @SerializedName("deskripsi")
     val deskripsi: String? = null,
 
+    @SerializedName("alumni_id")
+    val alumniId: String? = null,
+
     @SerializedName("alumni")
     val alumni: Alumni? = null,
 
