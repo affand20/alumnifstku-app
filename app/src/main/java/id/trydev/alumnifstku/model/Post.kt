@@ -25,6 +25,7 @@ data class Post (
     @SerializedName("comment")
     val comments: List<Comment>? = null,
 
-
+    @SerializedName("created_at")
+    val createdAt: String? = null,
 
     )

@@ -1,6 +1,5 @@
 package id.trydev.alumnifstku.ui.loker
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -8,9 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Toast
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -20,11 +17,8 @@ import id.trydev.alumnifstku.databinding.ActivityLokerBinding
 import id.trydev.alumnifstku.databinding.DialogFilterLokerBinding
 import id.trydev.alumnifstku.network.RequestState
 import id.trydev.alumnifstku.prefs.AppPreferences
-import id.trydev.alumnifstku.ui.dashboard.DashboardActivity
-import id.trydev.alumnifstku.ui.loker.bottomdialog.DetailFragmentBottom
+import id.trydev.alumnifstku.ui.loker.bottomdialog.DetailFragmentLoker
 import id.trydev.alumnifstku.utils.ItemDecoration
-import kotlinx.android.synthetic.main.activity_loker.*
-import kotlinx.android.synthetic.main.fragment_page2.*
 
 class LokerActivity : AppCompatActivity() {
 
@@ -48,7 +42,7 @@ class LokerActivity : AppCompatActivity() {
 
         adapter = LokerAdapter(this) { loker ->
             /* Navigate to Detail Loker activity */
-            val detailFragment = DetailFragmentBottom(loker)
+            val detailFragment = DetailFragmentLoker(loker)
             detailFragment.show(supportFragmentManager, detailFragment.tag)
         }
 

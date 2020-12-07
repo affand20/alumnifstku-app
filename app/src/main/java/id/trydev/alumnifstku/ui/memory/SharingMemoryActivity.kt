@@ -10,6 +10,7 @@ import id.trydev.alumnifstku.adapter.SharingMemoryAdapter
 import id.trydev.alumnifstku.databinding.ActivitySharingMemoryBinding
 import id.trydev.alumnifstku.network.RequestState
 import id.trydev.alumnifstku.prefs.AppPreferences
+import id.trydev.alumnifstku.ui.memory.bottomdialog.detail.DetailFragmentPost
 import id.trydev.alumnifstku.utils.ItemDecorationPost
 
 class SharingMemoryActivity : AppCompatActivity() {
@@ -26,8 +27,10 @@ class SharingMemoryActivity : AppCompatActivity() {
 
         prefs = AppPreferences(this)
 
-        adapter = SharingMemoryAdapter(this) {
-
+        adapter = SharingMemoryAdapter(this) { post ->
+            /* Navigate to Detail Loker activity */
+            val detailFragment = DetailFragmentPost(post)
+            detailFragment.show(supportFragmentManager, detailFragment.tag)
         }
 
         binding.rvPost.layoutManager = LinearLayoutManager(this)

@@ -35,7 +35,7 @@
     <ImageView
         android:id="@+id/iv_post"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="240dp"
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -73,16 +73,26 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
         android:ellipsize="end"
         android:fontFamily="@font/montserrat_regular"
         android:maxLines="3"
         android:textColor="@color/black_soft"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_post_like"
-        app:layout_constraintVertical_bias="0.0"
         tools:text="Lorem ipsum dolor sit amet" />
+
+    <TextView
+        android:id="@+id/tv_post_create"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:fontFamily="@font/montserrat_regular"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_post_caption"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:text="Sen, 7 Des 2020" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

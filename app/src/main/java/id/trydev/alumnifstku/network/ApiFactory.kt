@@ -301,7 +301,7 @@ object ApiFactory {
     }
 
     /* Post Comment function */
-    suspend fun postComment(apiToken: String, id: Int, teks: String): Result<DefaultResponse<Comment>> {
+    suspend fun postComment(apiToken: String, id: Int, teks: String): Result<DefaultResponse<List<Comment>>> {
         return safeApiCall { apiService.commentPost("Bearer $apiToken", id, teks) }
     }
 

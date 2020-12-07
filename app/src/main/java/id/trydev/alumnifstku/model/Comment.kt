@@ -19,4 +19,7 @@ data class Comment (
     @SerializedName("created_at")
     val createdAt: String? = null,
 
+    @SerializedName("alumni")
+    val alumni: Alumni? = null
+
 )

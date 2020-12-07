@@ -419,7 +419,7 @@ interface ApiService {
         @Path("id") id: Int,
         @Field("text") comment: String,
         @Header("Accept") accept: String = "application/json",
-    ): Response<DefaultResponse<Comment>>
+    ): Response<DefaultResponse<List<Comment>>>
 
     /*
     * Remove Comment post

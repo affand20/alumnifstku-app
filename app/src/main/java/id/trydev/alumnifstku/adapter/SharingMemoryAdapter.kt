@@ -2,6 +2,7 @@ package id.trydev.alumnifstku.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
@@ -9,6 +10,8 @@ import id.trydev.alumnifstku.R
 import id.trydev.alumnifstku.databinding.ItemSharingMemoryBinding
 import id.trydev.alumnifstku.model.Post
 import id.trydev.alumnifstku.utils.GlideApp
+import java.text.SimpleDateFormat
+import java.util.*
 
 class SharingMemoryAdapter(private val context: Context, val onClick: (Post) -> Unit): RecyclerView.Adapter<SharingMemoryAdapter.ViewHolder>() {
 
@@ -55,7 +58,18 @@ class SharingMemoryAdapter(private val context: Context, val onClick: (Post) -> 
                         .fallback(R.color.grey)
                         .load(item.alumni.biodata.foto)
                         .into(binding.ivProfilePic)
+                } else {
+                    binding.ivProfilePic.setImageResource(R.color.grey)
                 }
+            }
+
+            if (item.createdAt != null) {
+                val formatter = SimpleDateFormat("EEE, dd MMM yyyy", Locale("in", "ID"))
+                val strToDate = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale("in", "ID"))
+                    .parse(item.createdAt.toString())
+                binding.tvPostCreate.text = formatter.format(strToDate)
+            } else {
+                binding.tvPostCreate.visibility = View.GONE
             }
 
             GlideApp.with(context)
@@ -65,6 +79,7 @@ class SharingMemoryAdapter(private val context: Context, val onClick: (Post) -> 
                 .load(item.foto)
                 .into(binding.ivPost)
 
+            binding.itemBody.setOnClickListener { onClick(item) }
         }
 
     }
