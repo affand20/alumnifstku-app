@@ -18,7 +18,7 @@ object ApiFactory {
     // prod
     const val BASE_URL = "http://alumnifstku.trydev.my.id/api/"
 
-    private val interceptor = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BASIC)
+    private val interceptor = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
     private val client = OkHttpClient().newBuilder()
         .addInterceptor(interceptor)
         .build()
@@ -33,11 +33,11 @@ object ApiFactory {
         val retrofit = Retrofit.Builder()
             .client(client)
             .baseUrl(BASE_URL)
-            .addConverterFactory(MoshiConverterFactory.create(
-                Moshi.Builder()
-                    .add(KotlinJsonAdapterFactory())
-                    .build()
-            ))
+//            .addConverterFactory(MoshiConverterFactory.create(
+//                Moshi.Builder()
+//                    .add(KotlinJsonAdapterFactory())
+//                    .build()
+//            ))
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
@@ -189,7 +189,7 @@ object ApiFactory {
 
     /* Get Self Biodata function */
     suspend fun myBio(apiToken: String): Result<DefaultResponse<Biodata>> {
-        return safeApiCall { apiService.myBio(apiToken) }
+        return safeApiCall { apiService.myBio("Bearer $apiToken") }
     }
 
     /* Get List Alumni function */
@@ -203,7 +203,7 @@ object ApiFactory {
     }
 
     /* Get List Loker function */
-    suspend fun listLoker(apiToken: String, query: Map<String, String>): Result<DefaultResponse<List<Loker>>> {
+    suspend fun listLoker(apiToken: String, query: Map<String, String?>): Result<DefaultResponse<List<Loker>>> {
         return safeApiCall { apiService.listLoker("Bearer $apiToken", query) }
     }
 

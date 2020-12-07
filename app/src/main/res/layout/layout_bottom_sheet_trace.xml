@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:id="@+id/bottom_sheet_trace_container"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/bottom_sheet_background"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <EditText
+        android:id="@+id/et_tracing_nama"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/edittext_normal"
+        android:inputType="text"
+        android:hint="Nama"
+        android:layout_marginTop="12dp"
+        android:layout_gravity="center"
+        style="@style/edittext_normal"/>
+
+    <EditText
+        android:id="@+id/et_tracing_angkatan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/edittext_normal"
+        android:inputType="text"
+        android:hint="Angkatan"
+        android:layout_gravity="center"
+        style="@style/edittext_normal"
+        android:layout_marginTop="16dp"/>
+
+    <Spinner
+        android:id="@+id/spinner_tracing"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/edittext_normal"
+        android:paddingLeft="0dp"
+        android:layout_marginTop="16dp"
+        android:spinnerMode="dropdown"
+        android:layout_gravity="center"
+        style="@style/edittext_normal"/>
+
+    <TextView
+        android:gravity="center"
+        android:id="@+id/btn_search_tracing"
+        style="@style/button_normal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/button_normal"
+        android:layout_gravity="center"
+        android:layout_marginBottom="24dp"
+        android:text="Cari Alumni"/>
+
+</LinearLayout>

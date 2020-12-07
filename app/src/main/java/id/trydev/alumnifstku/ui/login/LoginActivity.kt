@@ -12,6 +12,7 @@ import id.trydev.alumnifstku.databinding.ActivityLoginBinding
 import id.trydev.alumnifstku.network.RequestState
 import id.trydev.alumnifstku.prefs.AppPreferences
 import id.trydev.alumnifstku.ui.biodata.BiodataActivity
+import id.trydev.alumnifstku.ui.dashboard.DashboardActivity
 import id.trydev.alumnifstku.ui.forgotpass.ForgotPasswordActivity
 import id.trydev.alumnifstku.ui.register.RegisterActivity
 
@@ -90,10 +91,14 @@ class LoginActivity : AppCompatActivity() {
                     // save credential to preferences
                     prefs.token = response.data?.apiToken
                     prefs.userId = response.data?.id
+                    // if its first sign in for user
+                    if (prefs.firstOpen) {
+                        prefs.firstOpen = false
+                    }
                     // debug only
                     Log.d("PREFERENCES", "${prefs.token}, ${prefs.userId}")
                     // TODO: Do checking whether user has filled their biodata or not
-                    startActivity(Intent(this, BiodataActivity::class.java))
+                    startActivity(Intent(this, DashboardActivity::class.java))
                 } else {
                     binding.errorMsg.visibility = View.VISIBLE
                     binding.errorMsg.text = response.message

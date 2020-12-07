@@ -1,29 +1,28 @@
 package id.trydev.alumnifstku.model
 
-import android.nfc.Tag
-import com.squareup.moshi.Json
+import com.google.gson.annotations.SerializedName
 
 data class Post (
 
-    @Json(name = "id")
+    @SerializedName("id")
     val id: String? = null,
 
-    @Json(name = "foto")
+    @SerializedName("foto")
     val foto: String? = null,
 
-    @Json(name = "deskripsi")
+    @SerializedName("deskripsi")
     val deskripsi: String? = null,
 
-    @Json(name = "alumni")
+    @SerializedName("alumni")
     val alumni: Alumni? = null,
 
-    @Json(name = "tag")
-    val tag: List<Tag>? = null,
+    @SerializedName("tag")
+    val tag: List<Tags>? = null,
 
-    @Json(name = "likes")
+    @SerializedName("likes")
     val likes: List<Likes>? = null,
 
-    @Json(name = "comment")
+    @SerializedName("comment")
     val comments: List<Comment>? = null,
 
 

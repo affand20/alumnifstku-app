@@ -1,14 +1,14 @@
 package id.trydev.alumnifstku.model
 
-import com.squareup.moshi.Json
+import com.google.gson.annotations.SerializedName
 
 data class DefaultResponse<out T: Any?> (
 
-    @Json(name = "success")
+    @SerializedName("success")
     val success: Boolean? = null,
-    @Json(name = "message")
+    @SerializedName("message")
     val message: String? = null,
-    @Json(name = "data")
+    @SerializedName("data")
     val data: T? = null
 
 )

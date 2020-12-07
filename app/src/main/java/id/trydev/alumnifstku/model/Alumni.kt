@@ -1,42 +1,42 @@
 package id.trydev.alumnifstku.model
 
-import com.squareup.moshi.Json
+import com.google.gson.annotations.SerializedName
 
 data class Alumni (
 
-    @Json(name="id")
+    @SerializedName("id")
     val id:String? = null,
 
-    @Json(name="email")
+    @SerializedName("email")
     val email:String? = null,
 
-    @Json(name="username")
+    @SerializedName("username")
     val username:String? = null,
 
-    @Json(name="password")
+    @SerializedName("password")
     val password:String? = null,
 
-    @Json(name="token_registration")
+    @SerializedName("token_registration")
     val tokenRegist:String? = null,
 
-    @Json(name="api_token")
+    @SerializedName("api_token")
     val apiToken:String? = null,
 
-    @Json(name="created_at")
+    @SerializedName("created_at")
     val createdAt:String? = null,
 
     var isVerified: Boolean? = null,
 
-    @Json(name = "biodata")
+    @SerializedName( "biodata")
     val biodata: Biodata? = null,
 
-    @Json(name = "tracing")
+    @SerializedName( "tracing")
     val tracing: List<Tracing>? = null
 
-//    @Json(name="updated_at")
+//    @SerializedName("updated_at")
 //    val updatedAt:String? = null,
 //
-//    @Json(name="verified_at")
+//    @SerializedName("verified_at")
 //    val verifiedAt:String? = null
 
 )

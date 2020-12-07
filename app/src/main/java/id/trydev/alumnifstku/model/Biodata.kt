@@ -1,40 +1,40 @@
 package id.trydev.alumnifstku.model
 
-import com.squareup.moshi.Json
+import com.google.gson.annotations.SerializedName
 
 data class Biodata (
 
-    @Json(name = "id")
+    @SerializedName("id")
     val id: String? = null,
 
-    @Json(name = "alumni_id")
+    @SerializedName("alumni_id")
     val alumniId: String? = null,
 
-    @Json(name = "nama")
-    val nama: String? = null,
+    @SerializedName("nama")
+    var nama: String? = null,
 
-    @Json(name = "alamat")
+    @SerializedName("alamat")
     val alamat: String? = null,
 
-    @Json(name = "umur")
+    @SerializedName("umur")
     val umur: Int? = null,
 
-    @Json(name = "ttl")
+    @SerializedName("ttl")
     val ttl: String? = null,
 
-    @Json(name = "jenis_kelamin")
+    @SerializedName("jenis_kelamin")
     val jenisKelamin: String? = null,
 
-    @Json(name = "angkatan")
+    @SerializedName("angkatan")
     val angkatan: String? = null,
 
-    @Json(name = "jurusan")
+    @SerializedName("jurusan")
     val jurusan: String? = null,
 
-    @Json(name = "linkedin")
+    @SerializedName("linkedin")
     val linkedin: String? = null,
 
-    @Json(name = "foto")
+    @SerializedName("foto")
     val foto: String? = null
 
 

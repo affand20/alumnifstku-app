@@ -6,14 +6,11 @@
         android:width="300dp"/>
 
     <gradient
-        android:startColor="#599efa"
-        android:endColor="#6842F3"
+        android:startColor="@color/blue_start_gradient"
+        android:endColor="@color/purple"
         android:angle="45"/>
 
-
     <corners android:radius="5dp"/>
-
-    <padding android:left="16dp"/>
 
     <stroke android:width="0dp" />
 

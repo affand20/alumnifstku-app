@@ -1,22 +1,22 @@
 package id.trydev.alumnifstku.model
 
-import com.squareup.moshi.Json
+import com.google.gson.annotations.SerializedName
 
 data class Comment (
 
-    @Json(name = "id")
+    @SerializedName("id")
     val id: String? = null,
 
-    @Json(name = "alumni_id")
+    @SerializedName("alumni_id")
     val commentatorId: String? = null,
 
-    @Json(name = "sharing_alumni_id")
+    @SerializedName("sharing_alumni_id")
     val postId: String? = null,
 
-    @Json(name = "text")
+    @SerializedName("text")
     val comment: String? = null,
 
-    @Json(name = "created_at")
+    @SerializedName("created_at")
     val createdAt: String? = null,
 
 )

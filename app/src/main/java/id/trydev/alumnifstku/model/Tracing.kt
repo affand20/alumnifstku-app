@@ -1,25 +1,25 @@
 package id.trydev.alumnifstku.model
 
-import com.squareup.moshi.Json
+import com.google.gson.annotations.SerializedName
 
 data class Tracing (
 
-    @Json(name = "id")
+    @SerializedName("id")
     val id: String? = null,
 
-    @Json(name = "alumni_id")
+    @SerializedName("alumni_id")
     val alumniId: String? = null,
 
-    @Json(name = "perusahaan")
+    @SerializedName("perusahaan")
     val perusahaan: String? = null,
 
-    @Json(name = "cluster")
+    @SerializedName("cluster")
     val cluster: String? = null,
 
-    @Json(name = "tahun_masuk")
+    @SerializedName("tahun_masuk")
     val tahunMasuk: String? = null,
 
-    @Json(name = "jabatan")
+    @SerializedName("jabatan")
     val jabatan: String? = null,
 
 

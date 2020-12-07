@@ -1,13 +1,14 @@
 package id.trydev.alumnifstku.model
 
+import com.google.gson.annotations.SerializedName
 import com.squareup.moshi.Json
 
 data class Admin (
 
-    @Json(name = "id")
+    @SerializedName("id")
     val id: String? = null,
 
-    @Json(name = "name")
+    @SerializedName("name")
     val name: String? = null,
 
 
