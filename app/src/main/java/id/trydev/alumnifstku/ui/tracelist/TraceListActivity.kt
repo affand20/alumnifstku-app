@@ -15,7 +15,7 @@ import id.trydev.alumnifstku.databinding.ActivityTraceListBinding
 import id.trydev.alumnifstku.model.Biodata
 import kotlinx.android.synthetic.main.layout_bottom_sheet_trace.view.*
 
-class TraceListActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
+class TraceListActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityTraceListBinding
 
@@ -24,6 +24,10 @@ class TraceListActivity : AppCompatActivity(), AdapterView.OnItemSelectedListene
     private lateinit var vManager: RecyclerView.LayoutManager
 
     private lateinit var cariOrang: CariOrang
+
+    private var filterjurusan: String? = null
+    private var filtercluster: String? = null
+    private var filterwaktu: String? = null
 
     private var listData = ArrayList<Biodata>()
 
@@ -47,6 +51,22 @@ class TraceListActivity : AppCompatActivity(), AdapterView.OnItemSelectedListene
         setDummyData()
         vAdapter.setData(listData)
 
+        binding.spinnerTraceJurusan.adapter = ArrayAdapter.createFromResource(this, R.array.list_jurusan, R.layout.spinner_tracefilter).also {
+            it.setDropDownViewResource(R.layout.spinner_tracefilter)
+        }
+
+        binding.spinnerTraceJurusan.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+                filterjurusan = parent.selectedItem as String
+                Toast.makeText(view.context, "Filter : ${filterjurusan}", Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+
+        }
+
         binding.btnCariAlumni.setOnClickListener {
 
             val view = layoutInflater.inflate(R.layout.layout_bottom_sheet_trace, null)
@@ -60,8 +80,16 @@ class TraceListActivity : AppCompatActivity(), AdapterView.OnItemSelectedListene
                 view.spinner_tracing.adapter = adapter
             }
 
-            view.spinner_tracing.onItemSelectedListener = this
+            view.spinner_tracing.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+                override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
+                    cariOrang.jurusan = parent.selectedItem as String
+                }
 
+                override fun onNothingSelected(parent: AdapterView<*>?) {
+
+                }
+
+            }
             view.btn_search_tracing.setOnClickListener {
 
                 cariOrang.nama = view.et_tracing_nama.text.toString()
@@ -102,11 +130,5 @@ class TraceListActivity : AppCompatActivity(), AdapterView.OnItemSelectedListene
         var jurusan: String? = null
     }
 
-    override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
-        cariOrang.jurusan = parent.selectedItem as String
-    }
 
-    override fun onNothingSelected(parent: AdapterView<*>?) {
-
-    }
 }
