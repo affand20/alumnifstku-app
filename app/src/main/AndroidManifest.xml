@@ -14,8 +14,9 @@
         android:roundIcon="@mipmap/ic_fst_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AlumniFSTku">
-        <activity android:name=".ui.loker.LokerActivity"></activity>
-        <activity android:name=".ui.kelasdetails.KelasDetailsActivity"></activity>
+        <activity android:name=".ui.pengaturan.PengaturanActivity"></activity>
+        <activity android:name=".ui.loker.LokerActivity" />
+        <activity android:name=".ui.kelasdetails.KelasDetailsActivity" />
         <activity android:name=".ui.kelas.KelasListActivity" />
         <activity android:name=".ui.tracedetails.TraceDetailsActivity" />
         <activity android:name=".ui.tracelist.TraceListActivity" />
