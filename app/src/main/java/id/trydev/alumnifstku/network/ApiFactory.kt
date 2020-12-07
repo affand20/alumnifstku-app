@@ -290,6 +290,11 @@ object ApiFactory {
         return safeApiCall { apiService.updatePost("Bearer $apiToken", id, deskripsi, foto) }
     }
 
+    /* Remove Post function */
+    suspend fun removePost(apiToken: String, id: Int): Result<DefaultResponse<Nothing>> {
+        return safeApiCall { apiService.removePost("Bearer $apiToken", id) }
+    }
+
     /* Like Post function */
     suspend fun likePost(apiToken: String, id: Int): Result<DefaultResponse<Nothing>> {
         return safeApiCall { apiService.likePost("Bearer $apiToken", id) }

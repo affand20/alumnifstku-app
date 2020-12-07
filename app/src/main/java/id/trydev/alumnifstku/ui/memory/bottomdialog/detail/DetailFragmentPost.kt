@@ -50,6 +50,16 @@ class DetailFragmentPost(private val postId:Int): BottomSheetDialogFragment() {
             bottomSheetDialog.dismiss()
         }
 
+        binding.toolbar.setOnMenuItemClickListener {
+            when(it.itemId) {
+                R.id.ctx_delete -> {
+                    viewModel.removePost(prefs.token.toString(), postId)
+                    true
+                }
+                else -> false
+            }
+        }
+
         val layout = binding.rvComment
         val params = layout.layoutParams
         params.height = 400 * 2
@@ -179,6 +189,23 @@ class DetailFragmentPost(private val postId:Int): BottomSheetDialogFragment() {
                             binding.tvPostComment.text = String.format(requireContext().resources.getString(R.string.comment_count_template), 0)
                         }
                     }
+                } else {
+                    response.message?.let { panggang(it) }
+                }
+            }
+        })
+
+        /* Observe Response remove post changes */
+        viewModel.responseRemovePost.observe({ lifecycle }, { response ->
+            Log.d("RESPONSE", response.toString())
+            if (response != null) {
+                // check server response
+                // if success, populate data
+                // else, show error Toast
+                if (response.success == true) {
+                    // populate data
+                    panggang(response.message.toString())
+                    bottomSheetDialog.dismiss()
                 } else {
                     response.message?.let { panggang(it) }
                 }

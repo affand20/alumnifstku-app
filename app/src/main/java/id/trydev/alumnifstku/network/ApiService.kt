@@ -383,6 +383,17 @@ interface ApiService {
     ): Response<DefaultResponse<Post>>
 
     /*
+    * Remove Post
+    * ======================
+    * */
+    @POST("sharing/{id}/remove")
+    suspend fun removePost(
+        @Header("Authorization") apiToken: String,
+        @Path("id") id: Int,
+        @Header("Accept") accept: String = "application/json"
+    ): Response<DefaultResponse<Nothing>>
+
+    /*
     * Like post
     * =======================
     * */

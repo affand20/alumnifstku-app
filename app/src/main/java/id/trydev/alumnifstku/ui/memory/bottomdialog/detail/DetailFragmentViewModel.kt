@@ -36,6 +36,10 @@ class DetailFragmentViewModel: ViewModel() {
     val responseComment: LiveData<DefaultResponse<List<Comment>>>
         get() = _responseComment
 
+    private val _responseRemovePost = MutableLiveData<DefaultResponse<Post>>()
+    val responseRemovePost: LiveData<DefaultResponse<Post>>
+        get() = _responseRemovePost
+
     /* Variabel untuk menampung error yg bukan berasal dari server */
     private val _error = MutableLiveData<String>()
     val error: LiveData<String>
@@ -184,6 +188,27 @@ class DetailFragmentViewModel: ViewModel() {
         }
     }
 
+    fun removePost(apiToken: String, postId: Int) {
+        _state.postValue(RequestState.REQUEST_START)
+        uiScope.launch {
+            try {
+                when(val response = ApiFactory.removePost(apiToken, postId)) {
+                    is Result.Success -> {
+                        _state.postValue(RequestState.REQUEST_END)
+                        _responseRemovePost.postValue(response.data)
+                    }
 
+                    is Result.Error -> {
+                        _state.postValue(RequestState.REQUEST_ERROR)
+//                        _responsePost.postValue(Gson().fromJson(response.exception, DefaultResponse::class.java) as DefaultResponse<List<Loker>>?)
+                        _error.postValue(response.exception)
+                    }
+                }
+            } catch (t: Throwable) {
+                _state.postValue(RequestState.REQUEST_ERROR)
+                _error.postValue(t.localizedMessage)
+            }
+        }
+    }
 
 }

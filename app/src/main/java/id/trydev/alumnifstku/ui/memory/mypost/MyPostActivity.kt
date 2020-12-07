@@ -140,12 +140,6 @@ class MyPostActivity : AppCompatActivity(), EasyPermissions.PermissionCallbacks 
                 Toast.makeText(this, "Ukuran file terlalu besar, mohon pilih file dibawah 5MB", Toast.LENGTH_LONG).show()
             }
 
-//            GlideApp.with(this)
-//                .asBitmap()
-//                .transform(CenterCrop())
-//                .load(data.data)
-//                .into(binding.ivProfilePic)
-
         }
     }
 
@@ -181,14 +175,10 @@ class MyPostActivity : AppCompatActivity(), EasyPermissions.PermissionCallbacks 
         Log.d("PERMISSION_GRANTED", "$perms")
     }
 
-    override fun onPause() {
-        super.onPause()
-        Log.d("ONPAUSE", "Triggered")
-    }
-
     override fun onResume() {
         super.onResume()
-        Log.d("ONRESUME", "Triggered")
+        Log.d("MY POST ACTIVITY", "ON RESUME")
         viewModel.getMyPosts(prefs.token.toString())
     }
+
 }

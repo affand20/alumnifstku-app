@@ -101,6 +101,8 @@ class SharingMemoryActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
+        Log.d("SHARING MEMORY ACTIVITY", "ON RESUME")
         viewModel.getPosts(prefs.token.toString())
     }
+
 }
