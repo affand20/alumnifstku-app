@@ -62,6 +62,8 @@ class BiodataViewModel: ViewModel() {
         _state.postValue(RequestState.REQUEST_START)
         uiScope.launch {
             try {
+                val file = File(filePath)
+
                 when(val response = ApiFactory.uploadBio(
                     apiToken,
                     RequestBody.create(MultipartBody.FORM, biodataAttribute["nama"] as String),
@@ -72,7 +74,11 @@ class BiodataViewModel: ViewModel() {
                     RequestBody.create(MultipartBody.FORM, biodataAttribute["angkatan"] as String),
                     RequestBody.create(MultipartBody.FORM, biodataAttribute["jurusan"] as String),
                     RequestBody.create(MultipartBody.FORM, biodataAttribute2["linkedin"] as String?),
-                    biodataAttribute["foto"] as MultipartBody.Part?
+                    MultipartBody.Part.createFormData(
+                        "foto",
+                        file.name,
+                        RequestBody.create(MediaType.parse("image/*"), file)
+                    )
                 )) {
                     is Result.Success -> {
                         _state.postValue(RequestState.REQUEST_END)

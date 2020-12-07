@@ -1,5 +1,6 @@
 package id.trydev.alumnifstku.ui.memory
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -11,6 +12,7 @@ import id.trydev.alumnifstku.databinding.ActivitySharingMemoryBinding
 import id.trydev.alumnifstku.network.RequestState
 import id.trydev.alumnifstku.prefs.AppPreferences
 import id.trydev.alumnifstku.ui.memory.bottomdialog.detail.DetailFragmentPost
+import id.trydev.alumnifstku.ui.memory.mypost.MyPostActivity
 import id.trydev.alumnifstku.utils.ItemDecorationPost
 
 class SharingMemoryActivity : AppCompatActivity() {
@@ -91,5 +93,14 @@ class SharingMemoryActivity : AppCompatActivity() {
             viewModel.getPosts(prefs.token.toString())
         }
 
+        binding.ibMyPost.setOnClickListener {
+            startActivity(Intent(this, MyPostActivity::class.java))
+        }
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.getPosts(prefs.token.toString())
     }
 }

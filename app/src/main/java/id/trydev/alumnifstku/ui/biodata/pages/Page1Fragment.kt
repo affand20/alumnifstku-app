@@ -73,18 +73,9 @@ class Page1Fragment : Fragment(), EasyPermissions.PermissionCallbacks {
                     "umur" to binding.edtOld.text.toString(),
                     "jenis_kelamin" to jk,
                     "ttl" to "${binding.edtBirthPlace.text.toString()}, ${binding.edtBirthDate.text.toString()}",
-//                    "foto" to MultipartBody.Part.createFormData(
-//                        "foto",
-//                        foto.name,
-//                        RequestBody.create(MediaType.parse("image/*"), foto)),
                 )
 
                 if (filePath != "") {
-//                    val foto = File(filePath)
-//                    map["foto"] = MultipartBody.Part.createFormData(
-//                        "foto",
-//                        foto.name,
-//                        RequestBody.create(MediaType.parse("image/*"), foto))
                     map["foto"] = filePath
                 }
 

@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -164,11 +165,17 @@ class DetailFragmentPost(private val postId:Int): BottomSheetDialogFragment() {
                         adapter.populateData(comments)
                         if (comments.isNotEmpty()) {
                             binding.tvPostComment.text = String.format(requireContext().resources.getString(R.string.comment_count_template), comments.size)
+                            if (comments.size > 3) {
+                                val l = binding.rvComment
+                                val p = l.layoutParams
+                                p.height = RecyclerView.LayoutParams.WRAP_CONTENT
+                                l.layoutParams = p
+                            }
                         } else {
                             val l = binding.rvComment
                             val p = l.layoutParams
                             p.height = 400 * 2
-                            l.layoutParams = params
+                            l.layoutParams = p
                             binding.tvPostComment.text = String.format(requireContext().resources.getString(R.string.comment_count_template), 0)
                         }
                     }
@@ -203,6 +210,11 @@ class DetailFragmentPost(private val postId:Int): BottomSheetDialogFragment() {
     }
 
     private fun populateItem(item: Post, binding: FragmentDetailPostBinding) {
+
+        if (prefs.userId == item.alumniId) {
+            binding.toolbar.inflateMenu(R.menu.menu_comment)
+        }
+
         GlideApp.with(requireContext())
             .asBitmap()
             .centerInside()
@@ -259,6 +271,12 @@ class DetailFragmentPost(private val postId:Int): BottomSheetDialogFragment() {
 
         if (item.comments != null) {
             binding.tvPostComment.text = String.format(requireContext().resources.getString(R.string.comment_count_template), item.comments.size)
+            if (item.comments.size > 3) {
+                val l = binding.rvComment
+                val p = l.layoutParams
+                p.height = RecyclerView.LayoutParams.WRAP_CONTENT
+                l.layoutParams = p
+            }
         } else {
             val l = binding.rvComment
             val p = l.layoutParams

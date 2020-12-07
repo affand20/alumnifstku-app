@@ -427,7 +427,7 @@ interface ApiService {
         @Path("id") id: Int,
         @Path("commentId") commentId: Int,
         @Header("Accept") accept: String = "application/json",
-    ): Response<DefaultResponse<Nothing>>
+    ): Response<DefaultResponse<List<Comment>>>
 
     /*
     * Get All comment

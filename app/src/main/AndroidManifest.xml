@@ -14,7 +14,8 @@
         android:roundIcon="@mipmap/ic_fst_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AlumniFSTku">
-        <activity android:name=".ui.memory.SharingMemoryActivity"></activity>
+        <activity android:name="id.trydev.alumnifstku.ui.memory.mypost.MyPostActivity"></activity>
+        <activity android:name=".ui.memory.SharingMemoryActivity" />
         <activity android:name=".ui.loker.LokerActivity" />
         <activity android:name=".ui.kelasdetails.KelasDetailsActivity" />
         <activity android:name=".ui.kelas.KelasListActivity" />

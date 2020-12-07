@@ -306,7 +306,7 @@ object ApiFactory {
     }
 
     /* Remove Comment function */
-    suspend fun removeComment(apiToken: String, id: Int, commentId: Int): Result<DefaultResponse<Nothing>> {
+    suspend fun removeComment(apiToken: String, id: Int, commentId: Int): Result<DefaultResponse<List<Comment>>> {
         return safeApiCall { apiService.removeCommentPost("Bearer $apiToken", id, commentId) }
     }
 
