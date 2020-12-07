@@ -55,4 +55,7 @@
         <item>Giat-giat menjadi staff baru</item>
         <item>Atasi Insecurity dalam Persaingan</item>
     </string-array>
+
+    <string name="like_count_template">%1d Suka</string>
+    <string name="comment_count_template">%1d Komentar</string>
 </resources>

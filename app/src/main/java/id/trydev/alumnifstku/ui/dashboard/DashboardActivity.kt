@@ -21,6 +21,7 @@ import id.trydev.alumnifstku.prefs.AppPreferences
 import id.trydev.alumnifstku.ui.biodata.BiodataActivity
 import id.trydev.alumnifstku.ui.loker.LokerActivity
 import id.trydev.alumnifstku.ui.kelas.KelasListActivity
+import id.trydev.alumnifstku.ui.memory.SharingMemoryActivity
 import id.trydev.alumnifstku.ui.tracelist.TraceListActivity
 import kotlinx.android.synthetic.main.activity_dashboard.*
 
@@ -119,7 +120,8 @@ class DashboardActivity : AppCompatActivity(), View.OnClickListener {
 
             // Sharing Memory
             R.id.img_sharing -> {
-                panggang("Sharing Memory")
+                intent = Intent(this, SharingMemoryActivity::class.java)
+                startActivity(intent)
             }
 
             // Kelas Alumni

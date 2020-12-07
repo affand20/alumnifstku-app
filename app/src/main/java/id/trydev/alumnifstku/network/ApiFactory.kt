@@ -96,7 +96,7 @@ object ApiFactory {
 
     /* Is Alumni Has Verified checking function*/
     suspend fun hasVerified(apiToken: String): Result<Boolean> {
-        return safeApiCall { apiService.hasVerified(apiToken) }
+        return safeApiCall { apiService.hasVerified("Bearer $apiToken") }
     }
 
     /* Upload Biodata function */
@@ -260,7 +260,7 @@ object ApiFactory {
 
     /* Get Timeline Post function */
     suspend fun getTimelinePost(apiToken:String): Result<DefaultResponse<List<Post>>> {
-        return safeApiCall { apiService.timelinePost(apiToken) }
+        return safeApiCall { apiService.timelinePost("Bearer $apiToken") }
     }
 
     /* Get Detail Post function */
@@ -270,7 +270,7 @@ object ApiFactory {
 
     /* Get All My Post function */
     suspend fun getAllMyPost(apiToken: String): Result<DefaultResponse<List<Post>>> {
-        return safeApiCall { apiService.myPost(apiToken) }
+        return safeApiCall { apiService.myPost("Bearer $apiToken") }
     }
 
     /* Upload Post function */
