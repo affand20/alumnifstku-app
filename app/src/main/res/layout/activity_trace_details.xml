@@ -17,28 +17,238 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/trace_img_details"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:background="@color/splash_blue"
-        android:src="@drawable/logo"
-        android:layout_marginTop="32dp"
-        app:layout_constraintEnd_toEndOf="parent"
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imageView7"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView7" />
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/trace_img_details"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginStart="16dp"
+                android:background="@color/splash_blue"
+                android:src="@drawable/logo"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/textView27"
+                app:layout_constraintBottom_toBottomOf="@id/trace_tahunlulus_details"/>
+
+            <TextView
+                android:id="@+id/textView27"
+                style="@style/text_normal_bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="Nama"
+                app:layout_constraintStart_toEndOf="@id/trace_img_details"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/trace_nama_details"
+                style="@style/text_normal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/spinner_item"
+                android:text="Affandy Fahrizain, S.Kom"
+                app:layout_constraintStart_toStartOf="@+id/textView27"
+                app:layout_constraintTop_toBottomOf="@id/textView27"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="8dp"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"/>
+
+            <TextView
+                android:id="@+id/textView28"
+                style="@style/text_normal_bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="Jurusan"
+                app:layout_constraintStart_toStartOf="@id/textView27"
+                app:layout_constraintTop_toBottomOf="@id/trace_nama_details"/>
+
+            <TextView
+                android:id="@+id/trace_jurusan_details"
+                style="@style/text_normal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/spinner_item"
+                android:text="Sistem Informasi"
+                app:layout_constraintStart_toStartOf="@+id/textView28"
+                app:layout_constraintTop_toBottomOf="@id/textView28"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="8dp"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"/>
+
+            <TextView
+                android:id="@+id/textView29"
+                style="@style/text_normal_bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="Tahun Lulus"
+                app:layout_constraintStart_toStartOf="@id/textView27"
+                app:layout_constraintTop_toBottomOf="@id/trace_jurusan_details"/>
+
+            <TextView
+                android:id="@+id/trace_tahunlulus_details"
+                style="@style/text_normal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/spinner_item"
+                android:text="2019"
+                app:layout_constraintStart_toStartOf="@+id/textView29"
+                app:layout_constraintTop_toBottomOf="@id/textView29"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="8dp"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"/>
+
+            <TextView
+                android:id="@+id/textView30"
+                style="@style/text_normal_bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_marginStart="16dp"
+                android:text="Pekerjaan"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/trace_tahunlulus_details"/>
+
+            <TextView
+                android:id="@+id/trace_pekerjaan_details"
+                style="@style/text_normal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/spinner_item"
+                android:text="Lead of Data Science"
+                app:layout_constraintStart_toStartOf="@+id/textView30"
+                app:layout_constraintTop_toBottomOf="@id/textView30"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="8dp"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"/>
+
+            <TextView
+                android:id="@+id/textView31"
+                style="@style/text_normal_bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="Nama Perusahaan"
+                app:layout_constraintStart_toStartOf="@id/textView30"
+                app:layout_constraintTop_toBottomOf="@id/trace_pekerjaan_details"/>
+
+            <TextView
+                android:id="@+id/trace_perusahaan_details"
+                style="@style/text_normal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/spinner_item"
+                android:text="Tokopedia"
+                app:layout_constraintStart_toStartOf="@+id/textView31"
+                app:layout_constraintTop_toBottomOf="@id/textView31"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="8dp"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"/>
+
+            <TextView
+                android:id="@+id/textView32"
+                style="@style/text_normal_bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="Tahun Masuk Kerja"
+                app:layout_constraintStart_toStartOf="@id/textView30"
+                app:layout_constraintTop_toBottomOf="@id/trace_perusahaan_details"/>
+
+            <TextView
+                android:id="@+id/trace_tahunmasuk_details"
+                style="@style/text_normal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/spinner_item"
+                android:text="2020"
+                app:layout_constraintStart_toStartOf="@+id/textView32"
+                app:layout_constraintTop_toBottomOf="@id/textView32"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="8dp"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"/>
+
+            <TextView
+                android:id="@+id/textView33"
+                style="@style/text_normal_bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="Cluster"
+                app:layout_constraintStart_toStartOf="@id/textView30"
+                app:layout_constraintTop_toBottomOf="@id/trace_tahunmasuk_details"/>
+
+            <TextView
+                android:id="@+id/trace_cluster_details"
+                style="@style/text_normal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/spinner_item"
+                android:text="Professional"
+                app:layout_constraintStart_toStartOf="@+id/textView33"
+                app:layout_constraintTop_toBottomOf="@id/textView33"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="8dp"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"/>
+
+            <TextView
+                android:id="@+id/textView34"
+                style="@style/text_normal_bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="LinkedIn"
+                app:layout_constraintStart_toStartOf="@id/textView30"
+                app:layout_constraintTop_toBottomOf="@id/trace_cluster_details"/>
+
+            <TextView
+                android:id="@+id/trace_linkedin_details"
+                style="@style/text_normal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/spinner_item"
+                android:text="@string/lorem_ipsum"
+                app:layout_constraintStart_toStartOf="@+id/textView34"
+                app:layout_constraintTop_toBottomOf="@id/textView34"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="8dp"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 
 
-    <TextView
-        android:id="@+id/trace_nama_details"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        style="@style/splash_title_dark"
-        android:textSize="32dp"
-        android:text="NAMA"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/trace_img_details"
-        android:layout_marginTop="32dp"/>
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
