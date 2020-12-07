@@ -12,6 +12,7 @@ import id.trydev.alumnifstku.databinding.ActivitySharingMemoryBinding
 import id.trydev.alumnifstku.network.RequestState
 import id.trydev.alumnifstku.prefs.AppPreferences
 import id.trydev.alumnifstku.ui.memory.bottomdialog.detail.DetailFragmentPost
+import id.trydev.alumnifstku.ui.memory.bottomdialog.detail.DetailPostActivity
 import id.trydev.alumnifstku.ui.memory.mypost.MyPostActivity
 import id.trydev.alumnifstku.utils.ItemDecorationPost
 
@@ -31,9 +32,13 @@ class SharingMemoryActivity : AppCompatActivity() {
 
         adapter = SharingMemoryAdapter(this) { post ->
             /* Navigate to Detail Loker activity */
-            val detailFragment = DetailFragmentPost(post.id.toString().toInt())
-            Log.d("POST ID", post.id.toString())
-            detailFragment.show(supportFragmentManager, detailFragment.tag)
+//            val detailFragment = DetailFragmentPost(post.id.toString().toInt())
+//            Log.d("POST ID", post.id.toString())
+//            detailFragment.show(supportFragmentManager, detailFragment.tag)
+            startActivity(
+                Intent(this, DetailPostActivity::class.java)
+                    .putExtra("postId", post.id.toString())
+            )
         }
 
         binding.rvPost.layoutManager = LinearLayoutManager(this)

@@ -33,6 +33,8 @@
         <activity android:name=".ui.biodata.BiodataActivity" />
         <activity android:name=".ui.register.RegisterActivity" />
         <activity android:name=".ui.dashboard.DashboardActivity" />
+        <activity android:name=".ui.memory.bottomdialog.create.CreatePostActivity" />
+        <activity android:name=".ui.memory.bottomdialog.detail.DetailPostActivity" />
         <activity
             android:name=".ui.splash.SplashActivity"
             android:noHistory="true" />

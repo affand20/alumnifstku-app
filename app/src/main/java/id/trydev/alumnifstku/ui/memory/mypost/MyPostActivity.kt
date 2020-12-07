@@ -17,9 +17,11 @@ import id.trydev.alumnifstku.databinding.ActivityMyPostBinding
 import id.trydev.alumnifstku.network.RequestState
 import id.trydev.alumnifstku.prefs.AppPreferences
 import id.trydev.alumnifstku.ui.biodata.pages.Page1Fragment
+import id.trydev.alumnifstku.ui.memory.bottomdialog.create.CreatePostActivity
 import id.trydev.alumnifstku.ui.memory.bottomdialog.create.CreatePostFragment
 import id.trydev.alumnifstku.ui.memory.mypost.MyPostViewModel
 import id.trydev.alumnifstku.ui.memory.bottomdialog.detail.DetailFragmentPost
+import id.trydev.alumnifstku.ui.memory.bottomdialog.detail.DetailPostActivity
 import id.trydev.alumnifstku.utils.GlideApp
 import id.trydev.alumnifstku.utils.ItemDecorationPost
 import id.trydev.alumnifstku.utils.RealPathUtil
@@ -51,9 +53,13 @@ class MyPostActivity : AppCompatActivity(), EasyPermissions.PermissionCallbacks 
 
         adapter = SharingMemoryAdapter(this) { post ->
             /* Navigate to Detail Loker activity */
-            val detailFragment = DetailFragmentPost(post.id.toString().toInt())
-            Log.d("POST ID", post.id.toString())
-            detailFragment.show(supportFragmentManager, detailFragment.tag)
+//            val detailFragment = DetailFragmentPost(post.id.toString().toInt())
+//            Log.d("POST ID", post.id.toString())
+//            detailFragment.show(supportFragmentManager, detailFragment.tag)
+            startActivity(
+                Intent(this, DetailPostActivity::class.java)
+                    .putExtra("postId", post.id.toString())
+            )
         }
 
         binding.rvPost.layoutManager = LinearLayoutManager(this)
@@ -133,8 +139,12 @@ class MyPostActivity : AppCompatActivity(), EasyPermissions.PermissionCallbacks 
             if (file.length()/1024 < 5000) {
                 /* Navigate to Create Post activity */
                 uri?.let {
-                    val detailFragment = CreatePostFragment(it)
-                    detailFragment.show(supportFragmentManager, detailFragment.tag)
+//                    val detailFragment = CreatePostFragment(it)
+//                    detailFragment.show(supportFragmentManager, detailFragment.tag)
+                    startActivity(
+                        Intent(this, CreatePostActivity::class.java)
+                            .putExtra("uriImg", it.toString())
+                    )
                 }
             } else {
                 Toast.makeText(this, "Ukuran file terlalu besar, mohon pilih file dibawah 5MB", Toast.LENGTH_LONG).show()
