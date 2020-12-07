@@ -303,7 +303,6 @@ interface ApiService {
     * 1. Kelas ID
     * */
     @POST("kelas/{id}/unbook")
-    @FormUrlEncoded
     suspend fun unbookKelas(
         @Header("Authorization") apiToken: String,
         @Path("id") id: Int,
@@ -317,7 +316,6 @@ interface ApiService {
     * 1. Kelas ID
     * */
     @POST("kelas/{id}/resend-ticket")
-    @FormUrlEncoded
     suspend fun resendTicketKelas(
         @Header("Authorization") apiToken: String,
         @Path("id") id: Int,
@@ -389,7 +387,6 @@ interface ApiService {
     * =======================
     * */
     @POST("sharing/{id}/like")
-    @FormUrlEncoded
     suspend fun likePost(
         @Header("Authorization") apiToken: String,
         @Path("id") id: Int,
@@ -401,7 +398,6 @@ interface ApiService {
     * =======================
     * */
     @POST("sharing/{id}/unlike")
-    @FormUrlEncoded
     suspend fun unlikePost(
         @Header("Authorization") apiToken: String,
         @Path("id") id: Int,
@@ -426,7 +422,6 @@ interface ApiService {
     * =======================
     * */
     @POST("sharing/{id}/comment/{commentId}/remove")
-    @FormUrlEncoded
     suspend fun removeCommentPost(
         @Header("Authorization") apiToken: String,
         @Path("id") id: Int,

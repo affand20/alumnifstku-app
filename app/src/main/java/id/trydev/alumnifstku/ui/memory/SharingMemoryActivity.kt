@@ -29,7 +29,8 @@ class SharingMemoryActivity : AppCompatActivity() {
 
         adapter = SharingMemoryAdapter(this) { post ->
             /* Navigate to Detail Loker activity */
-            val detailFragment = DetailFragmentPost(post)
+            val detailFragment = DetailFragmentPost(post.id.toString().toInt())
+            Log.d("POST ID", post.id.toString())
             detailFragment.show(supportFragmentManager, detailFragment.tag)
         }
 

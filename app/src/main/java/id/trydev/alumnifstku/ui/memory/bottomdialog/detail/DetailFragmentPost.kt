@@ -5,10 +5,7 @@ import android.content.res.Resources
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.FrameLayout
-import android.widget.ScrollView
 import android.widget.Toast
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -25,7 +22,9 @@ import id.trydev.alumnifstku.utils.GlideApp
 import java.text.SimpleDateFormat
 import java.util.*
 
-class DetailFragmentPost(private val item:Post): BottomSheetDialogFragment() {
+class DetailFragmentPost(private val postId:Int): BottomSheetDialogFragment() {
+
+    private lateinit var post: Post
 
     private lateinit var binding: FragmentDetailPostBinding
     private lateinit var mBehavior: BottomSheetBehavior<View>
@@ -37,7 +36,6 @@ class DetailFragmentPost(private val item:Post): BottomSheetDialogFragment() {
         val bottomSheetDialog = super.onCreateDialog(savedInstanceState) as BottomSheetDialog
         binding = FragmentDetailPostBinding.inflate(layoutInflater)
 
-        Log.d("POST", "$item")
         prefs = AppPreferences(requireContext())
         adapter = CommentAdapter(requireContext())
         viewModel = ViewModelProvider(this).get(DetailFragmentViewModel::class.java)
@@ -48,63 +46,43 @@ class DetailFragmentPost(private val item:Post): BottomSheetDialogFragment() {
             bottomSheetDialog.dismiss()
         }
 
-        GlideApp.with(requireContext())
-            .asBitmap()
-            .centerInside()
-            .placeholder(R.color.grey)
-            .fallback(R.color.grey)
-            .load(item.foto)
-            .into(binding.ivPost)
-
-        if (item.alumni != null) {
-            binding.tvUsername.text = item.alumni.username
-            if (item.alumni.biodata?.foto != null) {
-                GlideApp.with(requireContext())
-                    .asBitmap()
-                    .centerCrop()
-                    .placeholder(R.color.grey)
-                    .fallback(R.color.grey)
-                    .load(item.alumni.biodata.foto)
-                    .into(binding.ivProfilePic)
-            } else {
-                binding.ivProfilePic.setImageResource(R.color.grey)
-            }
-        }
-
-        binding.tvPostCaption.text = item.deskripsi
-        Log.d("CAPTION", "${binding.tvPostCaption.visibility == View.VISIBLE}")
-
-        if (item.likes != null) {
-            binding.tvPostLike.text = String.format(requireContext().resources.getString(R.string.like_count_template), item.likes.size)
-        } else {
-            binding.tvPostLike.text = String.format(requireContext().resources.getString(R.string.like_count_template), 0)
-        }
-
-        if (item.comments != null) {
-            binding.tvPostComment.text = String.format(requireContext().resources.getString(R.string.comment_count_template), item.comments.size)
-        } else {
-            binding.tvPostComment.text = String.format(requireContext().resources.getString(R.string.comment_count_template), 0)
-        }
-
-        if (item.createdAt != null) {
-            val formatter = SimpleDateFormat("EEE, dd MMM yyyy", Locale("in", "ID"))
-            val strToDate = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale("in", "ID"))
-                    .parse(item.createdAt.toString())
-            binding.tvPostCreate.text = formatter.format(strToDate)
-            Log.d("CREATED_AT", "$strToDate")
-        } else {
-            binding.tvPostCreate.visibility = View.GONE
-        }
+        val layout = binding.rvComment
+        val params = layout.layoutParams
+        params.height = 400 * 2
+        layout.layoutParams = params
+        binding.rootView.smoothScrollTo(0, 0)
 
         binding.rvComment.layoutManager = LinearLayoutManager(requireContext())
         binding.rvComment.adapter = adapter
 
-        viewModel.getComments(prefs.token.toString(), item.id.toString().toInt())
+        viewModel.getPosts(prefs.token.toString(), postId)
+        viewModel.getComments(prefs.token.toString(), postId)
 
         binding.btnSendComment.setOnClickListener {
             if (validate(binding)) {
                 /* send comment */
-                viewModel.postComment(prefs.token.toString(), item.id.toString().toInt(), binding.edtComment.text.toString())
+                viewModel.postComment(prefs.token.toString(), postId, binding.edtComment.text.toString())
+                // clear edittext
+                binding.edtComment.text.clear()
+            }
+        }
+
+        binding.ibToggleLike.setOnClickListener {
+            /* make sure post variable has initialized */
+            if (::post.isInitialized) {
+                /* check is user has liked this post or not */
+                val isLiked = post.likes?.find { likes ->
+                    likes.alumniId == prefs.userId
+                }
+                if (isLiked != null) {
+                    /* if user has liked, then click will make it unlike */
+                    viewModel.unlikePost(prefs.token.toString(), postId)
+                    panggang("Unlike woy")
+                } else {
+                    /* if user has not liked, then click will make it like */
+                    viewModel.likePost(prefs.token.toString(), postId)
+                    panggang("Like woy")
+                }
             }
         }
 
@@ -115,7 +93,6 @@ class DetailFragmentPost(private val item:Post): BottomSheetDialogFragment() {
                 RequestState.REQUEST_START -> {
                     /* Show progress bar */
                     binding.progressBar.visibility = View.VISIBLE
-//                    binding.stateEmpty.visibility = View.GONE
                 }
                 RequestState.REQUEST_END -> {
                     /* Hide progress bar and fetch response */
@@ -136,19 +113,38 @@ class DetailFragmentPost(private val item:Post): BottomSheetDialogFragment() {
                 RequestState.REQUEST_START -> {
                     /* Show progress bar */
                     binding.progressBarComment.visibility = View.VISIBLE
-                    binding.rvComment.visibility = View.GONE
+                    binding.btnSendComment.visibility = View.GONE
                 }
                 RequestState.REQUEST_END -> {
                     /* Hide progress bar and fetch response */
                     binding.progressBarComment.visibility = View.GONE
-                    binding.rvComment.visibility = View.VISIBLE
+                    binding.btnSendComment.visibility = View.VISIBLE
                 }
                 RequestState.REQUEST_ERROR -> {
                     /* Something happen.. Hide progress bar and fetch errors */
                     binding.progressBarComment.visibility = View.GONE
-                    binding.rvComment.visibility = View.VISIBLE
+                    binding.btnSendComment.visibility = View.VISIBLE
                 }
                 else -> { /* do nothing */ }
+            }
+        })
+
+        /* Observe Response changes */
+        viewModel.response.observe({ lifecycle }, { response ->
+            Log.d("RESPONSE", response.toString())
+            if (response != null) {
+                // check server response
+                // if success, populate data
+                // else, show error Toast
+                if (response.success == true) {
+                    // populate data
+                    response.data?.let { item ->
+                        this.post = item
+                        populateItem(post, binding)
+                    }
+                } else {
+                    response.message?.let { panggang(it) }
+                }
             }
         })
 
@@ -166,10 +162,10 @@ class DetailFragmentPost(private val item:Post): BottomSheetDialogFragment() {
                         if (comments.isNotEmpty()) {
                             binding.tvPostComment.text = String.format(requireContext().resources.getString(R.string.comment_count_template), comments.size)
                         } else {
-                            val layout = binding.rvComment
-                            val params = layout.layoutParams
-                            params.height = 344 * 2
-                            layout.layoutParams = params
+                            val l = binding.rvComment
+                            val p = l.layoutParams
+                            p.height = 400 * 2
+                            l.layoutParams = params
                             binding.tvPostComment.text = String.format(requireContext().resources.getString(R.string.comment_count_template), 0)
                         }
                     }
@@ -201,6 +197,72 @@ class DetailFragmentPost(private val item:Post): BottomSheetDialogFragment() {
 
         })
         return bottomSheetDialog
+    }
+
+    private fun populateItem(item: Post, binding: FragmentDetailPostBinding) {
+        GlideApp.with(requireContext())
+            .asBitmap()
+            .centerInside()
+            .placeholder(R.color.grey)
+            .fallback(R.color.grey)
+            .load(item.foto)
+            .into(binding.ivPost)
+
+        if (item.alumni != null) {
+            binding.tvUsername.text = item.alumni.username
+            if (item.alumni.biodata?.foto != null) {
+                GlideApp.with(requireContext())
+                    .asBitmap()
+                    .centerCrop()
+                    .placeholder(R.color.grey)
+                    .fallback(R.color.grey)
+                    .load(item.alumni.biodata.foto)
+                    .into(binding.ivProfilePic)
+            } else {
+                binding.ivProfilePic.setImageResource(R.color.grey)
+            }
+        }
+
+        if (item.createdAt != null) {
+            val formatter = SimpleDateFormat("EEE, dd MMM yyyy", Locale("in", "ID"))
+            val strToDate = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale("in", "ID"))
+                .parse(item.createdAt.toString())
+            binding.tvPostCreate.text = formatter.format(strToDate)
+        } else {
+            binding.tvPostCreate.visibility = View.GONE
+        }
+
+        binding.tvPostCaption.text = item.deskripsi
+
+        if (item.likes != null) {
+            binding.tvPostLike.text = String.format(requireContext().resources.getString(R.string.like_count_template), item.likes.size)
+            val isLiked = item.likes.find { likes ->
+                likes.alumniId == prefs.userId
+            }
+            if (isLiked != null) {
+                binding.ibToggleLike.setImageDrawable(
+                    ContextCompat.getDrawable(requireContext(),
+                        R.drawable.ic_round_favorite_24)
+                )
+            } else {
+                binding.ibToggleLike.setImageDrawable(
+                    ContextCompat.getDrawable(requireContext(),
+                        R.drawable.ic_round_favorite_border_24)
+                )
+            }
+        } else {
+            binding.tvPostLike.text = String.format(requireContext().resources.getString(R.string.like_count_template), 0)
+        }
+
+        if (item.comments != null) {
+            binding.tvPostComment.text = String.format(requireContext().resources.getString(R.string.comment_count_template), item.comments.size)
+        } else {
+            val l = binding.rvComment
+            val p = l.layoutParams
+            p.height = 400 * 2
+            l.layoutParams = p
+            binding.tvPostComment.text = String.format(requireContext().resources.getString(R.string.comment_count_template), 0)
+        }
     }
 
     private fun validate(binding: FragmentDetailPostBinding): Boolean {

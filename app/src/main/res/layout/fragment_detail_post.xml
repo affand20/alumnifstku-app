@@ -22,7 +22,7 @@
         android:id="@+id/root_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="76dp"
+        android:layout_marginBottom="82dp"
         android:layout_marginTop="?attr/actionBarSize"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -68,16 +68,27 @@
                 app:layout_constraintTop_toBottomOf="@+id/iv_profile_pic"
                 tools:src="@color/grey" />
 
+            <ImageButton
+                android:id="@+id/ib_toggle_like"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_round_favorite_border_24"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/iv_post" />
+
             <TextView
                 android:id="@+id/tv_post_like"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
                 android:fontFamily="@font/montserrat_semi_bold"
                 android:textColor="@color/black_soft"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/iv_post"
+                app:layout_constraintBottom_toBottomOf="@+id/ib_toggle_like"
+                app:layout_constraintStart_toEndOf="@+id/ib_toggle_like"
+                app:layout_constraintTop_toTopOf="@+id/ib_toggle_like"
                 tools:text="20 Suka" />
 
             <TextView
@@ -85,11 +96,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
                 android:fontFamily="@font/montserrat_semi_bold"
                 android:textColor="@color/black_soft"
+                app:layout_constraintBottom_toBottomOf="@+id/ib_toggle_like"
                 app:layout_constraintStart_toEndOf="@+id/tv_post_like"
-                app:layout_constraintTop_toBottomOf="@+id/iv_post"
+                app:layout_constraintTop_toTopOf="@+id/ib_toggle_like"
                 tools:text="3 Komentar" />
 
             <TextView
@@ -97,7 +108,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="14dp"
                 android:layout_marginEnd="16dp"
                 android:ellipsize="end"
                 android:fontFamily="@font/montserrat_regular"
@@ -105,7 +116,7 @@
                 android:textColor="@color/black_soft"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_post_like"
+                app:layout_constraintTop_toBottomOf="@+id/ib_toggle_like"
                 tools:text="Lorem ipsum dolor sit amet" />
 
             <TextView
@@ -136,11 +147,23 @@
                 android:id="@+id/progress_bar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
                 android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_post"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/rv_comment" />
+                app:layout_constraintTop_toTopOf="@+id/iv_post" />
+
+            <ProgressBar
+                android:id="@+id/progress_bar_comment"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:indeterminateTint="@color/blue"
+                android:visibility="gone"
+                android:layout_marginTop="24dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/rv_comment"
+                />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
@@ -185,18 +208,6 @@
                 app:layout_constraintBottom_toBottomOf="@id/edt_comment"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/edt_comment"
-                />
-
-            <ProgressBar
-                android:id="@+id/progress_bar_comment"
-                android:indeterminateTint="@color/blue"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:visibility="gone"
-                app:layout_constraintStart_toStartOf="@id/btn_send_comment"
-                app:layout_constraintEnd_toEndOf="@id/btn_send_comment"
-                app:layout_constraintTop_toTopOf="@id/btn_send_comment"
-                app:layout_constraintBottom_toBottomOf="@id/btn_send_comment"
                 />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>

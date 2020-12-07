@@ -36,6 +36,7 @@ class CommentAdapter(private val context: Context): RecyclerView.Adapter<Comment
             if (item.alumni?.biodata?.foto != null) {
                 GlideApp.with(context)
                     .asBitmap()
+                    .placeholder(R.color.grey)
                     .fallback(R.color.grey)
                     .load(item.alumni.biodata.foto)
                     .into(binding.ivProfilePic)

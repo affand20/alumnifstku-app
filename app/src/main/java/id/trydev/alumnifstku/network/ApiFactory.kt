@@ -312,6 +312,7 @@ object ApiFactory {
 
     /* Get All Comment */
     suspend fun getAllCommment(apiToken: String, id: Int): Result<DefaultResponse<List<Comment>>> {
+        Log.d("GET COMMENT", "executed")
         return safeApiCall { apiService.getComments("Bearer $apiToken", id) }
     }
 

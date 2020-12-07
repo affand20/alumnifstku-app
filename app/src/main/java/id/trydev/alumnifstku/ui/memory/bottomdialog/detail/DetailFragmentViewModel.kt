@@ -117,5 +117,49 @@ class DetailFragmentViewModel: ViewModel() {
         }
     }
 
+    fun likePost(apiToken: String, postId: Int) {
+        _state.postValue(RequestState.REQUEST_START)
+        uiScope.launch {
+            try {
+                when(val response = ApiFactory.likePost(apiToken, postId)) {
+                    is Result.Success -> {
+                        getPosts(apiToken, postId)
+                    }
+
+                    is Result.Error -> {
+                        _state.postValue(RequestState.REQUEST_ERROR)
+//                        _responseComment.postValue(Gson().fromJson(response.exception, DefaultResponse::class.java) as DefaultResponse<List<Loker>>?)
+                        _error.postValue(response.exception)
+                    }
+                }
+            } catch (t: Throwable) {
+                _state.postValue(RequestState.REQUEST_ERROR)
+                _error.postValue(t.localizedMessage)
+            }
+        }
+    }
+
+    fun unlikePost(apiToken: String, postId: Int) {
+        _state.postValue(RequestState.REQUEST_START)
+        uiScope.launch {
+            try {
+                when(val response = ApiFactory.unlikePost(apiToken, postId)) {
+                    is Result.Success -> {
+                        getPosts(apiToken, postId)
+                    }
+
+                    is Result.Error -> {
+                        _state.postValue(RequestState.REQUEST_ERROR)
+//                        _responseComment.postValue(Gson().fromJson(response.exception, DefaultResponse::class.java) as DefaultResponse<List<Loker>>?)
+                        _error.postValue(response.exception)
+                    }
+                }
+            } catch (t: Throwable) {
+                _state.postValue(RequestState.REQUEST_ERROR)
+                _error.postValue(t.localizedMessage)
+            }
+        }
+    }
+
 
 }
