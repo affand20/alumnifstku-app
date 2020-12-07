@@ -2,9 +2,11 @@ package id.trydev.alumnifstku.ui.loker.bottomdialog
 
 import android.app.Dialog
 import android.content.res.Resources
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import androidx.browser.customtabs.CustomTabsIntent
 import androidx.core.content.ContextCompat
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -78,6 +80,12 @@ class DetailFragmentBottom(private val item:Loker): BottomSheetDialogFragment() 
             binding.tvDetailLink.text = item.link
         } else {
             binding.tvDetailLink.visibility = View.GONE
+        }
+
+        binding.tvDetailLink.setOnClickListener {
+            val builder = CustomTabsIntent.Builder()
+            val customTab = builder.build()
+            customTab.launchUrl(requireContext(), Uri.parse(item.link))
         }
 
         bottomSheetDialog.setContentView(binding.root)
