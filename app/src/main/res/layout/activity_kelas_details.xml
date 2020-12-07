@@ -48,10 +48,9 @@
             style="@style/text_normal_bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
             android:text="Pembicara"
             android:layout_marginTop="10dp"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@id/textView13"
             app:layout_constraintTop_toBottomOf="@+id/kelas_details_judul" />
 
         <TextView
@@ -102,11 +101,10 @@
             style="@style/text_normal_bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
             android:layout_marginTop="10dp"
             android:text="Kuota"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/kelas_details_pembicara" />
+            app:layout_constraintStart_toStartOf="@id/textView13"
+            app:layout_constraintTop_toBottomOf="@+id/kelas_details_tanggal" />
 
         <TextView
             android:id="@+id/textView18"
@@ -129,6 +127,36 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/textView17" />
 
+        <TextView
+            android:id="@+id/textView21"
+            style="@style/text_normal_bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tanggal"
+            android:layout_marginTop="10dp"
+            app:layout_constraintStart_toStartOf="@id/textView13"
+            app:layout_constraintTop_toBottomOf="@+id/kelas_details_pembicara" />
+
+        <TextView
+            android:id="@+id/textView22"
+            style="@style/text_normal_bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=":"
+            app:layout_constraintStart_toStartOf="@+id/textView14"
+            app:layout_constraintTop_toTopOf="@+id/textView21" />
+
+        <TextView
+            android:id="@+id/kelas_details_tanggal"
+            style="@style/text_normal_bold"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:text="12 Desember 2020"
+            app:layout_constraintStart_toEndOf="@+id/textView22"
+            app:layout_constraintTop_toTopOf="@+id/textView21" />
+
+
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView"
             android:layout_width="match_parent"
@@ -141,6 +169,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/kelas_details_kuota">
+
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"

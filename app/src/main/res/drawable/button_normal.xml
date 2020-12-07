@@ -10,10 +10,7 @@
         android:endColor="@color/purple"
         android:angle="45"/>
 
-
     <corners android:radius="5dp"/>
-
-    <padding android:left="16dp"/>
 
     <stroke android:width="0dp" />
 

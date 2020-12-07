@@ -1,7 +1,11 @@
 package id.trydev.alumnifstku.ui.kelasdetails
 
+import android.graphics.Color.parseColor
+import android.graphics.LinearGradient
+import android.graphics.Shader
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.TextView
 import android.widget.Toast
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import id.trydev.alumnifstku.R
@@ -16,6 +20,12 @@ class KelasDetailsActivity : AppCompatActivity() {
         binding = ActivityKelasDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.titlePage.apply {
+            setTextGradientColor(intArrayOf(
+                    parseColor("#599efa"),
+                    parseColor("#4275F3")
+            ))
+        }
         binding.btnBookingsekarang.setOnClickListener {
 
             val view = layoutInflater.inflate(R.layout.layout_bottom_sheet_kelasalumni, null)
@@ -35,5 +45,14 @@ class KelasDetailsActivity : AppCompatActivity() {
             dialog.setContentView(view)
             dialog.show()
         }
+    }
+
+    fun TextView.setTextGradientColor(colors: IntArray) {
+        val width = paint.measureText(text.toString())
+        val textShader = LinearGradient(
+                0f, 0f, width, textSize, colors, null, Shader.TileMode.CLAMP
+        )
+        setTextColor(colors[0])
+        paint.shader = textShader
     }
 }
