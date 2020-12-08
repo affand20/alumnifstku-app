@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ubah Biodata"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:padding="16dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@color/splash_blue"
+        android:textAlignment="center"
+        style="@style/splash_desc"
+        android:id="@+id/btn_change_biodata"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ubah Pekerjaan"
+        app:layout_constraintTop_toBottomOf="@id/btn_change_biodata"
+        app:layout_constraintStart_toStartOf="parent"
+        android:padding="16dp"
+        android:layout_margin="8dp"
+        android:textAlignment="center"
+        android:background="@color/splash_blue"
+        style="@style/splash_desc"
+        android:id="@+id/btn_change_pekerjaan"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ubah Password"
+        app:layout_constraintTop_toBottomOf="@id/btn_change_pekerjaan"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:padding="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="32dp"
+        android:textAlignment="center"
+        android:background="@color/splash_blue"
+        style="@style/splash_desc"
+        android:id="@+id/btn_change_password"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

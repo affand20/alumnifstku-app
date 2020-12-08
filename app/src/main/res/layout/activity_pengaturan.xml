@@ -4,289 +4,155 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:focusableInTouchMode="true"
-    android:focusable="true"
+    android:background="@drawable/bg_dashboard"
     tools:context=".ui.pengaturan.PengaturanActivity">
 
-    <TextView
-        android:id="@+id/page_title"
+    <ImageView
+        android:id="@+id/imageView7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="PENGATURAN"
-        style="@style/splash_title_dark"
+        android:layout_marginTop="24sp"
+        android:src="@drawable/logo_dashboard"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.3"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="24dp"/>
+        />
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/page_title"
+    <ImageView
+        android:id="@+id/btn_setting"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/ic_setting"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintTop_toTopOf="@id/imageView7"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/imageView7"
+        app:layout_constraintBottom_toBottomOf="@id/imageView7"/>
+
+
+    <ImageView
+        android:id="@+id/trace_img_details"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginStart="16dp"
+        android:background="@color/splash_blue"
+        android:src="@drawable/logo"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintTop_toTopOf="@id/textView27"
+        app:layout_constraintBottom_toBottomOf="@id/trace_angkatan_details"/>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:focusableInTouchMode="true"
-            android:focusable="true">
+    <TextView
+        android:id="@+id/textView27"
+        style="@style/text_normal_bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Nama"
+        app:layout_constraintStart_toEndOf="@id/trace_img_details"
+        app:layout_constraintTop_toBottomOf="@id/imageView7"/>
 
-            <ImageView
-                android:id="@+id/pengaturan_img_details"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:layout_marginStart="16dp"
-                android:background="@color/splash_blue"
-                android:src="@drawable/logo"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@id/textView27"
-                app:layout_constraintBottom_toBottomOf="@id/pengaturan_tahunlulus_details"/>
+    <TextView
+        android:id="@+id/trace_nama_details"
+        style="@style/text_normal"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/spinner_item"
+        android:text="xxx"
+        app:layout_constraintStart_toStartOf="@+id/textView27"
+        app:layout_constraintTop_toBottomOf="@id/textView27"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="8dp"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"/>
 
-            <TextView
-                android:id="@+id/textView27"
-                style="@style/text_normal_bold"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:text="Nama"
-                app:layout_constraintStart_toEndOf="@id/pengaturan_img_details"
-                app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/textView28"
+        style="@style/text_normal_bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="Jurusan"
+        app:layout_constraintStart_toStartOf="@id/textView27"
+        app:layout_constraintTop_toBottomOf="@id/trace_nama_details"/>
 
-            <EditText
-                android:id="@+id/pengaturan_nama_details"
-                style="@style/text_normal"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:background="@drawable/spinner_item"
-                android:hint="Nama"
-                app:layout_constraintStart_toStartOf="@+id/textView27"
-                app:layout_constraintTop_toBottomOf="@id/textView27"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginEnd="16dp"
-                android:layout_marginTop="8dp"
-                android:paddingTop="4dp"
-                android:paddingBottom="4dp"/>
+    <TextView
+        android:id="@+id/trace_jurusan_details"
+        style="@style/text_normal"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/spinner_item"
+        android:text="xxx"
+        app:layout_constraintStart_toStartOf="@+id/textView28"
+        app:layout_constraintTop_toBottomOf="@id/textView28"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="8dp"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"/>
 
-            <TextView
-                android:id="@+id/textView28"
-                style="@style/text_normal_bold"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:text="Jurusan"
-                app:layout_constraintStart_toStartOf="@id/textView27"
-                app:layout_constraintTop_toBottomOf="@id/pengaturan_nama_details"/>
+    <TextView
+        android:id="@+id/textView29"
+        style="@style/text_normal_bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="Angkatan"
+        app:layout_constraintStart_toStartOf="@id/textView27"
+        app:layout_constraintTop_toBottomOf="@id/trace_jurusan_details"/>
 
-            <Spinner
-                android:id="@+id/pengaturan_jurusan_details"
-                style="@style/text_normal"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:background="@drawable/spinner_item"
-                android:hint="Jurusan"
-                app:layout_constraintStart_toStartOf="@+id/textView28"
-                app:layout_constraintTop_toBottomOf="@id/textView28"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginEnd="16dp"
-                android:layout_marginTop="8dp"
-                android:gravity="center"
-                android:spinnerMode="dropdown"
-                android:paddingTop="4dp"
-                android:paddingBottom="4dp"/>
+    <TextView
+        android:id="@+id/trace_angkatan_details"
+        style="@style/text_normal"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/spinner_item"
+        android:text="xxx"
+        app:layout_constraintStart_toStartOf="@+id/textView29"
+        app:layout_constraintTop_toBottomOf="@id/textView29"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="8dp"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"/>
 
-            <TextView
-                android:id="@+id/textView29"
-                style="@style/text_normal_bold"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:text="Tahun Lulus"
-                app:layout_constraintStart_toStartOf="@id/textView27"
-                app:layout_constraintTop_toBottomOf="@id/pengaturan_jurusan_details"/>
+    <TextView
+        android:id="@+id/textView34"
+        style="@style/text_normal_bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="LinkedIn"
+        app:layout_constraintStart_toStartOf="@id/trace_img_details"
+        app:layout_constraintTop_toBottomOf="@id/trace_angkatan_details"/>
 
-            <EditText
-                android:id="@+id/pengaturan_tahunlulus_details"
-                style="@style/text_normal"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:background="@drawable/spinner_item"
-android:hint="Tahun Lulus"
-                android:inputType="number"
-                app:layout_constraintStart_toStartOf="@+id/textView29"
-                app:layout_constraintTop_toBottomOf="@id/textView29"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginEnd="16dp"
-                android:layout_marginTop="8dp"
-                android:paddingTop="4dp"
-                android:paddingBottom="4dp"/>
+    <TextView
+        android:id="@+id/trace_linkedin_details"
+        style="@style/text_normal"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/spinner_item"
+        android:text="@string/lorem_ipsum"
+        app:layout_constraintStart_toStartOf="@+id/textView34"
+        app:layout_constraintTop_toBottomOf="@id/textView34"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="8dp"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"/>
 
-            <TextView
-                android:id="@+id/textView30"
-                style="@style/text_normal_bold"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:layout_marginStart="16dp"
-                android:text="Pekerjaan"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/pengaturan_tahunlulus_details"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_pekerjaanlist"
+        style="@style/text_normal_bold"
+        tools:listitem="@layout/layout_rv_pekerjaanlist"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Pekerjaan"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/trace_linkedin_details"/>
 
-            <EditText
-                android:id="@+id/pengaturan_pekerjaan_details"
-                style="@style/text_normal"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:background="@drawable/spinner_item"
-android:hint="Pekerjaan"
-                app:layout_constraintStart_toStartOf="@+id/textView30"
-                app:layout_constraintTop_toBottomOf="@id/textView30"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginEnd="16dp"
-                android:layout_marginTop="8dp"
-                android:paddingTop="4dp"
-                android:paddingBottom="4dp"/>
-
-            <TextView
-                android:id="@+id/textView31"
-                style="@style/text_normal_bold"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:text="Nama Perusahaan"
-                app:layout_constraintStart_toStartOf="@id/textView30"
-                app:layout_constraintTop_toBottomOf="@id/pengaturan_pekerjaan_details"/>
-
-            <EditText
-                android:id="@+id/pengaturan_perusahaan_details"
-                style="@style/text_normal"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:background="@drawable/spinner_item"
-
-android:hint="Nama Perusahaan"
-                app:layout_constraintStart_toStartOf="@+id/textView31"
-                app:layout_constraintTop_toBottomOf="@id/textView31"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginEnd="16dp"
-                android:layout_marginTop="8dp"
-                android:paddingTop="4dp"
-                android:paddingBottom="4dp"/>
-
-            <TextView
-                android:id="@+id/textView32"
-                style="@style/text_normal_bold"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:text="Tahun Masuk Kerja"
-                app:layout_constraintStart_toStartOf="@id/textView30"
-                app:layout_constraintTop_toBottomOf="@id/pengaturan_perusahaan_details"/>
-
-            <EditText
-                android:id="@+id/pengaturan_tahunmasuk_details"
-                style="@style/text_normal"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:background="@drawable/spinner_item"
-android:hint="Tahun Masuk Kerja"
-                android:inputType="number"
-                app:layout_constraintStart_toStartOf="@+id/textView32"
-                app:layout_constraintTop_toBottomOf="@id/textView32"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginEnd="16dp"
-                android:layout_marginTop="8dp"
-                android:paddingTop="4dp"
-                android:paddingBottom="4dp"/>
-
-            <TextView
-                android:id="@+id/textView33"
-                style="@style/text_normal_bold"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:text="Cluster"
-                app:layout_constraintStart_toStartOf="@id/textView30"
-                app:layout_constraintTop_toBottomOf="@id/pengaturan_tahunmasuk_details"/>
-
-            <EditText
-                android:id="@+id/pengaturan_cluster_details"
-                style="@style/text_normal"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:background="@drawable/spinner_item"
-                android:hint="Cluster"
-                app:layout_constraintStart_toStartOf="@+id/textView33"
-                app:layout_constraintTop_toBottomOf="@id/textView33"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginEnd="16dp"
-                android:layout_marginTop="8dp"
-                android:paddingTop="4dp"
-                android:paddingBottom="4dp"/>
-
-            <TextView
-                android:id="@+id/textView34"
-                style="@style/text_normal_bold"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:text="LinkedIn"
-                app:layout_constraintStart_toStartOf="@id/textView30"
-                app:layout_constraintTop_toBottomOf="@id/pengaturan_cluster_details"/>
-
-            <EditText
-                android:id="@+id/pengaturan_linkedin_details"
-                style="@style/text_normal"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:background="@drawable/spinner_item"
-                android:hint="link akun"
-                app:layout_constraintStart_toStartOf="@+id/textView34"
-                app:layout_constraintTop_toBottomOf="@id/textView34"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginEnd="16dp"
-                android:layout_marginTop="8dp"
-                android:paddingTop="4dp"
-                android:paddingBottom="4dp"/>
-
-            <TextView
-                android:id="@+id/pengaturan_tombolsimpan"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="SIMPAN"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/pengaturan_linkedin_details"
-                android:layout_marginTop="24dp"
-                android:layout_marginStart="64dp"
-                android:layout_marginEnd="64dp"
-                android:textSize="18sp"
-                style="@style/splash_title"
-                android:gravity="center"
-                android:background="@drawable/button_normal"/>
-
-            <TextView
-                android:id="@+id/pengaturan_gantipassword"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="GANTI PAsSWORD"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/pengaturan_tombolsimpan"
-                android:layout_marginTop="24dp"
-                android:layout_marginStart="64dp"
-                android:layout_marginEnd="64dp"
-                android:layout_marginBottom="32dp"
-                android:textSize="18sp"
-                style="@style/splash_title"
-                android:gravity="center"
-                android:background="@drawable/button_normal"/>
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

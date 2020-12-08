@@ -173,7 +173,7 @@ interface ApiService {
     @GET("alumni/{id}")
     suspend fun detailAlumni(
         @Header("Authorization") apiToken: String,
-        @Path("id") id: Int,
+        @Path("id") id: Int?,
         @Header("Accept") accept: String = "application/json",
     ): Response<DefaultResponse<Alumni>>
 

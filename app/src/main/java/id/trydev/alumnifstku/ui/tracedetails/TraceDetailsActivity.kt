@@ -6,12 +6,10 @@ import android.util.Log
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
-import id.trydev.alumnifstku.R
 import id.trydev.alumnifstku.adapter.PekerjaanListAdapter
 import id.trydev.alumnifstku.databinding.ActivityTraceDetailsBinding
 import id.trydev.alumnifstku.network.RequestState
 import id.trydev.alumnifstku.prefs.AppPreferences
-import kotlinx.android.synthetic.main.fragment_page2.*
 
 class TraceDetailsActivity : AppCompatActivity() {
 

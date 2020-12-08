@@ -36,7 +36,7 @@ class TraceDetailsViewModel: ViewModel() {
     private var job = Job()
     private val uiScope = CoroutineScope(job+ Dispatchers.Main)
 
-    fun getAlumni(apiToken: String, uid: Int) {
+    fun getAlumni(apiToken: String, uid: Int?) {
 
         _state.postValue(RequestState.REQUEST_START)
         uiScope.launch {
@@ -60,4 +60,5 @@ class TraceDetailsViewModel: ViewModel() {
             }
         }
     }
+
 }

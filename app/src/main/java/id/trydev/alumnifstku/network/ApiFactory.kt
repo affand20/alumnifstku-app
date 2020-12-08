@@ -198,7 +198,7 @@ object ApiFactory {
     }
 
     /* Get Detail Alumni function */
-    suspend fun detailAlumni(apiToken: String, id: Int): Result<DefaultResponse<Alumni>> {
+    suspend fun detailAlumni(apiToken: String, id: Int?): Result<DefaultResponse<Alumni>> {
         return safeApiCall { apiService.detailAlumni("Bearer $apiToken", id) }
     }
 
