@@ -24,10 +24,18 @@ class TraceListAdapter: RecyclerView.Adapter<TraceListAdapter.ViewHolder>() {
         fun bind(biodata: Biodata){
             with(itemView) {
 
+
                 tv_user_list_name.text = biodata.nama
+                // set user angkatan dan jurusan
+                // tv_user_list_angkatan.text = biodata.angkatan
+                // tv_user_list_jurusan.text = biodata.jurusan
 
                 itemView.setOnClickListener{
                     val intent = Intent(itemView.context, TraceDetailsActivity::class.java)
+
+                    // gimana caranya naruh BIODATA buat dikirim ??
+                    // apa dibikin parcelable ?
+
                     intent.putExtra(TraceDetailsActivity.ARG_NAME, biodata.nama)
                     itemView.context.startActivity(intent)
                 }

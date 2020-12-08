@@ -303,7 +303,6 @@ interface ApiService {
     * 1. Kelas ID
     * */
     @POST("kelas/{id}/unbook")
-    @FormUrlEncoded
     suspend fun unbookKelas(
         @Header("Authorization") apiToken: String,
         @Path("id") id: Int,
@@ -317,7 +316,6 @@ interface ApiService {
     * 1. Kelas ID
     * */
     @POST("kelas/{id}/resend-ticket")
-    @FormUrlEncoded
     suspend fun resendTicketKelas(
         @Header("Authorization") apiToken: String,
         @Path("id") id: Int,
@@ -385,11 +383,21 @@ interface ApiService {
     ): Response<DefaultResponse<Post>>
 
     /*
+    * Remove Post
+    * ======================
+    * */
+    @POST("sharing/{id}/remove")
+    suspend fun removePost(
+        @Header("Authorization") apiToken: String,
+        @Path("id") id: Int,
+        @Header("Accept") accept: String = "application/json"
+    ): Response<DefaultResponse<Nothing>>
+
+    /*
     * Like post
     * =======================
     * */
     @POST("sharing/{id}/like")
-    @FormUrlEncoded
     suspend fun likePost(
         @Header("Authorization") apiToken: String,
         @Path("id") id: Int,
@@ -401,7 +409,6 @@ interface ApiService {
     * =======================
     * */
     @POST("sharing/{id}/unlike")
-    @FormUrlEncoded
     suspend fun unlikePost(
         @Header("Authorization") apiToken: String,
         @Path("id") id: Int,
@@ -419,20 +426,19 @@ interface ApiService {
         @Path("id") id: Int,
         @Field("text") comment: String,
         @Header("Accept") accept: String = "application/json",
-    ): Response<DefaultResponse<Comment>>
+    ): Response<DefaultResponse<List<Comment>>>
 
     /*
     * Remove Comment post
     * =======================
     * */
     @POST("sharing/{id}/comment/{commentId}/remove")
-    @FormUrlEncoded
     suspend fun removeCommentPost(
         @Header("Authorization") apiToken: String,
         @Path("id") id: Int,
         @Path("commentId") commentId: Int,
         @Header("Accept") accept: String = "application/json",
-    ): Response<DefaultResponse<Nothing>>
+    ): Response<DefaultResponse<List<Comment>>>
 
     /*
     * Get All comment

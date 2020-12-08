@@ -96,7 +96,7 @@ object ApiFactory {
 
     /* Is Alumni Has Verified checking function*/
     suspend fun hasVerified(apiToken: String): Result<Boolean> {
-        return safeApiCall { apiService.hasVerified(apiToken) }
+        return safeApiCall { apiService.hasVerified("Bearer $apiToken") }
     }
 
     /* Upload Biodata function */
@@ -260,7 +260,7 @@ object ApiFactory {
 
     /* Get Timeline Post function */
     suspend fun getTimelinePost(apiToken:String): Result<DefaultResponse<List<Post>>> {
-        return safeApiCall { apiService.timelinePost(apiToken) }
+        return safeApiCall { apiService.timelinePost("Bearer $apiToken") }
     }
 
     /* Get Detail Post function */
@@ -270,7 +270,7 @@ object ApiFactory {
 
     /* Get All My Post function */
     suspend fun getAllMyPost(apiToken: String): Result<DefaultResponse<List<Post>>> {
-        return safeApiCall { apiService.myPost(apiToken) }
+        return safeApiCall { apiService.myPost("Bearer $apiToken") }
     }
 
     /* Upload Post function */
@@ -290,6 +290,11 @@ object ApiFactory {
         return safeApiCall { apiService.updatePost("Bearer $apiToken", id, deskripsi, foto) }
     }
 
+    /* Remove Post function */
+    suspend fun removePost(apiToken: String, id: Int): Result<DefaultResponse<Nothing>> {
+        return safeApiCall { apiService.removePost("Bearer $apiToken", id) }
+    }
+
     /* Like Post function */
     suspend fun likePost(apiToken: String, id: Int): Result<DefaultResponse<Nothing>> {
         return safeApiCall { apiService.likePost("Bearer $apiToken", id) }
@@ -301,17 +306,18 @@ object ApiFactory {
     }
 
     /* Post Comment function */
-    suspend fun postComment(apiToken: String, id: Int, teks: String): Result<DefaultResponse<Comment>> {
+    suspend fun postComment(apiToken: String, id: Int, teks: String): Result<DefaultResponse<List<Comment>>> {
         return safeApiCall { apiService.commentPost("Bearer $apiToken", id, teks) }
     }
 
     /* Remove Comment function */
-    suspend fun removeComment(apiToken: String, id: Int, commentId: Int): Result<DefaultResponse<Nothing>> {
+    suspend fun removeComment(apiToken: String, id: Int, commentId: Int): Result<DefaultResponse<List<Comment>>> {
         return safeApiCall { apiService.removeCommentPost("Bearer $apiToken", id, commentId) }
     }
 
     /* Get All Comment */
     suspend fun getAllCommment(apiToken: String, id: Int): Result<DefaultResponse<List<Comment>>> {
+        Log.d("GET COMMENT", "executed")
         return safeApiCall { apiService.getComments("Bearer $apiToken", id) }
     }
 

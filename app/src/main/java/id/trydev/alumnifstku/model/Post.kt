@@ -13,6 +13,9 @@ data class Post (
     @SerializedName("deskripsi")
     val deskripsi: String? = null,
 
+    @SerializedName("alumni_id")
+    val alumniId: String? = null,
+
     @SerializedName("alumni")
     val alumni: Alumni? = null,
 
@@ -25,6 +28,7 @@ data class Post (
     @SerializedName("comment")
     val comments: List<Comment>? = null,
 
-
+    @SerializedName("created_at")
+    val createdAt: String? = null,
 
     )

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:id="@+id/bottom_sheet_trace_container"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/bottom_sheet_background"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <Spinner
+        android:id="@+id/spinner_jurusan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/edittext_normal"
+        android:paddingLeft="0dp"
+        android:layout_marginTop="16dp"
+        android:spinnerMode="dropdown"
+        android:layout_gravity="center"
+        style="@style/edittext_normal"/>
+
+    <Spinner
+        android:id="@+id/spinner_cluster"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/edittext_normal"
+        android:paddingLeft="0dp"
+        android:layout_marginTop="16dp"
+        android:spinnerMode="dropdown"
+        android:layout_gravity="center"
+        style="@style/edittext_normal"/>
+
+    <Spinner
+        android:id="@+id/spinner_urutkan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/edittext_normal"
+        android:paddingLeft="0dp"
+        android:layout_marginTop="16dp"
+        android:spinnerMode="dropdown"
+        android:layout_gravity="center"
+        style="@style/edittext_normal"/>
+
+    <TextView
+        android:gravity="center"
+        android:id="@+id/btn_set_filter"
+        style="@style/button_normal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/button_normal"
+        android:layout_gravity="center"
+        android:layout_marginBottom="24dp"
+        android:text="Set Filter"/>
+
+</LinearLayout>

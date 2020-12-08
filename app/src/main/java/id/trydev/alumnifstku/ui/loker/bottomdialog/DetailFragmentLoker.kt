@@ -12,21 +12,21 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import id.trydev.alumnifstku.R
-import id.trydev.alumnifstku.databinding.FragmentDetailBottomBinding
+import id.trydev.alumnifstku.databinding.FragmentDetailLokerBinding
 import id.trydev.alumnifstku.model.Loker
 import id.trydev.alumnifstku.utils.GlideApp
 import java.text.SimpleDateFormat
 import java.util.*
 
-class DetailFragmentBottom(private val item:Loker): BottomSheetDialogFragment() {
+class DetailFragmentLoker(private val item:Loker): BottomSheetDialogFragment() {
 
-    private lateinit var binding: FragmentDetailBottomBinding
+    private lateinit var binding: FragmentDetailLokerBinding
     private lateinit var mBehavior: BottomSheetBehavior<View>
 
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val bottomSheetDialog = super.onCreateDialog(savedInstanceState) as BottomSheetDialog
-        binding = FragmentDetailBottomBinding.inflate(layoutInflater)
+        binding = FragmentDetailLokerBinding.inflate(layoutInflater)
 
         Log.d("LOKER", "$item")
 

@@ -21,6 +21,8 @@ import id.trydev.alumnifstku.prefs.AppPreferences
 import id.trydev.alumnifstku.ui.biodata.BiodataActivity
 import id.trydev.alumnifstku.ui.loker.LokerActivity
 import id.trydev.alumnifstku.ui.kelas.KelasListActivity
+import id.trydev.alumnifstku.ui.memory.SharingMemoryActivity
+import id.trydev.alumnifstku.ui.pengaturan.PengaturanActivity
 import id.trydev.alumnifstku.ui.tracelist.TraceListActivity
 import kotlinx.android.synthetic.main.activity_dashboard.*
 
@@ -98,6 +100,7 @@ class DashboardActivity : AppCompatActivity(), View.OnClickListener {
         binding.imgSharing.setOnClickListener(this)
         binding.imgKelas.setOnClickListener(this)
         binding.imgNews.setOnClickListener(this)
+        binding.imgPengaturan.setOnClickListener(this)
     }
 
     override fun onClick(v: View) {
@@ -119,7 +122,8 @@ class DashboardActivity : AppCompatActivity(), View.OnClickListener {
 
             // Sharing Memory
             R.id.img_sharing -> {
-                panggang("Sharing Memory")
+                intent = Intent(this, SharingMemoryActivity::class.java)
+                startActivity(intent)
             }
 
             // Kelas Alumni
@@ -132,6 +136,11 @@ class DashboardActivity : AppCompatActivity(), View.OnClickListener {
             // FST NEWS
             R.id.img_news -> {
                 panggang("FST News")
+            }
+
+            R.id.img_pengaturan -> {
+                intent = Intent(this, PengaturanActivity::class.java)
+                startActivity(intent)
             }
         }
 

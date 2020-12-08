@@ -14,8 +14,11 @@
         android:roundIcon="@mipmap/ic_fst_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AlumniFSTku">
-        <activity android:name=".ui.loker.LokerActivity"></activity>
-        <activity android:name=".ui.kelasdetails.KelasDetailsActivity"></activity>
+        <activity android:name="id.trydev.alumnifstku.ui.memory.mypost.MyPostActivity"/>
+        <activity android:name=".ui.memory.SharingMemoryActivity" />
+        <activity android:name=".ui.loker.LokerActivity" />
+        <activity android:name=".ui.kelasdetails.KelasDetailsActivity" />
+        <activity android:name=".ui.pengaturan.PengaturanActivity"/>
         <activity android:name=".ui.kelas.KelasListActivity" />
         <activity android:name=".ui.tracedetails.TraceDetailsActivity" />
         <activity android:name=".ui.tracelist.TraceListActivity" />
@@ -31,6 +34,8 @@
         <activity android:name=".ui.biodata.BiodataActivity" />
         <activity android:name=".ui.register.RegisterActivity" />
         <activity android:name=".ui.dashboard.DashboardActivity" />
+        <activity android:name=".ui.memory.bottomdialog.create.CreatePostActivity" />
+        <activity android:name=".ui.memory.bottomdialog.detail.DetailPostActivity" />
         <activity
             android:name=".ui.splash.SplashActivity"
             android:noHistory="true" />

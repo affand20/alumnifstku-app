@@ -63,5 +63,16 @@
         app:layout_constraintEnd_toEndOf="@id/img_tracing"
         app:layout_constraintTop_toBottomOf="@id/img_sharing"/>
 
+    <ImageView
+        android:id="@+id/img_pengaturan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/setting"
+        app:layout_constraintStart_toStartOf="@id/img_tracing"
+        app:layout_constraintTop_toBottomOf="@id/img_kelas"
+        android:layout_marginTop="16dp"/>
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
