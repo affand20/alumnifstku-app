@@ -82,7 +82,7 @@
         </item>
 
         <item name="android:textColor">
-            @color/black
+            @color/black_soft
         </item>
 
         <item name="android:textSize">
@@ -96,7 +96,7 @@
         </item>
     </style>
 
-    <style name="text_normal_bold">
+    <style name="text_normal_bold" parent="text_normal">
         <item name="android:fontFamily">
             @font/montserrat_bold
         </item>

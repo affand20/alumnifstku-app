@@ -1,28 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal" android:layout_width="match_parent"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingTop="10dp"
-    android:paddingLeft="10dp"
-    android:layout_marginBottom="15dp">
+    android:background="@drawable/layoutstyle_kelaslist"
+    android:layout_marginBottom="10dp">
 
-    <ImageView
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:background="@color/splash_blue"
-        android:src="@drawable/logo"
-        android:id="@+id/img_user_list"/>
+    <TextView
+        android:id="@+id/textView24"
+        style="@style/edittext_normal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nama :"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tv_user_list_name"
+        style="@style/edittext_normal"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Fahri Firdaus"
+        android:layout_marginStart="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView24"
+        app:layout_constraintTop_toTopOf="@+id/textView24" />
+
+    <TextView
+        android:id="@+id/textView25"
+        style="@style/edittext_normal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="NAMA"
-        style="@style/splash_title_dark"
-        android:paddingLeft="20dp"
-        android:textSize="24sp"/>
+        android:text="Angkatan :"
+        app:layout_constraintStart_toStartOf="@id/textView24"
+        app:layout_constraintTop_toBottomOf="@id/tv_user_list_name" />
+
+    <TextView
+        android:id="@+id/tv_user_list_angkatan"
+        style="@style/edittext_normal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2019"
+        android:layout_marginStart="5dp"
+        app:layout_constraintStart_toEndOf="@+id/textView25"
+        app:layout_constraintTop_toTopOf="@+id/textView25" />
+
+    <TextView
+        android:id="@+id/textView26"
+        style="@style/edittext_normal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Jurusan :"
+        app:layout_constraintStart_toStartOf="@id/textView25"
+        app:layout_constraintTop_toBottomOf="@id/tv_user_list_angkatan"/>
+
+    <TextView
+        android:id="@+id/tv_user_list_jurusan"
+        style="@style/edittext_normal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sistem Informasi"
+        android:layout_marginStart="5dp"
+        app:layout_constraintStart_toEndOf="@+id/textView26"
+        app:layout_constraintTop_toTopOf="@+id/textView26"/>
 
 
 
 
-</LinearLayout>
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
