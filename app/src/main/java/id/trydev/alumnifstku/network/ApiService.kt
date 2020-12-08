@@ -160,7 +160,7 @@ interface ApiService {
     @GET("alumni")
     suspend fun listAlumni(
         @Header("Authorization") apiToken: String,
-        @QueryMap query: Map<String, String>,
+        @QueryMap query: Map<String, String?>,
         @Header("Accept") accept: String = "application/json"
     ): Response<DefaultResponse<List<Alumni>>>
 
@@ -170,7 +170,7 @@ interface ApiService {
     * Required parameter:
     * 1. alumni ID
     * */
-    @GET("alumni/detail/{id}")
+    @GET("alumni/{id}")
     suspend fun detailAlumni(
         @Header("Authorization") apiToken: String,
         @Path("id") id: Int,

@@ -8,13 +8,22 @@
     android:background="@drawable/layoutstyle_kelaslist"
     android:layout_marginBottom="10dp">
 
+    <ImageView
+        android:id="@+id/img_user_list"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:src="@drawable/logo"/>
+
     <TextView
         android:id="@+id/textView24"
         style="@style/edittext_normal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Nama :"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="16dp"
+        app:layout_constraintStart_toEndOf="@id/img_user_list"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
