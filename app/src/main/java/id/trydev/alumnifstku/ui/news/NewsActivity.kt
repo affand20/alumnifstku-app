@@ -1,5 +1,6 @@
-package id.trydev.alumnifstku.ui.loker
+package id.trydev.alumnifstku.ui.news
 
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -7,54 +8,50 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.browser.customtabs.CustomTabsIntent
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import id.trydev.alumnifstku.R
-import id.trydev.alumnifstku.adapter.LokerAdapter
-import id.trydev.alumnifstku.databinding.ActivityLokerBinding
+import id.trydev.alumnifstku.adapter.NewsAdapter
+import id.trydev.alumnifstku.databinding.ActivityNewsBinding
 import id.trydev.alumnifstku.databinding.DialogFilterLokerBinding
+import id.trydev.alumnifstku.databinding.DialogFilterNewsBinding
 import id.trydev.alumnifstku.network.RequestState
 import id.trydev.alumnifstku.prefs.AppPreferences
-import id.trydev.alumnifstku.ui.loker.detail.DetailFragmentLoker
-import id.trydev.alumnifstku.utils.ItemDecoration
 
-class LokerActivity : AppCompatActivity() {
+class NewsActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityLokerBinding
+    private lateinit var binding: ActivityNewsBinding
     private lateinit var prefs: AppPreferences
-    private lateinit var adapter: LokerAdapter
-    private lateinit var viewModel: LokerViewModel
-
-    private var query = hashMapOf<String, String?>(
-            "order" to "",
-            "filter" to "",
-            "jabatan" to "",
-            "perusahaan" to "",
-            "cluster" to "",
+    private lateinit var viewModel: NewsViewModel
+    private lateinit var adapter: NewsAdapter
+    private var query = hashMapOf(
+        "order" to "",
+        "filter" to "",
+        "judul" to ""
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityLokerBinding.inflate(layoutInflater)
+        binding = ActivityNewsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        adapter = LokerAdapter(this) { loker ->
-            /* Navigate to Detail Loker activity */
-            val detailFragment = DetailFragmentLoker(loker)
-            detailFragment.show(supportFragmentManager, detailFragment.tag)
+        prefs = AppPreferences(this)
+        viewModel = ViewModelProvider(this).get(NewsViewModel::class.java)
+
+        adapter = NewsAdapter(this) { news ->
+            val builder = CustomTabsIntent.Builder()
+            val customTab = builder.build()
+            customTab.launchUrl(this, Uri.parse(news.link))
         }
 
-        prefs = AppPreferences(this)
+        binding.rvNews.layoutManager = LinearLayoutManager(this)
+        binding.rvNews.adapter = adapter
 
-        viewModel = ViewModelProvider(this).get(LokerViewModel::class.java)
+        viewModel.getNews(prefs.token.toString(), query)
 
-        binding.rvLoker.layoutManager = LinearLayoutManager(this)
-        binding.rvLoker.adapter = adapter
-        binding.rvLoker.addItemDecoration(ItemDecoration(32))
-
-        viewModel.getLoker(prefs.token.toString(), query)
         /* Observe Request state changes */
         viewModel.state.observe({ lifecycle }, { state ->
             Log.d("OBSERVE", "state $state")
@@ -102,11 +99,11 @@ class LokerActivity : AppCompatActivity() {
         })
 
         binding.swipeRefresh.setOnRefreshListener {
-            viewModel.getLoker(prefs.token.toString(), query)
+            viewModel.getNews(prefs.token.toString(), query)
         }
 
         binding.floating.tvFilter.setOnClickListener {
-            val bindDialog = DialogFilterLokerBinding.inflate(LayoutInflater.from(this))
+            val bindDialog = DialogFilterNewsBinding.inflate(LayoutInflater.from(this))
             val dialog = BottomSheetDialog(this)
             dialog.setContentView(bindDialog.root)
 
@@ -118,25 +115,17 @@ class LokerActivity : AppCompatActivity() {
 
             /* Populate spinner data */
             val orders = resources.getStringArray(R.array.order_by)
-            val clusters = resources.getStringArray(R.array.cluster)
             // apply to adapter and spinner
             bindDialog.edtOrder.setAdapter(
-                    ArrayAdapter(this, R.layout.simple_item_spinner, orders)
-            )
-            bindDialog.edtCluster.setAdapter(
-                    ArrayAdapter(this, R.layout.simple_item_spinner, clusters)
+                ArrayAdapter(this, R.layout.simple_item_spinner, orders)
             )
 
             bindDialog.tvClearFilter.setOnClickListener {
                 query["order"] = ""
                 query["filter"] = ""
-                query["cluster"] = ""
-                query["perusahaan"] = ""
-                query["jabatan"] = ""
+                query["judul"] = ""
                 bindDialog.edtOrder.setText("")
-                bindDialog.edtCluster.setText("")
-                bindDialog.edtPosition.setText("")
-                bindDialog.edtCompany.setText("")
+                bindDialog.edtJudul.setText("")
             }
 
             query.forEach {
@@ -144,16 +133,8 @@ class LokerActivity : AppCompatActivity() {
                     bindDialog.edtOrder.setText(it.value)
                     bindDialog.tvClearFilter.visibility = View.VISIBLE
                 }
-                if (it.key == "cluster" && it.value != "") {
-                    bindDialog.edtCluster.setText(it.value)
-                    bindDialog.tvClearFilter.visibility = View.VISIBLE
-                }
-                if (it.key == "perusahaan" && it.value != "") {
-                    bindDialog.edtCompany.setText(it.value)
-                    bindDialog.tvClearFilter.visibility = View.VISIBLE
-                }
-                if (it.key == "jabatan" && it.value != "") {
-                    bindDialog.edtPosition.setText(it.value)
+                if (it.key == "judul" && it.value != "") {
+                    bindDialog.edtJudul.setText(it.value)
                     bindDialog.tvClearFilter.visibility = View.VISIBLE
                 }
             }
@@ -162,7 +143,7 @@ class LokerActivity : AppCompatActivity() {
                 this.query = getFilter(bindDialog, query)
                 Log.d("FILTER_QUERY", "$query")
                 /* Call API again with filters */
-                viewModel.getLoker(prefs.token.toString(), query)
+                viewModel.getNews(prefs.token.toString(), query)
                 dialog.dismiss()
             }
 
@@ -171,18 +152,12 @@ class LokerActivity : AppCompatActivity() {
 
     }
 
-    private fun getFilter(binding: DialogFilterLokerBinding, query: HashMap<String, String?>): HashMap<String, String?> {
-        if (binding.edtCluster.text.toString().isNotEmpty()) {
-            this.query["cluster"] = binding.edtCluster.text.toString()
+    private fun getFilter(binding: DialogFilterNewsBinding, query: HashMap<String, String>): HashMap<String, String> {
+        if (binding.edtJudul.text.toString().isNotEmpty()) {
+            this.query["judul"] = binding.edtJudul.text.toString()
             this.query["filter"] = "true"
-        }
-        if (binding.edtCompany.text.toString().isNotEmpty()) {
-            this.query["perusahaan"] = binding.edtCompany.text.toString()
-            this.query["filter"] = "true"
-        }
-        if (binding.edtPosition.text.toString().isNotEmpty()) {
-            this.query["jabatan"] = binding.edtPosition.text.toString()
-            this.query["filter"] = "true"
+        } else {
+            this.query["judul"] = ""
         }
         if (binding.edtOrder.text.toString().isNotEmpty()) {
             if (binding.edtOrder.text.toString() == "Terbaru") {
@@ -192,6 +167,8 @@ class LokerActivity : AppCompatActivity() {
                 this.query["order"] = "asc"
             }
             this.query["filter"] = "true"
+        } else {
+            this.query["filter"] = ""
         }
         return query
     }

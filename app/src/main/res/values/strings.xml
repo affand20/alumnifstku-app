@@ -57,4 +57,6 @@
 
     <string name="like_count_template">%1d Suka</string>
     <string name="comment_count_template">%1d Komentar</string>
+
+    <string name="news_uploader">Oleh %1s</string>
 </resources>

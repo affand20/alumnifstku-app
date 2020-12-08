@@ -1,4 +1,4 @@
-package id.trydev.alumnifstku.ui.loker.bottomdialog
+package id.trydev.alumnifstku.ui.loker.detail
 
 import android.app.Dialog
 import android.content.res.Resources

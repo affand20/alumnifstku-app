@@ -22,6 +22,7 @@ import id.trydev.alumnifstku.ui.biodata.BiodataActivity
 import id.trydev.alumnifstku.ui.loker.LokerActivity
 import id.trydev.alumnifstku.ui.kelas.KelasListActivity
 import id.trydev.alumnifstku.ui.memory.SharingMemoryActivity
+import id.trydev.alumnifstku.ui.news.NewsActivity
 import id.trydev.alumnifstku.ui.pengaturan.PengaturanActivity
 import id.trydev.alumnifstku.ui.tracelist.TraceListActivity
 import kotlinx.android.synthetic.main.activity_dashboard.*
@@ -135,7 +136,9 @@ class DashboardActivity : AppCompatActivity(), View.OnClickListener {
 
             // FST NEWS
             R.id.img_news -> {
-                panggang("FST News")
+                startActivity(
+                    Intent(this, NewsActivity::class.java)
+                )
             }
 
             R.id.img_pengaturan -> {

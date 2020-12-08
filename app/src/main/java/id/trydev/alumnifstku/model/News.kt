@@ -21,6 +21,6 @@ data class News (
     val createdAt: String? = null,
 
     @SerializedName("uploader")
-    val uploader: Alumni? = null,
+    val uploader: Admin? = null,
 
 )
