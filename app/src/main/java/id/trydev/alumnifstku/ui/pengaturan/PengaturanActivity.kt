@@ -144,6 +144,51 @@ class PengaturanActivity : AppCompatActivity() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+
+        viewModel.getAlumni(prefs.token.toString(), prefs.userId?.toInt())
+
+        /* Observe Response changes */
+        viewModel.response.observe({ lifecycle }, { response ->
+            Log.d("RESPONSE", response.toString())
+            if (response != null) {
+                // check server response
+                // if success, populate data
+                // else, show error Toast
+                if (response.success == true) {
+                    // populate data
+                    response.data?.biodata?.let { alumni ->
+
+                        if (alumni.foto != null) {
+                            Glide.with(this)
+                                    .asBitmap()
+                                    .centerCrop()
+                                    .load(alumni.foto)
+                                    .into(binding.traceImgDetails)
+                        }
+
+                        binding.traceNamaDetails.text = alumni.nama
+                        binding.traceJurusanDetails.text = alumni.jurusan
+                        binding.traceAngkatanDetails.text = alumni.angkatan
+                        binding.traceLinkedinDetails.text = alumni.linkedin
+                    }
+
+                    response.data?.tracing?.let {
+                        /* do nothing */
+                        adapter.setPekerjaan(it)
+                        // belum bikin recycler nya bozz
+                    }
+                } else {
+                    // binding.stateEmpty.visibility = View.VISIBLE
+                    // binding.stateEmpty.text = response.message
+                }
+            }
+        })
+
+
+    }
+
     fun showPasswordDialog(){
         val bindPasswordBinding = FragmentPasswordBottomBinding.inflate(LayoutInflater.from(this))
 
