@@ -49,7 +49,6 @@ class PengaturanBiodataActivity : AppCompatActivity(), EasyPermissions.Permissio
             "angkatan" to "",
             "jurusan" to "",
             "linkedin" to "",
-
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -74,14 +73,16 @@ class PengaturanBiodataActivity : AppCompatActivity(), EasyPermissions.Permissio
             when(state) {
                 RequestState.REQUEST_START -> {
                     /* Show progress bar */
-                    // binding.swipeRefresh.isRefreshing = true
+                    binding.progressBar.visibility = View.VISIBLE
                     // binding.stateEmpty.visibility = View.GONE
                 }
                 RequestState.REQUEST_END -> {
                     /* Hide progress bar and fetch response */
+                    binding.progressBar.visibility = View.GONE
                     // binding.swipeRefresh.isRefreshing = false
                 }
                 RequestState.REQUEST_ERROR -> {
+                    binding.progressBar.visibility = View.GONE
                     /* Something happen.. Hide progress bar and fetch errors */
                     // binding.swipeRefresh.isRefreshing = false
                 }
@@ -132,11 +133,31 @@ class PengaturanBiodataActivity : AppCompatActivity(), EasyPermissions.Permissio
             }
         })
 
+        /* Observe Submit Response changes */
+        mv.submitresponse.observe({ lifecycle }, { response ->
+            Log.d("RESPONSE", response.toString())
+            if (response != null) {
+                // check server response
+                // if success, navigate to dashboard page
+                // else, show error Toast
+                if (response.success == true) {
+                    // save preference to prevent checking status everytime
+                    pref.hasFillBio = true
+                    // send greeting message
+                    finish()
+                } else {
+                    binding.errorMsg.visibility = View.VISIBLE
+                    binding.errorMsg.text = response.message
+                }
+            }
+        })
+
         /* Observe another Error possibility changes */
         mv.error.observe({ lifecycle }, { error ->
             if (error.isNotEmpty()) {
                 // binding.stateEmpty.visibility = View.VISIBLE
                 // binding.stateEmpty.text = error
+                Toast.makeText(this, error, Toast.LENGTH_LONG).show()
             }
         })
 
@@ -164,60 +185,12 @@ class PengaturanBiodataActivity : AppCompatActivity(), EasyPermissions.Permissio
                     query["linkedin"] = binding.edtLinkedin.text.toString()
                 }
 
+                if (filePath != "") {
+                    query["foto"] = filePath
+                }
 
                 mv.addBioAttr(query)
                 mv.postBiodata(pref.token.toString())
-
-                /* Observe Request state changes */
-                mv.state.observe({ lifecycle }, { state ->
-                    Log.d("OBSERVE", "state $state")
-                    when(state) {
-                        RequestState.REQUEST_START -> {
-                            /* Show progress bar */
-                            // binding.progressBar.visibility = View.VISIBLE
-                            binding.errorMsg.visibility = View.GONE
-                            // binding.btnSave.visibility = View.GONE
-                        }
-                        RequestState.REQUEST_END -> {
-                            /* Hide progress bar and fetch response */
-                            // binding.progressBar.visibility = View.GONE
-                            // binding.btnSave.visibility = View.VISIBLE
-                        }
-                        RequestState.REQUEST_ERROR -> {
-                            /* Something happen.. Hide progress bar and fetch errors */
-                            // binding.progressBar.visibility = View.GONE
-                            // binding.btnSave.visibility = View.VISIBLE
-                        }
-                        else -> { /* do nothing */ }
-                    }
-                })
-
-                /* Observe Response changes */
-                mv.submitresponse.observe({ lifecycle }, { response ->
-                    Log.d("RESPONSE", response.toString())
-                    if (response != null) {
-                        // check server response
-                        // if success, navigate to dashboard page
-                        // else, show error Toast
-                        if (response.success == true) {
-                            // save preference to prevent checking status everytime
-                            pref.hasFillBio = true
-                            // send greeting message
-                            finish()
-                        } else {
-                            binding.errorMsg.visibility = View.VISIBLE
-                            binding.errorMsg.text = response.message
-                        }
-                    }
-                })
-
-                /* Observe another Error possibility changes */
-                mv.error.observe({ lifecycle }, { error ->
-                    if (error.isNotEmpty()) {
-                        binding.errorMsg.visibility = View.VISIBLE
-                        binding.errorMsg.text = error
-                    }
-                })
             }
 
 

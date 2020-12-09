@@ -10,6 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+
         <TextView
             android:id="@+id/textViewtitle"
             android:layout_width="wrap_content"
@@ -365,6 +366,16 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_percent=".6" />
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/btn_next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

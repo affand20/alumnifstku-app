@@ -81,6 +81,7 @@ class PengaturanBiodataViewModel: ViewModel() {
 
     fun postBiodata(apiToken: String) {
 
+        _state.postValue(RequestState.REQUEST_START)
         var foto: MultipartBody.Part? = null
         if (filePath != null) {
             val file = File(filePath)
@@ -95,7 +96,6 @@ class PengaturanBiodataViewModel: ViewModel() {
             linkedin = RequestBody.create(MultipartBody.FORM, biodataAttribute["linkedin"].toString())
         }
 
-        _state.postValue(RequestState.REQUEST_START)
         uiScope.launch {
 
             try {

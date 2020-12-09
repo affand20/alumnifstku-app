@@ -192,6 +192,49 @@ object ApiFactory {
         return safeApiCall { apiService.myBio("Bearer $apiToken") }
     }
 
+    /* Create New Job/Trace function */
+    suspend fun createTrace(
+            apiToken: String,
+            perusahaan: RequestBody,
+            cluster: RequestBody,
+            tahunMasuk: RequestBody,
+            jabatan: RequestBody
+        ): Result<DefaultResponse<Tracing>> {
+        return safeApiCall { apiService.createTrace(
+                "Bearer $apiToken",
+                perusahaan,
+                cluster,
+                tahunMasuk,
+                jabatan
+        ) }
+    }
+
+    /* Edit Job/Trace function */
+    suspend fun updateTrace(
+            apiToken: String,
+            id: Int,
+            perusahaan: RequestBody,
+            cluster: RequestBody,
+            tahunMasuk: RequestBody,
+            jabatan: RequestBody
+        ): Result<DefaultResponse<Tracing>> {
+        return safeApiCall { apiService.updateTrace(
+                "Bearer $apiToken",
+                id,
+                perusahaan,
+                cluster,
+                tahunMasuk,jabatan
+        ) }
+    }
+
+    /* Remove Job/Trace function */
+    suspend fun removeTrace(
+            apiToken: String,
+            id: Int
+    ): Result<DefaultResponse<Tracing>> {
+        return safeApiCall { apiService.removeTrace("Bearer $apiToken", id) }
+    }
+
     /* Get List Alumni function */
     suspend fun listAlumni(apiToken: String, query: Map<String, String?>): Result<DefaultResponse<List<Alumni>>> {
         return safeApiCall { apiService.listAlumni("Bearer $apiToken", query) }
