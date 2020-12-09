@@ -5,47 +5,45 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="32dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/lorem_ipsum"
+        android:gravity="center"
+        android:id="@+id/keterangan_kerjaan"/>
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Ubah Biodata"
-        app:layout_constraintTop_toTopOf="parent"
+        android:text="Edit Pekerjaan Ini"
+        app:layout_constraintTop_toBottomOf="@id/keterangan_kerjaan"
         app:layout_constraintStart_toStartOf="parent"
         android:padding="16dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:background="@color/splash_blue"
         android:textAlignment="center"
         style="@style/splash_desc"
-        android:id="@+id/btn_change_biodata"/>
+        android:id="@+id/btn_edit_change"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Tambah Pekerjaan Terbaru"
-        app:layout_constraintTop_toBottomOf="@id/btn_change_biodata"
+        android:text="Hapus Pekerjaan Ini"
+        app:layout_constraintTop_toBottomOf="@id/btn_edit_change"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="32dp"
         android:padding="16dp"
         android:layout_margin="8dp"
         android:textAlignment="center"
-        android:background="@color/splash_blue"
+        android:background="@color/red"
         style="@style/splash_desc"
-        android:id="@+id/btn_change_pekerjaan"/>
+        android:id="@+id/btn_edit_remove"/>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Ubah Password"
-        app:layout_constraintTop_toBottomOf="@id/btn_change_pekerjaan"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:padding="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginBottom="32dp"
-        android:textAlignment="center"
-        android:background="@color/splash_blue"
-        style="@style/splash_desc"
-        android:id="@+id/btn_change_password"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

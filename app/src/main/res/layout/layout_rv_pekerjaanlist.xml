@@ -16,6 +16,23 @@
         app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
+        android:id="@+id/btn_edit_trigger"
+        style="@style/text_normal_bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="16dp"
+        android:textColor="@color/red"
+        android:background="@color/splash_yellow"
+        android:paddingStart="4dp"
+        android:paddingEnd="4dp"
+        android:visibility="gone"
+        android:text="Atur Pekerjaan Ini"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+
+    <TextView
         android:id="@+id/trace_pekerjaan_details"
         style="@style/text_normal"
         android:layout_width="0dp"

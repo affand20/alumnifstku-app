@@ -165,7 +165,7 @@ interface ApiService {
     * Edit Pekerjaan
     * =======================
      */
-    @POST("tracing/{id}/update")
+    @POST("alumni/tracing/{id}/update")
     @Multipart
     suspend fun updateTrace(
             @Header("Authorization") apiToken: String,
@@ -181,8 +181,7 @@ interface ApiService {
    * Hapus Pekerjaan
    * =======================
     */
-    @POST("tracing/{id}/remove")
-    @Multipart
+    @POST("alumni/tracing/{id}/remove")
     suspend fun removeTrace(
             @Header("Authorization") apiToken: String,
             @Path("id") id: Int,

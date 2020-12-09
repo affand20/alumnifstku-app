@@ -28,7 +28,7 @@ class TraceDetailsActivity : AppCompatActivity() {
         binding = ActivityTraceDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        adapter = PekerjaanListAdapter(this)
+        adapter = PekerjaanListAdapter(this, false, null)
 
         userid = intent.getStringExtra(ARG_UID)
 

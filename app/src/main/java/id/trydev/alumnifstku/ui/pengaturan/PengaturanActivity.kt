@@ -37,9 +37,9 @@ class PengaturanActivity : AppCompatActivity() {
         binding = ActivityPengaturanBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        adapter = PekerjaanListAdapter(this)
-
         prefs = AppPreferences(this)
+
+        adapter = PekerjaanListAdapter(this, true, prefs.token.toString())
 
         viewModel = ViewModelProvider(this).get(TraceDetailsViewModel::class.java)
 

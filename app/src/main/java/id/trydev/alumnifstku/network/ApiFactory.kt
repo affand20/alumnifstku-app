@@ -223,7 +223,8 @@ object ApiFactory {
                 id,
                 perusahaan,
                 cluster,
-                tahunMasuk,jabatan
+                tahunMasuk,
+                jabatan
         ) }
     }
 
