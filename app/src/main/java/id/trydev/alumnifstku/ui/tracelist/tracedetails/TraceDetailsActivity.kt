@@ -1,8 +1,7 @@
-package id.trydev.alumnifstku.ui.tracedetails
+package id.trydev.alumnifstku.ui.tracelist.tracedetails
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import id.trydev.alumnifstku.R
 import id.trydev.alumnifstku.databinding.ActivityTraceDetailsBinding
 
 class TraceDetailsActivity : AppCompatActivity() {

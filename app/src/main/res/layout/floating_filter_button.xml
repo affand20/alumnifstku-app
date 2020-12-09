@@ -8,6 +8,7 @@
     app:cardElevation="4dp"
     android:layout_gravity="bottom|center_horizontal"
     android:layout_marginBottom="16dp"
+    android:id="@+id/floating_btn"
     tools:showIn="@layout/activity_loker"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintEnd_toEndOf="parent"

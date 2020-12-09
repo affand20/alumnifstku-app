@@ -1,4 +1,4 @@
-package id.trydev.alumnifstku.ui.memory.bottomdialog.create
+package id.trydev.alumnifstku.ui.memory.create
 
 import android.app.Dialog
 import android.content.res.Resources
@@ -6,7 +6,6 @@ import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.PopupMenu
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
@@ -14,9 +13,7 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import id.trydev.alumnifstku.R
-import id.trydev.alumnifstku.adapter.CommentAdapter
 import id.trydev.alumnifstku.databinding.FragmentCreatePostBinding
-import id.trydev.alumnifstku.model.Post
 import id.trydev.alumnifstku.network.RequestState
 import id.trydev.alumnifstku.prefs.AppPreferences
 import id.trydev.alumnifstku.utils.GlideApp

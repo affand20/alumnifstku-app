@@ -168,7 +168,7 @@ class NewsActivity : AppCompatActivity() {
             }
             this.query["filter"] = "true"
         } else {
-            this.query["filter"] = ""
+            this.query["order"] = ""
         }
         return query
     }

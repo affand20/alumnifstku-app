@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import id.trydev.alumnifstku.R
 import id.trydev.alumnifstku.model.Biodata
-import id.trydev.alumnifstku.ui.tracedetails.TraceDetailsActivity
+import id.trydev.alumnifstku.ui.tracelist.tracedetails.TraceDetailsActivity
 import kotlinx.android.synthetic.main.layout_trace_list.view.*
 
 class TraceListAdapter: RecyclerView.Adapter<TraceListAdapter.ViewHolder>() {
