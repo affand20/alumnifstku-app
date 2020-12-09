@@ -1,4 +1,4 @@
-package id.trydev.alumnifstku.ui.memory.bottomdialog.detail
+package id.trydev.alumnifstku.ui.memory.detail
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

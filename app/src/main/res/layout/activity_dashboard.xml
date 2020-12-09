@@ -17,6 +17,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
+    <TextView
+        android:id="@+id/btn_logout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableTop="@drawable/ic_logout"
+        android:text="Log Out"
+        style="@style/text_normal_bold"
+        android:textColor="#AD150E"
+        app:layout_constraintBottom_toBottomOf="@+id/logo_dashboard"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/logo_dashboard"
+        app:layout_constraintTop_toTopOf="@+id/logo_dashboard" />
+
+
     <ImageView
         android:id="@+id/img_tracing"
         android:layout_width="wrap_content"

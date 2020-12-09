@@ -36,7 +36,7 @@ class TraceListAdapter: RecyclerView.Adapter<TraceListAdapter.ViewHolder>() {
                     // gimana caranya naruh BIODATA buat dikirim ??
                     // apa dibikin parcelable ?
 
-                    intent.putExtra(TraceDetailsActivity.ARG_NAME, biodata.nama)
+                    intent.putExtra(TraceDetailsActivity.ARG_UID, biodata.nama)
                     itemView.context.startActivity(intent)
                 }
             }

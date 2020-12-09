@@ -146,6 +146,48 @@ interface ApiService {
         @Header("Accept") accept: String = "application/json",
     ): Response<DefaultResponse<Biodata>>
 
+    /*
+    * Update Pekerjaan baru (CREATE)
+    * =======================
+     */
+    @POST("alumni/tracing/create")
+    @Multipart
+    suspend fun createTrace(
+        @Header("Authorization") apiToken: String,
+        @Part("perusahaan") perusahaan: RequestBody,
+        @Part("cluster") cluster: RequestBody,
+        @Part("tahun_masuk") tahunMasuk: RequestBody,
+        @Part("jabatan") jabatan: RequestBody,
+        @Header("Accept") accept: String = "application/json",
+    ): Response<DefaultResponse<Tracing>>
+
+    /*
+    * Edit Pekerjaan
+    * =======================
+     */
+    @POST("alumni/tracing/{id}/update")
+    @Multipart
+    suspend fun updateTrace(
+            @Header("Authorization") apiToken: String,
+            @Path("id") id: Int,
+            @Part("perusahaan") perusahaan: RequestBody,
+            @Part("cluster") cluster: RequestBody,
+            @Part("tahun_masuk") tahunMasuk: RequestBody,
+            @Part("jabatan") jabatan: RequestBody,
+            @Header("Accept") accept: String = "application/json",
+    ): Response<DefaultResponse<Tracing>>
+
+    /*
+   * Hapus Pekerjaan
+   * =======================
+    */
+    @POST("alumni/tracing/{id}/remove")
+    suspend fun removeTrace(
+            @Header("Authorization") apiToken: String,
+            @Path("id") id: Int,
+            @Header("Accept") accept: String = "application/json",
+    ): Response<DefaultResponse<Tracing>>
+
     ////////////// TRACING ALUMNI ENDPOINT //////////////
     /*
     * Get List Alumni
@@ -160,7 +202,7 @@ interface ApiService {
     @GET("alumni")
     suspend fun listAlumni(
         @Header("Authorization") apiToken: String,
-        @QueryMap query: Map<String, String>,
+        @QueryMap query: Map<String, String?>,
         @Header("Accept") accept: String = "application/json"
     ): Response<DefaultResponse<List<Alumni>>>
 
@@ -170,10 +212,10 @@ interface ApiService {
     * Required parameter:
     * 1. alumni ID
     * */
-    @GET("alumni/detail/{id}")
+    @GET("alumni/{id}")
     suspend fun detailAlumni(
         @Header("Authorization") apiToken: String,
-        @Path("id") id: Int,
+        @Path("id") id: Int?,
         @Header("Accept") accept: String = "application/json",
     ): Response<DefaultResponse<Alumni>>
 

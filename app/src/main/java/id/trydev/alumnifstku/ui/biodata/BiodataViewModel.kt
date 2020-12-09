@@ -49,7 +49,7 @@ class BiodataViewModel: ViewModel() {
     /* Save temporarily data from each fragment */
     fun addBioAttr(mapAttr: HashMap<String, String>) {
         biodataAttribute.putAll(mapAttr)
-        filePath = mapAttr["foto"].toString()
+        Log.d("FOTO PATH", "${biodataAttribute["foto"]}")
     }
 
     /* Upload Biodata function
@@ -101,9 +101,9 @@ class BiodataViewModel: ViewModel() {
         Log.d("VIEWMODEL" , "LAUNCH!")
 
         var foto: MultipartBody.Part? = null
-        if (filePath != null) {
-            val file = File(filePath)
-            MultipartBody.Part.createFormData(
+        if (biodataAttribute["foto"] != null) {
+            val file = File(biodataAttribute["foto"].toString())
+            foto = MultipartBody.Part.createFormData(
                     "foto",
                     file.name,
                     RequestBody.create(MediaType.parse("image/*"), file))

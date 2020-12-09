@@ -82,6 +82,8 @@ class RegisterActivity : AppCompatActivity() {
                     // debug only
                     Log.d("PREFERENCES", "${prefs.token}, ${prefs.userId}")
                     startActivity(Intent(this, BiodataActivity::class.java))
+                    Toast.makeText(this, response.message, Toast.LENGTH_LONG).show()
+                    finish()
                 } else {
                     binding.errorMsg.visibility = View.VISIBLE
                     binding.errorMsg.text = response.message

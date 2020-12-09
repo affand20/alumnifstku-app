@@ -17,7 +17,7 @@ import id.trydev.alumnifstku.databinding.ActivityLokerBinding
 import id.trydev.alumnifstku.databinding.DialogFilterLokerBinding
 import id.trydev.alumnifstku.network.RequestState
 import id.trydev.alumnifstku.prefs.AppPreferences
-import id.trydev.alumnifstku.ui.loker.bottomdialog.DetailFragmentLoker
+import id.trydev.alumnifstku.ui.loker.detail.DetailFragmentLoker
 import id.trydev.alumnifstku.utils.ItemDecoration
 
 class LokerActivity : AppCompatActivity() {
@@ -175,14 +175,20 @@ class LokerActivity : AppCompatActivity() {
         if (binding.edtCluster.text.toString().isNotEmpty()) {
             this.query["cluster"] = binding.edtCluster.text.toString()
             this.query["filter"] = "true"
+        } else {
+            this.query["cluster"] = ""
         }
         if (binding.edtCompany.text.toString().isNotEmpty()) {
             this.query["perusahaan"] = binding.edtCompany.text.toString()
             this.query["filter"] = "true"
+        } else {
+            this.query["perusahaan"] = ""
         }
         if (binding.edtPosition.text.toString().isNotEmpty()) {
             this.query["jabatan"] = binding.edtPosition.text.toString()
             this.query["filter"] = "true"
+        } else {
+            this.query["jabatan"] = ""
         }
         if (binding.edtOrder.text.toString().isNotEmpty()) {
             if (binding.edtOrder.text.toString() == "Terbaru") {
@@ -192,6 +198,8 @@ class LokerActivity : AppCompatActivity() {
                 this.query["order"] = "asc"
             }
             this.query["filter"] = "true"
+        } else {
+            this.query["order"] = ""
         }
         return query
     }

@@ -21,7 +21,9 @@ import id.trydev.alumnifstku.prefs.AppPreferences
 import id.trydev.alumnifstku.ui.biodata.BiodataActivity
 import id.trydev.alumnifstku.ui.loker.LokerActivity
 import id.trydev.alumnifstku.ui.kelas.KelasListActivity
+import id.trydev.alumnifstku.ui.login.LoginActivity
 import id.trydev.alumnifstku.ui.memory.SharingMemoryActivity
+import id.trydev.alumnifstku.ui.news.NewsActivity
 import id.trydev.alumnifstku.ui.pengaturan.PengaturanActivity
 import id.trydev.alumnifstku.ui.tracelist.TraceListActivity
 import kotlinx.android.synthetic.main.activity_dashboard.*
@@ -101,6 +103,7 @@ class DashboardActivity : AppCompatActivity(), View.OnClickListener {
         binding.imgKelas.setOnClickListener(this)
         binding.imgNews.setOnClickListener(this)
         binding.imgPengaturan.setOnClickListener(this)
+        binding.btnLogout.setOnClickListener(this)
     }
 
     override fun onClick(v: View) {
@@ -135,23 +138,38 @@ class DashboardActivity : AppCompatActivity(), View.OnClickListener {
 
             // FST NEWS
             R.id.img_news -> {
-                panggang("FST News")
+                startActivity(
+                    Intent(this, NewsActivity::class.java)
+                )
             }
 
             R.id.img_pengaturan -> {
                 intent = Intent(this, PengaturanActivity::class.java)
                 startActivity(intent)
             }
+
+            R.id.btn_logout -> {
+                logout()
+            }
         }
 
 
     }
 
-    fun panggang(string: String){
+    private fun logout() {
+        prefs.resetPreference()
+        panggang("Sampai jumpa lagi!")
+        startActivity(
+                Intent(this, LoginActivity::class.java)
+        )
+        finish()
+    }
+
+    private fun panggang(string: String){
         Toast.makeText(this, string, Toast.LENGTH_SHORT).show()
     }
 
-    fun panggangLong(msg: String) {
+    private fun panggangLong(msg: String) {
         Toast.makeText(this, msg, Toast.LENGTH_LONG).show()
     }
 }

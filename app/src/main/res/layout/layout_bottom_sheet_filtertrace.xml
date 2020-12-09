@@ -29,17 +29,6 @@
         android:layout_gravity="center"
         style="@style/edittext_normal"/>
 
-    <Spinner
-        android:id="@+id/spinner_urutkan"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/edittext_normal"
-        android:paddingLeft="0dp"
-        android:layout_marginTop="16dp"
-        android:spinnerMode="dropdown"
-        android:layout_gravity="center"
-        style="@style/edittext_normal"/>
-
     <TextView
         android:gravity="center"
         android:id="@+id/btn_set_filter"

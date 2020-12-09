@@ -23,7 +23,7 @@ class LokerAdapter(private val context: Context, val onClick: (Loker)->Unit): Re
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding =ItemLokerBinding.inflate(LayoutInflater.from(context), parent, false)
+        val binding = ItemLokerBinding.inflate(LayoutInflater.from(context), parent, false)
         return ViewHolder(binding)
     }
 
