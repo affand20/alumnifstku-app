@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import id.trydev.alumnifstku.R
 import id.trydev.alumnifstku.model.Biodata
-import id.trydev.alumnifstku.ui.tracelist.tracedetails.TraceDetailsActivity
+import id.trydev.alumnifstku.ui.tracedetails.TraceDetailsActivity
 import kotlinx.android.synthetic.main.layout_trace_list.view.*
 
 class TraceListAdapter: RecyclerView.Adapter<TraceListAdapter.ViewHolder>() {
@@ -36,7 +36,7 @@ class TraceListAdapter: RecyclerView.Adapter<TraceListAdapter.ViewHolder>() {
                     // gimana caranya naruh BIODATA buat dikirim ??
                     // apa dibikin parcelable ?
 
-                    intent.putExtra(TraceDetailsActivity.ARG_NAME, biodata.nama)
+                    intent.putExtra(TraceDetailsActivity.ARG_UID, biodata.nama)
                     itemView.context.startActivity(intent)
                 }
             }

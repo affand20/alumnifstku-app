@@ -1,13 +1,12 @@
-package id.trydev.alumnifstku.ui.biodata
+package id.trydev.alumnifstku.ui.pengaturan.biodata
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import id.trydev.alumnifstku.model.Alumni
 import id.trydev.alumnifstku.model.Biodata
 import id.trydev.alumnifstku.model.DefaultResponse
 import id.trydev.alumnifstku.network.ApiFactory
+import id.trydev.alumnifstku.network.ApiService
 import id.trydev.alumnifstku.network.RequestState
 import id.trydev.alumnifstku.network.Result
 import kotlinx.coroutines.CoroutineScope
@@ -19,7 +18,7 @@ import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import java.io.File
 
-class BiodataViewModel: ViewModel() {
+class PengaturanBiodataViewModel: ViewModel() {
 
     /* State untuk memeriksa status request, apakah START, SUCCES, atau FAILED. */
     private val _state = MutableLiveData<RequestState>()
@@ -33,6 +32,10 @@ class BiodataViewModel: ViewModel() {
     val response: LiveData<DefaultResponse<Biodata>>
         get() = _response
 
+    private val _submitresponse = MutableLiveData<DefaultResponse<Biodata>>()
+    val submitresponse: LiveData<DefaultResponse<Biodata>>
+        get() = _submitresponse
+
     /* Variabel untuk menampung error yg bukan berasal dari server */
     private val _error = MutableLiveData<String>()
     val error: LiveData<String>
@@ -43,43 +46,21 @@ class BiodataViewModel: ViewModel() {
     private val uiScope = CoroutineScope(job+ Dispatchers.Main)
 
     private var biodataAttribute =  HashMap<String, Any>()
-    private var biodataAttribute2 =  HashMap<String, Any>()
     private var filePath: String? = null
 
-    /* Save temporarily data from each fragment */
+
     fun addBioAttr(mapAttr: HashMap<String, String>) {
         biodataAttribute.putAll(mapAttr)
-        Log.d("FOTO PATH", "${biodataAttribute["foto"]}")
+        filePath = mapAttr["foto"].toString()
     }
 
-    /* Upload Biodata function
-    * ========================
-    * Params:
-    * 1. apiToken
-    * Another params fetched from biodataAttribute variable
-    *  */
-    fun uploadBio(apiToken: String,) {
+    fun getBiodata(apiToken: String){
+
         _state.postValue(RequestState.REQUEST_START)
         uiScope.launch {
-            try {
-                val file = File(filePath)
 
-                when(val response = ApiFactory.uploadBio(
-                    apiToken,
-                    RequestBody.create(MultipartBody.FORM, biodataAttribute["nama"] as String),
-                    RequestBody.create(MultipartBody.FORM, biodataAttribute["alamat"] as String),
-                    RequestBody.create(MultipartBody.FORM, biodataAttribute["umumr"] as String),
-                    RequestBody.create(MultipartBody.FORM, biodataAttribute["ttl"] as String),
-                    RequestBody.create(MultipartBody.FORM, biodataAttribute["jenis_kelamin"] as String),
-                    RequestBody.create(MultipartBody.FORM, biodataAttribute["angkatan"] as String),
-                    RequestBody.create(MultipartBody.FORM, biodataAttribute["jurusan"] as String),
-                    RequestBody.create(MultipartBody.FORM, biodataAttribute2["linkedin"] as String?),
-                    MultipartBody.Part.createFormData(
-                        "foto",
-                        file.name,
-                        RequestBody.create(MediaType.parse("image/*"), file)
-                    )
-                )) {
+            try {
+                when(val response = ApiFactory.myBio(apiToken)){
                     is Result.Success -> {
                         _state.postValue(RequestState.REQUEST_END)
                         _response.postValue(response.data)
@@ -89,6 +70,7 @@ class BiodataViewModel: ViewModel() {
                         _state.postValue(RequestState.REQUEST_ERROR)
                         _error.postValue(response.exception)
                     }
+
                 }
             } catch (t: Throwable) {
                 _state.postValue(RequestState.REQUEST_ERROR)
@@ -97,12 +79,11 @@ class BiodataViewModel: ViewModel() {
         }
     }
 
-    fun uploadBioWithTracing(apiToken: String) {
-        Log.d("VIEWMODEL" , "LAUNCH!")
+    fun postBiodata(apiToken: String) {
 
         var foto: MultipartBody.Part? = null
-        if (biodataAttribute["foto"] != null) {
-            val file = File(biodataAttribute["foto"].toString())
+        if (filePath != null) {
+            val file = File(filePath)
             foto = MultipartBody.Part.createFormData(
                     "foto",
                     file.name,
@@ -116,32 +97,30 @@ class BiodataViewModel: ViewModel() {
 
         _state.postValue(RequestState.REQUEST_START)
         uiScope.launch {
+
             try {
-                when(val response = ApiFactory.uploadBioAndTracing(
+                when(val response = ApiFactory.updateBio(
                         apiToken,
                         RequestBody.create(MultipartBody.FORM, biodataAttribute["nama"].toString()),
                         RequestBody.create(MultipartBody.FORM, biodataAttribute["alamat"].toString()),
                         RequestBody.create(MultipartBody.FORM, biodataAttribute["umur"].toString()),
                         RequestBody.create(MultipartBody.FORM, biodataAttribute["ttl"].toString()),
-                        RequestBody.create(MultipartBody.FORM, biodataAttribute["jenis_kelamin"].toString()),
+                        RequestBody.create(MultipartBody.FORM, biodataAttribute["jenis kelamin"].toString()),
                         RequestBody.create(MultipartBody.FORM, biodataAttribute["angkatan"].toString()),
                         RequestBody.create(MultipartBody.FORM, biodataAttribute["jurusan"].toString()),
                         linkedin,
-                        foto,
-                        RequestBody.create(MultipartBody.FORM, biodataAttribute["company"].toString()),
-                        RequestBody.create(MultipartBody.FORM, biodataAttribute["year_joined"].toString()),
-                        RequestBody.create(MultipartBody.FORM, biodataAttribute["cluster"].toString()),
-                        RequestBody.create(MultipartBody.FORM, biodataAttribute["position"].toString()),
-                )) {
+                        foto
+                )){
                     is Result.Success -> {
                         _state.postValue(RequestState.REQUEST_END)
-                        _response.postValue(response.data)
+                        _submitresponse.postValue(response.data)
                     }
 
                     is Result.Error -> {
                         _state.postValue(RequestState.REQUEST_ERROR)
                         _error.postValue(response.exception)
                     }
+
                 }
             } catch (t: Throwable) {
                 _state.postValue(RequestState.REQUEST_ERROR)
@@ -149,5 +128,4 @@ class BiodataViewModel: ViewModel() {
             }
         }
     }
-
 }

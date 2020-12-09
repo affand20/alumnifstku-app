@@ -89,11 +89,9 @@ class DetailPostActivity: AppCompatActivity() {
                 if (isLiked != null) {
                     /* if user has liked, then click will make it unlike */
                     viewModel.unlikePost(prefs.token.toString(), postId.toInt())
-                    panggang("Unlike woy")
                 } else {
                     /* if user has not liked, then click will make it like */
                     viewModel.likePost(prefs.token.toString(), postId.toInt())
-                    panggang("Like woy")
                 }
             }
         }

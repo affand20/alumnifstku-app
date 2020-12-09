@@ -193,12 +193,12 @@ object ApiFactory {
     }
 
     /* Get List Alumni function */
-    suspend fun listAlumni(apiToken: String, query: Map<String, String>): Result<DefaultResponse<List<Alumni>>> {
+    suspend fun listAlumni(apiToken: String, query: Map<String, String?>): Result<DefaultResponse<List<Alumni>>> {
         return safeApiCall { apiService.listAlumni("Bearer $apiToken", query) }
     }
 
     /* Get Detail Alumni function */
-    suspend fun detailAlumni(apiToken: String, id: Int): Result<DefaultResponse<Alumni>> {
+    suspend fun detailAlumni(apiToken: String, id: Int?): Result<DefaultResponse<Alumni>> {
         return safeApiCall { apiService.detailAlumni("Bearer $apiToken", id) }
     }
 

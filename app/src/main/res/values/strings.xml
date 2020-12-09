@@ -20,6 +20,17 @@
         <item>NGO/LSM</item>
         <item>Professional</item>
     </string-array>
+
+    <string-array name="cluster_filter">
+        <item>Cluster</item>
+        <item>Akademisi/Studi Lanjut</item>
+        <item>ASN/PNS</item>
+        <item>Enterpreneur</item>
+        <item>Freelance</item>
+        <item>NGO/LSM</item>
+        <item>Professional</item>
+    </string-array>
+
     <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur\nadipiscing elit. Nam dictum vestibulum\ndolor nec maximus. </string>
     <string name="long_lorem">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</string>
     <string name="title_kelas_alumni">KELAS ALUMNI</string>
@@ -57,6 +68,7 @@
 
     <string name="like_count_template">%1d Suka</string>
     <string name="comment_count_template">%1d Komentar</string>
+    <string name="xxx">xxx</string>
 
     <string name="news_uploader">Oleh %1s</string>
     <string name="speaker_list_template">Oleh: %s dan %d lainnya</string>

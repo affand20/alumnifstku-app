@@ -2,20 +2,29 @@ package id.trydev.alumnifstku.ui.tracelist
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import id.trydev.alumnifstku.R
+import id.trydev.alumnifstku.adapter.TraceListAdapter
 import id.trydev.alumnifstku.databinding.ActivityTraceListBinding
+import id.trydev.alumnifstku.databinding.LayoutBottomSheetFiltertraceBinding
+import id.trydev.alumnifstku.databinding.LayoutBottomSheetTraceBinding
+import id.trydev.alumnifstku.model.Alumni
 import id.trydev.alumnifstku.model.Biodata
+import id.trydev.alumnifstku.network.RequestState
+import id.trydev.alumnifstku.prefs.AppPreferences
 import kotlinx.android.synthetic.main.layout_bottom_sheet_filtertrace.view.*
 import kotlinx.android.synthetic.main.layout_bottom_sheet_trace.view.*
 import kotlinx.android.synthetic.main.layout_bottom_sheet_trace.view.btn_search_tracing
+import java.util.*
 
 class TraceListActivity : AppCompatActivity() {
 
@@ -25,13 +34,8 @@ class TraceListActivity : AppCompatActivity() {
     private lateinit var vAdapter: TraceListAdapter
     private lateinit var vManager: RecyclerView.LayoutManager
 
-    private lateinit var cariOrang: CariOrang
-
-    private var filterjurusan: String? = null
-    private var filtercluster: String? = null
-    private var filterwaktu: String? = null
-
-    private var listData = ArrayList<Biodata>()
+    private lateinit var prefs: AppPreferences
+    private lateinit var viewModel: TraceListViewModel
 
     private var query = hashMapOf<String,String?>(
             "angkatan" to "",
@@ -39,6 +43,7 @@ class TraceListActivity : AppCompatActivity() {
             "filter" to "",
             "nama" to "",
             "cluster" to "",
+            "jurusan" to ""
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,10 +51,8 @@ class TraceListActivity : AppCompatActivity() {
         binding = ActivityTraceListBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        cariOrang = CariOrang()
-
         vManager = LinearLayoutManager(this)
-        vAdapter = TraceListAdapter()
+        vAdapter = TraceListAdapter(this)
         rv = binding.rvTracelist.apply {
             setHasFixedSize(true)
 
@@ -58,14 +61,67 @@ class TraceListActivity : AppCompatActivity() {
             adapter = vAdapter
         }
 
-        setDummyData()
-        vAdapter.setData(listData)
+
+        prefs = AppPreferences(this)
+
+        viewModel = ViewModelProvider(this).get(TraceListViewModel::class.java)
+
+        viewModel.getAlumni(prefs.token.toString(), query)
+
+        /* Observe Request state changes */
+        viewModel.state.observe({ lifecycle }, { state ->
+            Log.d("OBSERVE", "state $state")
+            when(state) {
+                RequestState.REQUEST_START -> {
+                    /* Show progress bar */
+
+                    // aku belum bikin mas
+                }
+                RequestState.REQUEST_END -> {
+
+                    /* Hide progress bar and fetch response */
+                    // aku belum bikin mas
+                }
+                RequestState.REQUEST_ERROR -> {
+                    /* Something happen.. Hide progress bar and fetch errors */
+                }
+                else -> { /* do nothing */ }
+            }
+        })
+
+        /* Observe Response changes */
+        viewModel.response.observe({ lifecycle }, { response ->
+            Log.d("RESPONSE", response.toString())
+            if (response != null) {
+                // check server response
+                // if success, populate data
+                // else, show error Toast
+                if (response.success == true) {
+                    // populate data
+                    response.data?.let { vAdapter.setData(it) }
+                } else {
+                    // memunculkan sesuatu jika kosong
+                    // binding.stateEmpty.visibility = View.VISIBLE
+                    // binding.stateEmpty.text = response.message
+                }
+            }
+        })
+
+        /* Observe another Error possibility changes */
+        viewModel.error.observe({ lifecycle }, { error ->
+            if (error.isNotEmpty()) {
+                // binding.stateEmpty.visibility = View.VISIBLE
+                // binding.stateEmpty.text = error
+            }
+        })
 
 
         // tombol cari orang untuk memunculkan bottom dilaog
         binding.floating.btnCarii.setOnClickListener {
 
-            val view = layoutInflater.inflate(R.layout.layout_bottom_sheet_trace, null)
+            resetquery()
+
+            val bindCariDialog = LayoutBottomSheetTraceBinding.inflate(LayoutInflater.from(this))
 
             val dialog = BottomSheetDialog(this)
 
@@ -73,12 +129,16 @@ class TraceListActivity : AppCompatActivity() {
                     this, R.array.list_jurusan, R.layout.spinner_layout
             ).also { adapter ->
                 adapter.setDropDownViewResource(R.layout.spinner_layout)
-                view.spinner_tracing.adapter = adapter
+                bindCariDialog.spinnerTracing.adapter = adapter
             }
 
-            view.spinner_tracing.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            bindCariDialog.spinnerTracing.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
                 override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
-                    cariOrang.jurusan = parent.selectedItem as String
+                    if (parent.selectedItem as String == "Jurusan"){
+                        query["jurusan"] = ""
+                    }else{
+                        query["jurusan"] = parent.selectedItem as String
+                    }
                 }
 
                 override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -87,20 +147,21 @@ class TraceListActivity : AppCompatActivity() {
 
             }
 
-            view.btn_search_tracing.setOnClickListener {
+            bindCariDialog.btnSearchTracing.setOnClickListener {
 
-                cariOrang.nama = view.et_tracing_nama.text.toString()
-                query["nama"] = cariOrang.nama
-                cariOrang.angkatan = view.et_tracing_angkatan.text.toString()
-                query["angkatan"] = cariOrang.angkatan
+                query["nama"] = bindCariDialog.etTracingNama.text.toString()
+                query["angkatan"] = bindCariDialog.etTracingAngkatan.text.toString()
+                query["filter"] = "true"
 
-                var str = "Nama : ${cariOrang.nama}, Angkatan : ${cariOrang.angkatan}, Jurusan ${cariOrang.jurusan}"
+                viewModel.getAlumni(prefs.token.toString(), query)
 
-                Toast.makeText(this, str, Toast.LENGTH_SHORT).show()
+                // var str = "Nama : ${cariOrang.nama}, Angkatan : ${cariOrang.angkatan}, Jurusan ${cariOrang.jurusan}"
+                // Toast.makeText(this, str, Toast.LENGTH_SHORT).show()
+
                 dialog.dismiss()
             }
 
-            dialog.setContentView(view)
+            dialog.setContentView(bindCariDialog.root)
             dialog.show()
 
         }
@@ -108,7 +169,9 @@ class TraceListActivity : AppCompatActivity() {
         // tombol filter untuk memunculkan bottom dialog
         binding.floating.btnFilterr.setOnClickListener {
 
-            val view = layoutInflater.inflate(R.layout.layout_bottom_sheet_filtertrace, null)
+            resetquery()
+
+            val bindFilterDialog = LayoutBottomSheetFiltertraceBinding.inflate(LayoutInflater.from(this))
 
             val dialog = BottomSheetDialog(this)
 
@@ -116,26 +179,23 @@ class TraceListActivity : AppCompatActivity() {
                     this, R.array.list_jurusan, R.layout.spinner_layout
             ).also { adapter ->
                 adapter.setDropDownViewResource(R.layout.spinner_layout)
-                view.spinner_jurusan.adapter = adapter
+                bindFilterDialog.spinnerJurusan.adapter = adapter
             }
 
             ArrayAdapter.createFromResource(
-                    this, R.array.cluster, R.layout.spinner_layout
+                    this, R.array.cluster_filter, R.layout.spinner_layout
             ).also { adapter ->
                 adapter.setDropDownViewResource(R.layout.spinner_layout)
-                view.spinner_cluster.adapter = adapter
+                bindFilterDialog.spinnerCluster.adapter = adapter
             }
 
-            ArrayAdapter.createFromResource(
-                    this, R.array.order_by, R.layout.spinner_layout
-            ).also { adapter ->
-                adapter.setDropDownViewResource(R.layout.spinner_layout)
-                view.spinner_urutkan.adapter = adapter
-            }
-
-            view.spinner_jurusan.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            bindFilterDialog.spinnerJurusan.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
                 override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
-                    query["cluster"] = parent.selectedItem as String
+                    if (parent.selectedItem as String == "Jurusan"){
+                        query["jurusan"] = ""
+                    }else{
+                        query["jurusan"] = parent.selectedItem as String
+                    }
                 }
 
                 override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -143,9 +203,13 @@ class TraceListActivity : AppCompatActivity() {
                 }
             }
 
-            view.spinner_cluster.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            bindFilterDialog.spinnerCluster.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
                 override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
-                    query["cluster"] = parent.selectedItem as String
+                    if(parent.selectedItem as String == "Cluster"){
+                        query["cluster"] = ""
+                    }else {
+                        query["cluster"] = parent.selectedItem as String
+                    }
                 }
 
                 override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -153,47 +217,27 @@ class TraceListActivity : AppCompatActivity() {
                 }
             }
 
-            view.spinner_urutkan.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
-                override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
-                    query["sortby"] = parent.selectedItem as String
-                }
+            bindFilterDialog.btnSetFilter.setOnClickListener {
 
-                override fun onNothingSelected(parent: AdapterView<*>?) {
-                    TODO("Not yet implemented")
-                }
-            }
+                // Log.d("QUERY:", query.toString())
+                query["filter"] = "true"
+                viewModel.getAlumni(prefs.token.toString(), query)
 
-            view.btn_set_filter.setOnClickListener {
                 dialog.dismiss()
+
             }
 
-            dialog.setContentView(view)
+            dialog.setContentView(bindFilterDialog.root)
             dialog.show()
         }
 
-
-        // gunakan viewModel untuk dapatkan data yang direquest
-        // kemudian parsing data ke recyclerView dengan
-        
-        // (vAdapter as TraceListAdapter).setData(listData)
-
-
     }
 
-    fun setDummyData(){
-        var stringlist = resources.getStringArray(R.array.dummy_list_tracing_nama)
-        for (i in 0 until stringlist.size) {
-            var b = Biodata()
-            b.nama = stringlist[i]
-            listData.add(b)
+    fun resetquery(){
+        this.query.forEach {
+            var key = it.key
+            this.query[key] = ""
         }
     }
-
-    class CariOrang {
-        var nama: String? = null
-        var angkatan: String? = null
-        var jurusan: String? = null
-    }
-
 
 }
