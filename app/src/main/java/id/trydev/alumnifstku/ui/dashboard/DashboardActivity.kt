@@ -103,6 +103,7 @@ class DashboardActivity : AppCompatActivity(), View.OnClickListener {
         binding.imgKelas.setOnClickListener(this)
         binding.imgNews.setOnClickListener(this)
         binding.imgPengaturan.setOnClickListener(this)
+        binding.btnLogout.setOnClickListener(this)
     }
 
     override fun onClick(v: View) {
@@ -145,6 +146,10 @@ class DashboardActivity : AppCompatActivity(), View.OnClickListener {
             R.id.img_pengaturan -> {
                 intent = Intent(this, PengaturanActivity::class.java)
                 startActivity(intent)
+            }
+
+            R.id.btn_logout -> {
+                logout()
             }
         }
 
