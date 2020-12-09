@@ -40,7 +40,7 @@ class PengaturanBiodataActivity : AppCompatActivity(), EasyPermissions.Permissio
 
     private var filePath = ""
 
-    private var query = hashMapOf<String, String>(
+    private var query = hashMapOf(
             "nama" to "",
             "alamat" to "",
             "umur" to "",
@@ -74,17 +74,17 @@ class PengaturanBiodataActivity : AppCompatActivity(), EasyPermissions.Permissio
                 RequestState.REQUEST_START -> {
                     /* Show progress bar */
                     binding.progressBar.visibility = View.VISIBLE
-                    // binding.stateEmpty.visibility = View.GONE
+                    binding.btnNext.visibility = View.INVISIBLE
                 }
                 RequestState.REQUEST_END -> {
                     /* Hide progress bar and fetch response */
                     binding.progressBar.visibility = View.GONE
-                    // binding.swipeRefresh.isRefreshing = false
+                    binding.btnNext.visibility = View.VISIBLE
                 }
                 RequestState.REQUEST_ERROR -> {
-                    binding.progressBar.visibility = View.GONE
                     /* Something happen.. Hide progress bar and fetch errors */
-                    // binding.swipeRefresh.isRefreshing = false
+                    binding.progressBar.visibility = View.GONE
+                    binding.btnNext.visibility = View.VISIBLE
                 }
                 else -> { /* do nothing */ }
             }
@@ -101,10 +101,14 @@ class PengaturanBiodataActivity : AppCompatActivity(), EasyPermissions.Permissio
                     // populate data
                     response.data?.let { biodata ->
 
+                        val ttl = biodata.ttl?.split(", ")
+                        val birthPlace = ttl?.first()
+
                         binding.edtFullname.setText(biodata.nama.toString())
                         binding.edtAddress.setText(biodata.alamat.toString())
                         binding.edtOld.setText(biodata.umur.toString())
-//                        binding.edtBirthPlace.setText(biodata.ttl.toString())
+                        binding.edtBirthPlace.setText(birthPlace)
+                        binding.edtBirthDate.setText(ttl?.drop(1)?.joinToString(", "))
                         binding.edtMajor.setText(biodata.jurusan.toString())
                         binding.edtAngkatan.setText(biodata.angkatan.toString())
                         binding.edtLinkedin.setText(biodata.linkedin.toString())
@@ -115,7 +119,7 @@ class PengaturanBiodataActivity : AppCompatActivity(), EasyPermissions.Permissio
                             binding.radioGroup.check(R.id.rb_male)
                         }
 
-                        if (biodata.foto.toString() != null){
+                        if (biodata.foto != null){
                             filePath = ""
 
                             GlideApp.with(this)
@@ -188,6 +192,7 @@ class PengaturanBiodataActivity : AppCompatActivity(), EasyPermissions.Permissio
                 if (filePath != "") {
                     query["foto"] = filePath
                 }
+
 
                 mv.addBioAttr(query)
                 mv.postBiodata(pref.token.toString())

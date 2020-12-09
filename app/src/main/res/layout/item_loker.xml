@@ -16,6 +16,7 @@
         android:layout_height="100dp"
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
+        tools:src="@color/grey"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

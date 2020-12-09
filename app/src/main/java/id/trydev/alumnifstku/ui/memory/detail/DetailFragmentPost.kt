@@ -1,14 +1,11 @@
-package id.trydev.alumnifstku.ui.memory.bottomdialog.detail
+package id.trydev.alumnifstku.ui.memory.detail
 
 import android.app.Dialog
 import android.content.res.Resources
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.util.Log
 import android.view.View
-import android.widget.PopupMenu
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -26,38 +23,36 @@ import id.trydev.alumnifstku.utils.GlideApp
 import java.text.SimpleDateFormat
 import java.util.*
 
-class DetailPostActivity: AppCompatActivity() {
+class DetailFragmentPost(private val postId:Int): BottomSheetDialogFragment() {
 
     private lateinit var post: Post
+
     private lateinit var binding: FragmentDetailPostBinding
-    private lateinit var postId: String
+    private lateinit var mBehavior: BottomSheetBehavior<View>
     private lateinit var adapter: CommentAdapter
     private lateinit var viewModel: DetailFragmentViewModel
     private lateinit var prefs: AppPreferences
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        val bottomSheetDialog = super.onCreateDialog(savedInstanceState) as BottomSheetDialog
         binding = FragmentDetailPostBinding.inflate(layoutInflater)
-        setContentView(binding.root)
 
-        postId = intent?.getStringExtra("postId").toString()
-
-        prefs = AppPreferences(this)
-        adapter = CommentAdapter(this, prefs) { comment ->
-            viewModel.removeComment(prefs.token.toString(), postId.toInt(), comment.id.toString().toInt())
+        prefs = AppPreferences(requireContext())
+        adapter = CommentAdapter(requireContext(), prefs) { comment ->
+            viewModel.removeComment(prefs.token.toString(), postId, comment.id.toString().toInt())
         }
         viewModel = ViewModelProvider(this).get(DetailFragmentViewModel::class.java)
 
         binding.toolbar.title = "Posting"
-        binding.toolbar.navigationIcon = ContextCompat.getDrawable(this, R.drawable.ic_round_arrow_back_24)
+        binding.toolbar.navigationIcon = ContextCompat.getDrawable(requireContext(), R.drawable.ic_round_arrow_back_24)
         binding.toolbar.setNavigationOnClickListener {
-            finish()
+            bottomSheetDialog.dismiss()
         }
 
         binding.toolbar.setOnMenuItemClickListener {
             when(it.itemId) {
                 R.id.ctx_delete -> {
-                    viewModel.removePost(prefs.token.toString(), postId.toInt())
+                    viewModel.removePost(prefs.token.toString(), postId)
                     true
                 }
                 else -> false
@@ -70,16 +65,16 @@ class DetailPostActivity: AppCompatActivity() {
         layout.layoutParams = params
         binding.rootView.smoothScrollTo(0, 0)
 
-        binding.rvComment.layoutManager = LinearLayoutManager(this)
+        binding.rvComment.layoutManager = LinearLayoutManager(requireContext())
         binding.rvComment.adapter = adapter
 
-        viewModel.getPosts(prefs.token.toString(), postId.toInt())
-        viewModel.getComments(prefs.token.toString(), postId.toInt())
+        viewModel.getPosts(prefs.token.toString(), postId)
+        viewModel.getComments(prefs.token.toString(), postId)
 
         binding.btnSendComment.setOnClickListener {
             if (validate(binding)) {
                 /* send comment */
-                viewModel.postComment(prefs.token.toString(), postId.toInt(), binding.edtComment.text.toString())
+                viewModel.postComment(prefs.token.toString(), postId, binding.edtComment.text.toString())
                 // clear edittext
                 binding.edtComment.text.clear()
             }
@@ -94,11 +89,11 @@ class DetailPostActivity: AppCompatActivity() {
                 }
                 if (isLiked != null) {
                     /* if user has liked, then click will make it unlike */
-                    viewModel.unlikePost(prefs.token.toString(), postId.toInt())
+                    viewModel.unlikePost(prefs.token.toString(), postId)
                     panggang("Unlike woy")
                 } else {
                     /* if user has not liked, then click will make it like */
-                    viewModel.likePost(prefs.token.toString(), postId.toInt())
+                    viewModel.likePost(prefs.token.toString(), postId)
                     panggang("Like woy")
                 }
             }
@@ -178,7 +173,7 @@ class DetailPostActivity: AppCompatActivity() {
                     response.data?.let { comments ->
                         adapter.populateData(comments)
                         if (comments.isNotEmpty()) {
-                            binding.tvPostComment.text = String.format(this.resources.getString(R.string.comment_count_template), comments.size)
+                            binding.tvPostComment.text = String.format(requireContext().resources.getString(R.string.comment_count_template), comments.size)
                             if (comments.size > 3) {
                                 val l = binding.rvComment
                                 val p = l.layoutParams
@@ -190,7 +185,7 @@ class DetailPostActivity: AppCompatActivity() {
                             val p = l.layoutParams
                             p.height = 400 * 2
                             l.layoutParams = p
-                            binding.tvPostComment.text = String.format(this.resources.getString(R.string.comment_count_template), 0)
+                            binding.tvPostComment.text = String.format(requireContext().resources.getString(R.string.comment_count_template), 0)
                         }
                     }
                 } else {
@@ -209,7 +204,7 @@ class DetailPostActivity: AppCompatActivity() {
                 if (response.success == true) {
                     // populate data
                     panggang(response.message.toString())
-                    finish()
+                    bottomSheetDialog.dismiss()
                 } else {
                     response.message?.let { panggang(it) }
                 }
@@ -223,16 +218,30 @@ class DetailPostActivity: AppCompatActivity() {
             }
         })
 
+        bottomSheetDialog.setContentView(binding.root)
+        mBehavior = BottomSheetBehavior.from(binding.root.parent as View)
+        mBehavior.addBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback(){
+            override fun onSlide(p0: View, p1: Float) {
+
+            }
+
+            override fun onStateChanged(p0: View, newState: Int) {
+                if (newState == BottomSheetBehavior.STATE_DRAGGING) {
+                    mBehavior.state = BottomSheetBehavior.STATE_EXPANDED
+                }
+            }
+
+        })
+        return bottomSheetDialog
     }
 
     private fun populateItem(item: Post, binding: FragmentDetailPostBinding) {
 
         if (prefs.userId == item.alumniId) {
-            binding.toolbar.menu.clear()
             binding.toolbar.inflateMenu(R.menu.menu_comment)
         }
 
-        GlideApp.with(this)
+        GlideApp.with(requireContext())
             .asBitmap()
             .centerInside()
             .placeholder(R.color.grey)
@@ -243,7 +252,7 @@ class DetailPostActivity: AppCompatActivity() {
         if (item.alumni != null) {
             binding.tvUsername.text = item.alumni.username
             if (item.alumni.biodata?.foto != null) {
-                GlideApp.with(this)
+                GlideApp.with(requireContext())
                     .asBitmap()
                     .centerCrop()
                     .placeholder(R.color.grey)
@@ -267,27 +276,27 @@ class DetailPostActivity: AppCompatActivity() {
         binding.tvPostCaption.text = item.deskripsi
 
         if (item.likes != null) {
-            binding.tvPostLike.text = String.format(this.resources.getString(R.string.like_count_template), item.likes.size)
+            binding.tvPostLike.text = String.format(requireContext().resources.getString(R.string.like_count_template), item.likes.size)
             val isLiked = item.likes.find { likes ->
                 likes.alumniId == prefs.userId
             }
             if (isLiked != null) {
                 binding.ibToggleLike.setImageDrawable(
-                    ContextCompat.getDrawable(this,
+                    ContextCompat.getDrawable(requireContext(),
                         R.drawable.ic_round_favorite_24)
                 )
             } else {
                 binding.ibToggleLike.setImageDrawable(
-                    ContextCompat.getDrawable(this,
+                    ContextCompat.getDrawable(requireContext(),
                         R.drawable.ic_round_favorite_border_24)
                 )
             }
         } else {
-            binding.tvPostLike.text = String.format(this.resources.getString(R.string.like_count_template), 0)
+            binding.tvPostLike.text = String.format(requireContext().resources.getString(R.string.like_count_template), 0)
         }
 
         if (item.comments != null) {
-            binding.tvPostComment.text = String.format(this.resources.getString(R.string.comment_count_template), item.comments.size)
+            binding.tvPostComment.text = String.format(requireContext().resources.getString(R.string.comment_count_template), item.comments.size)
             if (item.comments.size > 3) {
                 val l = binding.rvComment
                 val p = l.layoutParams
@@ -299,7 +308,7 @@ class DetailPostActivity: AppCompatActivity() {
             val p = l.layoutParams
             p.height = 400 * 2
             l.layoutParams = p
-            binding.tvPostComment.text = String.format(this.resources.getString(R.string.comment_count_template), 0)
+            binding.tvPostComment.text = String.format(requireContext().resources.getString(R.string.comment_count_template), 0)
         }
     }
 
@@ -310,13 +319,20 @@ class DetailPostActivity: AppCompatActivity() {
         return true
     }
 
+    override fun onStart() {
+        super.onStart()
+        mBehavior.state = BottomSheetBehavior.STATE_EXPANDED
+        mBehavior.isHideable = false
+        Log.d("BEHAVIOR STATE", "${mBehavior.state}")
+    }
+
     private fun getScreenHeight(): Int {
         Log.d("HEIGHT", "${Resources.getSystem().displayMetrics.heightPixels}")
         return Resources.getSystem().displayMetrics.heightPixels
     }
 
     private fun panggang(msg: String) {
-        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
+        Toast.makeText(requireContext(), msg, Toast.LENGTH_SHORT).show()
     }
 
 }

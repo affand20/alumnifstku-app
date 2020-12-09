@@ -97,8 +97,8 @@ class LoginActivity : AppCompatActivity() {
                     }
                     // debug only
                     Log.d("PREFERENCES", "${prefs.token}, ${prefs.userId}")
-                    // TODO: Do checking whether user has filled their biodata or not
                     startActivity(Intent(this, DashboardActivity::class.java))
+                    finish()
                 } else {
                     binding.errorMsg.visibility = View.VISIBLE
                     binding.errorMsg.text = response.message

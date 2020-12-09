@@ -11,8 +11,7 @@ import id.trydev.alumnifstku.adapter.SharingMemoryAdapter
 import id.trydev.alumnifstku.databinding.ActivitySharingMemoryBinding
 import id.trydev.alumnifstku.network.RequestState
 import id.trydev.alumnifstku.prefs.AppPreferences
-import id.trydev.alumnifstku.ui.memory.bottomdialog.detail.DetailFragmentPost
-import id.trydev.alumnifstku.ui.memory.bottomdialog.detail.DetailPostActivity
+import id.trydev.alumnifstku.ui.memory.detail.DetailPostActivity
 import id.trydev.alumnifstku.ui.memory.mypost.MyPostActivity
 import id.trydev.alumnifstku.utils.ItemDecorationPost
 

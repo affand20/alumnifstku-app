@@ -85,7 +85,7 @@ class PengaturanBiodataViewModel: ViewModel() {
         var foto: MultipartBody.Part? = null
         if (filePath != null) {
             val file = File(filePath)
-            MultipartBody.Part.createFormData(
+            foto = MultipartBody.Part.createFormData(
                     "foto",
                     file.name,
                     RequestBody.create(MediaType.parse("image/*"), file))

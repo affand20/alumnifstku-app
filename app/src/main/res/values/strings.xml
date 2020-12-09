@@ -69,4 +69,9 @@
     <string name="like_count_template">%1d Suka</string>
     <string name="comment_count_template">%1d Komentar</string>
     <string name="xxx">xxx</string>
+
+    <string name="news_uploader">Oleh %1s</string>
+    <string name="speaker_list_template">Oleh: %s dan %d lainnya</string>
+    <string name="speaker_one_template">Oleh: %s</string>
+    <string name="quota_left">%d Kuota tersisa</string>
 </resources>
