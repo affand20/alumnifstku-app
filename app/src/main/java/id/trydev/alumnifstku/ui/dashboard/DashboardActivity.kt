@@ -21,6 +21,7 @@ import id.trydev.alumnifstku.prefs.AppPreferences
 import id.trydev.alumnifstku.ui.biodata.BiodataActivity
 import id.trydev.alumnifstku.ui.loker.LokerActivity
 import id.trydev.alumnifstku.ui.kelas.KelasListActivity
+import id.trydev.alumnifstku.ui.login.LoginActivity
 import id.trydev.alumnifstku.ui.memory.SharingMemoryActivity
 import id.trydev.alumnifstku.ui.news.NewsActivity
 import id.trydev.alumnifstku.ui.pengaturan.PengaturanActivity
@@ -150,11 +151,20 @@ class DashboardActivity : AppCompatActivity(), View.OnClickListener {
 
     }
 
-    fun panggang(string: String){
+    private fun logout() {
+        prefs.resetPreference()
+        panggang("Sampai jumpa lagi!")
+        startActivity(
+                Intent(this, LoginActivity::class.java)
+        )
+        finish()
+    }
+
+    private fun panggang(string: String){
         Toast.makeText(this, string, Toast.LENGTH_SHORT).show()
     }
 
-    fun panggangLong(msg: String) {
+    private fun panggangLong(msg: String) {
         Toast.makeText(this, msg, Toast.LENGTH_LONG).show()
     }
 }
