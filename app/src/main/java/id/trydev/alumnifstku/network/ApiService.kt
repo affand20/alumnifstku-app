@@ -71,6 +71,19 @@ interface ApiService {
         @Header("Accept") accept: String = "application/json"
     ): Response<Boolean>
 
+    /*
+    * Change Password
+    * =======================
+    * */
+    @POST("change-password")
+    @FormUrlEncoded
+    suspend fun changePassword(
+            @Header("Authorization") apiToken: String,
+            @Field("old_password") oldPassword: String,
+            @Field("new_password") newPassword: String,
+            @Header("Accept") accept: String = "application/json"
+    ): Response<DefaultResponse<Alumni>>
+
     ////////////// PROFILE ENDPOINT //////////////
     /*
     * Upload Biodata

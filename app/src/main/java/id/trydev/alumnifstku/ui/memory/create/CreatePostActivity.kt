@@ -1,8 +1,10 @@
 package id.trydev.alumnifstku.ui.memory.create
 
+import android.content.ContentResolver
 import android.content.res.Resources
 import android.net.Uri
 import android.os.Bundle
+import android.provider.OpenableColumns
 import android.util.Log
 import android.view.View
 import android.widget.Toast
@@ -16,6 +18,9 @@ import id.trydev.alumnifstku.network.RequestState
 import id.trydev.alumnifstku.prefs.AppPreferences
 import id.trydev.alumnifstku.utils.GlideApp
 import id.trydev.alumnifstku.utils.RealPathUtil
+import java.io.File
+import java.io.FileInputStream
+import java.io.FileOutputStream
 
 class CreatePostActivity: AppCompatActivity() {
 
@@ -56,9 +61,9 @@ class CreatePostActivity: AppCompatActivity() {
         binding.toolbar.setOnMenuItemClickListener {
             when(it.itemId) {
                 R.id.submit_post -> {
-                    val path = RealPathUtil.getRealPath(this, uriImg)
+                    val foto = RealPathUtil.getRealPath(this, uriImg)
                     // send to server
-                    viewModel.postComment(prefs.token.toString(), binding.edtDescription.text.toString(), path)
+                    viewModel.postComment(prefs.token.toString(), binding.edtDescription.text.toString(), foto)
                     true
                 }
                 else -> false
@@ -111,13 +116,10 @@ class CreatePostActivity: AppCompatActivity() {
 
     }
 
-    private fun getScreenHeight(): Int {
-        Log.d("HEIGHT", "${Resources.getSystem().displayMetrics.heightPixels}")
-        return Resources.getSystem().displayMetrics.heightPixels
-    }
-
     private fun panggang(msg: String) {
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
     }
+
+
 
 }
