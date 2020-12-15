@@ -114,6 +114,7 @@ interface ApiService {
     suspend fun uploadBioAndTracing(
             @Header("Authorization") apiToken: String,
             @Part("nama") name: RequestBody,
+            @Part("domisili") domisili: RequestBody,
             @Part("alamat") alamat: RequestBody,
             @Part("umur") umur: RequestBody,
             @Part("ttl") ttl: RequestBody,
@@ -138,6 +139,7 @@ interface ApiService {
     suspend fun updateBio(
         @Header("Authorization") apiToken: String,
         @Part("nama") name: RequestBody,
+        @Part("domisili") domisili: RequestBody,
         @Part("alamat") alamat: RequestBody,
         @Part("umur") umur: RequestBody,
         @Part("ttl") ttl: RequestBody,

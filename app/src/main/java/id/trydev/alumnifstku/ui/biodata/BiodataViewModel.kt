@@ -120,6 +120,7 @@ class BiodataViewModel: ViewModel() {
                 when(val response = ApiFactory.uploadBioAndTracing(
                         apiToken,
                         RequestBody.create(MultipartBody.FORM, biodataAttribute["nama"].toString()),
+                        RequestBody.create(MultipartBody.FORM, biodataAttribute["domisili"].toString()),
                         RequestBody.create(MultipartBody.FORM, biodataAttribute["alamat"].toString()),
                         RequestBody.create(MultipartBody.FORM, biodataAttribute["umur"].toString()),
                         RequestBody.create(MultipartBody.FORM, biodataAttribute["ttl"].toString()),

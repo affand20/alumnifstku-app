@@ -103,6 +103,7 @@ class PengaturanBiodataViewModel: ViewModel() {
                         apiToken,
                         RequestBody.create(MultipartBody.FORM, biodataAttribute["nama"].toString()),
                         RequestBody.create(MultipartBody.FORM, biodataAttribute["alamat"].toString()),
+                        RequestBody.create(MultipartBody.FORM, biodataAttribute["domisili"].toString()),
                         RequestBody.create(MultipartBody.FORM, biodataAttribute["umur"].toString()),
                         RequestBody.create(MultipartBody.FORM, biodataAttribute["ttl"].toString()),
                         RequestBody.create(MultipartBody.FORM, biodataAttribute["jenis kelamin"].toString()),
