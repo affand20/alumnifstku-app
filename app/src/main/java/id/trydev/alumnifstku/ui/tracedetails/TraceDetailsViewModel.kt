@@ -20,6 +20,10 @@ class TraceDetailsViewModel: ViewModel() {
     val state: LiveData<RequestState>
         get() = _state
 
+    private val _statePassword = MutableLiveData<RequestState>()
+    val statePassword: LiveData<RequestState>
+        get() = _statePassword
+
     /*
     * Variabel untuk mengambil base response dari server
     * */
@@ -43,6 +47,30 @@ class TraceDetailsViewModel: ViewModel() {
 
             try {
                 when(val response = ApiFactory.detailAlumni(apiToken, uid)){
+                    is Result.Success -> {
+                        _state.postValue(RequestState.REQUEST_END)
+                        _response.postValue(response.data)
+                    }
+
+                    is Result.Error -> {
+                        _state.postValue(RequestState.REQUEST_ERROR)
+//                        _response.postValue(Gson().fromJson(response.exception, DefaultResponse::class.java) as DefaultResponse<List<Loker>>?)
+                        _error.postValue(response.exception)
+                    }
+                }
+            } catch (t: Throwable) {
+                _state.postValue(RequestState.REQUEST_ERROR)
+                _error.postValue(t.localizedMessage)
+            }
+        }
+    }
+
+    fun changePassword(apiToken: String, oldPassword: String, newPassword: String) {
+        _state.postValue(RequestState.REQUEST_START)
+        uiScope.launch {
+
+            try {
+                when(val response = ApiFactory.changePassword(apiToken, oldPassword, newPassword)){
                     is Result.Success -> {
                         _state.postValue(RequestState.REQUEST_END)
                         _response.postValue(response.data)

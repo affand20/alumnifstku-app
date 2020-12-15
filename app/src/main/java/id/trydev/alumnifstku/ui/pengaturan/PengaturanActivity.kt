@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.Toast
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
@@ -78,6 +79,7 @@ class PengaturanActivity : AppCompatActivity() {
                 // if success, populate data
                 // else, show error Toast
                 if (response.success == true) {
+                    Toast.makeText(this, response.message, Toast.LENGTH_SHORT).show()
                     // populate data
                     response.data?.biodata?.let { alumni ->
 
@@ -112,6 +114,7 @@ class PengaturanActivity : AppCompatActivity() {
             if (error.isNotEmpty()) {
                 // binding.stateEmpty.visibility = View.VISIBLE
                 // binding.stateEmpty.text = error
+                Toast.makeText(this, error, Toast.LENGTH_LONG).show()
             }
         })
 
@@ -189,7 +192,7 @@ class PengaturanActivity : AppCompatActivity() {
 
     }
 
-    fun showPasswordDialog(){
+    private fun showPasswordDialog(){
         val bindPasswordBinding = FragmentPasswordBottomBinding.inflate(LayoutInflater.from(this))
 
         val dialog = BottomSheetDialog(this)
@@ -206,12 +209,44 @@ class PengaturanActivity : AppCompatActivity() {
 
         // tombol untuk menutup dialog
         bindPasswordBinding.resetButtonGantiPassword.setOnClickListener {
-            dialog.dismiss()
+//            dialog.dismiss()
+            if (validate(bindPasswordBinding)) {
+                viewModel.changePassword(
+                        prefs.token.toString(),
+                        bindPasswordBinding.resetPasswordLama.text.toString(),
+                        bindPasswordBinding.resetPasswordBaru.text.toString()
+                )
+                dialog.dismiss()
+            }
         }
 
 
         dialog.setContentView(bindPasswordBinding.root)
         dialog.show()
+    }
+
+    private fun validate(binding: FragmentPasswordBottomBinding): Boolean {
+        if (binding.resetPasswordLama.text.isEmpty()) {
+            binding.resetPasswordLama.error = "Wajib diisi"
+            binding.resetPasswordLama.requestFocus()
+            return false
+        }
+        if (binding.resetPasswordBaru.text.isEmpty()) {
+            binding.resetPasswordBaru.error = "Wajib diisi"
+            binding.resetPasswordBaru.requestFocus()
+            return false
+        }
+        if (binding.resetPasswordBaruUlang.text.isEmpty()) {
+            binding.resetPasswordBaruUlang.error = "Wajib diisi"
+            binding.resetPasswordBaruUlang.requestFocus()
+            return false
+        }
+        if (binding.resetPasswordBaru.text.toString() != binding.resetPasswordBaruUlang.text.toString()) {
+            binding.resetPasswordBaruUlang.error = "Password tidak cocok."
+            binding.resetPasswordBaruUlang.requestFocus()
+            return false
+        }
+        return true
     }
 
 }

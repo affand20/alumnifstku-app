@@ -99,6 +99,17 @@ object ApiFactory {
         return safeApiCall { apiService.hasVerified("Bearer $apiToken") }
     }
 
+    /*
+    * Change Password
+    * ========================
+    * Params:
+    * 1. old_password
+    * 2. new_password
+    * */
+    suspend fun changePassword(apiToken: String, oldPassword: String, newPassword: String): Result<DefaultResponse<Alumni>> {
+        return safeApiCall { apiService.changePassword("Bearer $apiToken", oldPassword, newPassword) }
+    }
+
     /* Upload Biodata function */
     suspend fun uploadBio(
         apiToken: String,
