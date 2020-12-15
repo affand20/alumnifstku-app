@@ -9,17 +9,13 @@ import android.util.Log
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Toast
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.lifecycle.ViewModelProvider
-import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.google.android.material.datepicker.MaterialDatePicker
 import id.trydev.alumnifstku.R
 import id.trydev.alumnifstku.databinding.ActivityPengaturanBiodataBinding
-import id.trydev.alumnifstku.databinding.FragmentPage1Binding
 import id.trydev.alumnifstku.network.RequestState
 import id.trydev.alumnifstku.prefs.AppPreferences
-import id.trydev.alumnifstku.ui.dashboard.DashboardActivity
 import id.trydev.alumnifstku.utils.GlideApp
 import id.trydev.alumnifstku.utils.RealPathUtil
 import pub.devrel.easypermissions.AfterPermissionGranted
@@ -42,6 +38,7 @@ class PengaturanBiodataActivity : AppCompatActivity(), EasyPermissions.Permissio
 
     private var query = hashMapOf(
             "nama" to "",
+            "domisili" to "",
             "alamat" to "",
             "umur" to "",
             "ttl" to "",
@@ -59,11 +56,6 @@ class PengaturanBiodataActivity : AppCompatActivity(), EasyPermissions.Permissio
         pref = AppPreferences(this)
 
         mv = ViewModelProvider(this).get(PengaturanBiodataViewModel::class.java)
-
-        val majors = resources.getStringArray(R.array.major)
-        binding.edtMajor.setAdapter(
-                ArrayAdapter(this, R.layout.simple_item_spinner, majors)
-        )
 
         mv.getBiodata(pref.token.toString())
 
@@ -105,6 +97,7 @@ class PengaturanBiodataActivity : AppCompatActivity(), EasyPermissions.Permissio
                         val birthPlace = ttl?.first()
 
                         binding.edtFullname.setText(biodata.nama.toString())
+                        binding.edtDomisili.setText(biodata.domisili.toString())
                         binding.edtAddress.setText(biodata.alamat.toString())
                         binding.edtOld.setText(biodata.umur.toString())
                         binding.edtBirthPlace.setText(birthPlace)
@@ -128,6 +121,18 @@ class PengaturanBiodataActivity : AppCompatActivity(), EasyPermissions.Permissio
                                     .load(biodata.foto.toString())
                                     .into(binding.ivProfilePic)
                         }
+
+                        val majors = resources.getStringArray(R.array.major)
+                        binding.edtMajor.setAdapter(
+                                ArrayAdapter(this, R.layout.simple_item_spinner, majors)
+                        )
+                        /* populate string array city */
+                        val cities = resources.getStringArray(R.array.cities)
+                        // apply to adapter and spinner
+                        binding.edtDomisili.setAdapter(
+                                ArrayAdapter(this, R.layout.simple_item_spinner, cities)
+                        )
+
                     }
 
                 } else {
@@ -168,6 +173,7 @@ class PengaturanBiodataActivity : AppCompatActivity(), EasyPermissions.Permissio
         // submit update data
         binding.btnNext.setOnClickListener {
             Log.d("CHECK PATH", "path = $filePath")
+            binding.errorMsg.visibility = View.GONE
             if(validate(binding)) {
 
                 var jk = ""
@@ -178,6 +184,7 @@ class PengaturanBiodataActivity : AppCompatActivity(), EasyPermissions.Permissio
                 }
 
                 query["nama"] = binding.edtFullname.text.toString()
+                query["domisili"] = binding.edtDomisili.text.toString()
                 query["alamat"] = binding.edtAddress.text.toString()
                 query["umur"] = binding.edtOld.text.toString()
                 query["jenis kelamin"] = jk
@@ -231,6 +238,10 @@ class PengaturanBiodataActivity : AppCompatActivity(), EasyPermissions.Permissio
             binding.edtFullname.error = "Wajib diisi"
             return false
         }
+        if (binding.edtDomisili.text.toString().isEmpty()) {
+            binding.edtDomisili.error = "Wajib diisi"
+            return false
+        }
         if (binding.edtAddress.text.toString().isEmpty()) {
             binding.edtAddress.error = "Wajib diisi"
             return false
@@ -249,10 +260,14 @@ class PengaturanBiodataActivity : AppCompatActivity(), EasyPermissions.Permissio
         }
         if (binding.radioGroup.checkedRadioButtonId == -1) {
             msg.add("Mohon isi bagian jenis kelamin")
+            binding.errorMsg.visibility = View.VISIBLE
+            binding.errorMsg.text = msg.joinToString("\n")
             return false
         }
         if (File(filePath).length()/1024 > 2048) {
             msg.add("Mohon pilih foto dengan ukuran file yg lebih kecil")
+            binding.errorMsg.visibility = View.VISIBLE
+            binding.errorMsg.text = msg.joinToString("\n")
             return false
         }
 

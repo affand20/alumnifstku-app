@@ -95,6 +95,7 @@ class PengaturanActivity : AppCompatActivity() {
                         binding.traceJurusanDetails.text = alumni.jurusan
                         binding.traceAngkatanDetails.text = alumni.angkatan
                         binding.traceLinkedinDetails.text = alumni.linkedin
+                        binding.traceAlamatDetails.text = alumni.alamat
                     }
 
                     response.data?.tracing?.let {
@@ -175,6 +176,7 @@ class PengaturanActivity : AppCompatActivity() {
                         binding.traceJurusanDetails.text = alumni.jurusan
                         binding.traceAngkatanDetails.text = alumni.angkatan
                         binding.traceLinkedinDetails.text = alumni.linkedin
+                        binding.traceAlamatDetails.text = alumni.alamat
                     }
 
                     response.data?.tracing?.let {

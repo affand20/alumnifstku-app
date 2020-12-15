@@ -3,6 +3,7 @@ package id.trydev.alumnifstku.ui.pengaturan.biodata
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.google.gson.Gson
 import id.trydev.alumnifstku.model.Biodata
 import id.trydev.alumnifstku.model.DefaultResponse
 import id.trydev.alumnifstku.network.ApiFactory
@@ -51,7 +52,6 @@ class PengaturanBiodataViewModel: ViewModel() {
 
     fun addBioAttr(mapAttr: HashMap<String, String>) {
         biodataAttribute.putAll(mapAttr)
-        filePath = mapAttr["foto"].toString()
     }
 
     fun getBiodata(apiToken: String){
@@ -68,7 +68,8 @@ class PengaturanBiodataViewModel: ViewModel() {
 
                     is Result.Error -> {
                         _state.postValue(RequestState.REQUEST_ERROR)
-                        _error.postValue(response.exception)
+//                        _error.postValue(response.exception)
+                        _response.postValue(Gson().fromJson(response.exception, DefaultResponse::class.java) as DefaultResponse<Biodata>)
                     }
 
                 }
@@ -102,8 +103,8 @@ class PengaturanBiodataViewModel: ViewModel() {
                 when(val response = ApiFactory.updateBio(
                         apiToken,
                         RequestBody.create(MultipartBody.FORM, biodataAttribute["nama"].toString()),
-                        RequestBody.create(MultipartBody.FORM, biodataAttribute["alamat"].toString()),
                         RequestBody.create(MultipartBody.FORM, biodataAttribute["domisili"].toString()),
+                        RequestBody.create(MultipartBody.FORM, biodataAttribute["alamat"].toString()),
                         RequestBody.create(MultipartBody.FORM, biodataAttribute["umur"].toString()),
                         RequestBody.create(MultipartBody.FORM, biodataAttribute["ttl"].toString()),
                         RequestBody.create(MultipartBody.FORM, biodataAttribute["jenis kelamin"].toString()),
@@ -119,9 +120,8 @@ class PengaturanBiodataViewModel: ViewModel() {
 
                     is Result.Error -> {
                         _state.postValue(RequestState.REQUEST_ERROR)
-                        _error.postValue(response.exception)
+                        _submitresponse.postValue(Gson().fromJson(response.exception, DefaultResponse::class.java) as DefaultResponse<Biodata>)
                     }
-
                 }
             } catch (t: Throwable) {
                 _state.postValue(RequestState.REQUEST_ERROR)

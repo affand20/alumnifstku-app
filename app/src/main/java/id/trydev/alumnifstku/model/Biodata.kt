@@ -4,37 +4,40 @@ import com.google.gson.annotations.SerializedName
 
 data class Biodata (
 
-    @SerializedName("id")
+        @SerializedName("id")
     val id: String? = null,
 
-    @SerializedName("alumni_id")
+        @SerializedName("alumni_id")
     val alumniId: String? = null,
 
-    @SerializedName("nama")
+        @SerializedName("nama")
     var nama: String? = null,
 
-    @SerializedName("alamat")
+        @SerializedName("kota_domisili")
+    var domisili: String? = null,
+
+        @SerializedName("alamat")
     val alamat: String? = null,
 
-    @SerializedName("umur")
+        @SerializedName("umur")
     val umur: Int? = null,
 
-    @SerializedName("ttl")
+        @SerializedName("ttl")
     val ttl: String? = null,
 
-    @SerializedName("jenis_kelamin")
+        @SerializedName("jenis_kelamin")
     val jenisKelamin: String? = null,
 
-    @SerializedName("angkatan")
+        @SerializedName("angkatan")
     val angkatan: String? = null,
 
-    @SerializedName("jurusan")
+        @SerializedName("jurusan")
     val jurusan: String? = null,
 
-    @SerializedName("linkedin")
+        @SerializedName("linkedin")
     val linkedin: String? = null,
 
-    @SerializedName("foto")
+        @SerializedName("foto")
     val foto: String? = null
 
 
