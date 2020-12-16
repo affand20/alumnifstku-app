@@ -43,7 +43,8 @@ class TraceListActivity : AppCompatActivity() {
             "filter" to "",
             "nama" to "",
             "cluster" to "",
-            "jurusan" to ""
+            "jurusan" to "",
+            "domisili" to ""
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -151,6 +152,7 @@ class TraceListActivity : AppCompatActivity() {
 
                 query["nama"] = bindCariDialog.etTracingNama.text.toString()
                 query["angkatan"] = bindCariDialog.etTracingAngkatan.text.toString()
+                query["domisili"] = bindCariDialog.etTracingDomisili.text.toString()
                 query["filter"] = "true"
 
                 viewModel.getAlumni(prefs.token.toString(), query)
