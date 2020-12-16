@@ -2,12 +2,14 @@ package id.trydev.alumnifstku.ui.pengaturan
 
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.Toast
+import androidx.browser.customtabs.CustomTabsIntent
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
@@ -118,6 +120,14 @@ class PengaturanActivity : AppCompatActivity() {
                 Toast.makeText(this, error, Toast.LENGTH_LONG).show()
             }
         })
+
+        binding.traceLinkedinDetails.setOnClickListener {
+            if (binding.traceLinkedinDetails.text.isNotEmpty()) {
+                val builder = CustomTabsIntent.Builder()
+                val customTab = builder.build()
+                customTab.launchUrl(this, Uri.parse(binding.traceLinkedinDetails.text.toString()))
+            }
+        }
 
         binding.btnSetting.setOnClickListener {
             // munculkan dialog bottom untuk memilih action

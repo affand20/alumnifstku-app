@@ -1,8 +1,10 @@
 package id.trydev.alumnifstku.ui.tracedetails
 
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.browser.customtabs.CustomTabsIntent
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
@@ -85,6 +87,8 @@ class TraceDetailsActivity : AppCompatActivity() {
                         binding.traceJurusanDetails.text = alumni.jurusan
                         binding.traceAngkatanDetails.text = alumni.angkatan
                         binding.traceLinkedinDetails.text = alumni.linkedin
+                        binding.traceAlamatDetails.text = alumni.alamat
+
                     }
 
                     response.data?.tracing?.let {
@@ -107,6 +111,13 @@ class TraceDetailsActivity : AppCompatActivity() {
             }
         })
 
-        // binding.traceNamaDetails.text = usernama
+        binding.traceLinkedinDetails.setOnClickListener {
+            if (binding.traceLinkedinDetails.text.isNotEmpty()) {
+                val builder = CustomTabsIntent.Builder()
+                val customTab = builder.build()
+                customTab.launchUrl(this, Uri.parse(binding.traceLinkedinDetails.text.toString()))
+            }
+        }
+
     }
 }
