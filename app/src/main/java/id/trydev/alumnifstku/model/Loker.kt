@@ -32,7 +32,10 @@ data class Loker (
     @SerializedName("uploader")
     val uploader: Admin? = null,
 
-    @SerializedName("updated_at")
-    val updatedAt: String? = null
+    @SerializedName("created_at")
+    val createdAt: String? = null,
+
+    @SerializedName("deadline")
+    val deadline: String? = null
 
 )

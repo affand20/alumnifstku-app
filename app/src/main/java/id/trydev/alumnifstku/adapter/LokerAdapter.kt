@@ -48,11 +48,18 @@ class LokerAdapter(private val context: Context, val onClick: (Loker)->Unit): Re
             } else {
                 binding.ivLoker.setImageResource(R.color.grey)
             }
-            val formatter = SimpleDateFormat("EEE, dd MMM yyyy", Locale("in", "ID"))
-            val strToDate = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale("in", "ID"))
-                    .parse(item.updatedAt.toString())
-            binding.tvLokerUpdate.text = formatter.format(strToDate)
+
+            binding.tvLokerUpdate.text = "Diposting pada: ${dateFormatter(item.createdAt.toString())}"
+            binding.tvLokerDeadline.text = "Deadline: ${dateFormatter(item.deadline.toString())}"
             binding.itemBody.setOnClickListener{ onClick(item) }
+        }
+
+        private fun dateFormatter(dateString: String): String {
+            val formatter = SimpleDateFormat("EEE, dd MMM yyyy", Locale("in", "ID"))
+            val parsedDate = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale("in", "ID"))
+                    .parse(dateString)
+
+            return formatter.format(parsedDate)
         }
 
     }
