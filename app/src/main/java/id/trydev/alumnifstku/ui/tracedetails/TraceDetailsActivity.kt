@@ -4,6 +4,7 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -97,6 +98,7 @@ class TraceDetailsActivity : AppCompatActivity() {
                         // belum bikin recycler nya bozz
                     }
                 } else {
+                    Toast.makeText(this, response.message, Toast.LENGTH_LONG)
                     // binding.stateEmpty.visibility = View.VISIBLE
                     // binding.stateEmpty.text = response.message
                 }
@@ -108,6 +110,7 @@ class TraceDetailsActivity : AppCompatActivity() {
             if (error.isNotEmpty()) {
                 // binding.stateEmpty.visibility = View.VISIBLE
                 // binding.stateEmpty.text = error
+                Toast.makeText(this, error, Toast.LENGTH_LONG)
             }
         })
 

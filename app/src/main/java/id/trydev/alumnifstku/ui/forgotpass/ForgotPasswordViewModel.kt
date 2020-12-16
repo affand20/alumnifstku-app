@@ -3,6 +3,7 @@ package id.trydev.alumnifstku.ui.forgotpass
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.google.gson.Gson
 import id.trydev.alumnifstku.model.DefaultResponse
 import id.trydev.alumnifstku.network.ApiFactory
 import id.trydev.alumnifstku.network.RequestState
@@ -50,7 +51,8 @@ class ForgotPasswordViewModel: ViewModel() {
 
                     is Result.Error -> {
                         _state.postValue(RequestState.REQUEST_ERROR)
-                        _error.postValue(response.exception)
+                        _response.postValue(Gson().fromJson(response.exception, DefaultResponse::class.java) as DefaultResponse<Nothing>)
+//                        _error.postValue(response.exception)
                     }
                 }
             } catch (t: Throwable) {

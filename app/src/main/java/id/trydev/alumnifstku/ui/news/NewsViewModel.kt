@@ -3,6 +3,7 @@ package id.trydev.alumnifstku.ui.news
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.google.gson.Gson
 import id.trydev.alumnifstku.model.DefaultResponse
 import id.trydev.alumnifstku.model.News
 import id.trydev.alumnifstku.network.ApiFactory
@@ -51,8 +52,8 @@ class NewsViewModel: ViewModel() {
 
                     is Result.Error -> {
                         _state.postValue(RequestState.REQUEST_ERROR)
-//                        _response.postValue(Gson().fromJson(response.exception, DefaultResponse::class.java) as DefaultResponse<List<_root_ide_package_.id.trydev.alumnifstku.model.News>>?)
-                        _error.postValue(response.exception)
+                        _response.postValue(Gson().fromJson(response.exception, DefaultResponse::class.java) as DefaultResponse<List<News>>?)
+//                        _error.postValue(response.exception)
                     }
                 }
             } catch (t: Throwable) {
@@ -60,6 +61,11 @@ class NewsViewModel: ViewModel() {
                 _error.postValue(t.localizedMessage)
             }
         }
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        job.cancel()
     }
 
 }

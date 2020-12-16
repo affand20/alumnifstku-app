@@ -3,6 +3,7 @@ package id.trydev.alumnifstku.ui.tracelist
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.google.gson.Gson
 import id.trydev.alumnifstku.model.Alumni
 import id.trydev.alumnifstku.model.DefaultResponse
 import id.trydev.alumnifstku.network.ApiFactory
@@ -53,7 +54,7 @@ class TraceListViewModel: ViewModel() {
 
                     is Result.Error -> {
                         _state.postValue(RequestState.REQUEST_ERROR)
-                        _error.postValue(response.exception)
+                        _response.postValue(Gson().fromJson(response.exception, DefaultResponse::class.java) as DefaultResponse<List<Alumni>>)
                     }
                 }
             } catch (t: Throwable){
@@ -61,6 +62,11 @@ class TraceListViewModel: ViewModel() {
                 _error.postValue(t.localizedMessage)
             }
         }
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        job.cancel()
     }
 
 }

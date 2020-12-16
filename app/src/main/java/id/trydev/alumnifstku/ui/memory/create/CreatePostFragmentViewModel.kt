@@ -3,6 +3,7 @@ package id.trydev.alumnifstku.ui.memory.create
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.google.gson.Gson
 import id.trydev.alumnifstku.model.DefaultResponse
 import id.trydev.alumnifstku.model.Post
 import id.trydev.alumnifstku.network.ApiFactory
@@ -64,8 +65,8 @@ class CreatePostFragmentViewModel: ViewModel() {
 
                     is Result.Error -> {
                         _state.postValue(RequestState.REQUEST_ERROR)
-//                        _response.postValue(Gson().fromJson(response.exception, DefaultResponse::class.java) as DefaultResponse<List<Loker>>?)
-                        _error.postValue(response.exception)
+                        _response.postValue(Gson().fromJson(response.exception, DefaultResponse::class.java) as DefaultResponse<Post>)
+//                        _error.postValue(response.exception)
                     }
                 }
             } catch (t: Throwable) {
@@ -73,5 +74,10 @@ class CreatePostFragmentViewModel: ViewModel() {
                 _error.postValue(t.localizedMessage)
             }
         }
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        job.cancel()
     }
 }
