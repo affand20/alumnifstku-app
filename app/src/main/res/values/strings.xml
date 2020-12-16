@@ -593,4 +593,9 @@
 
     </string-array>
 
+    <string-array name="kelas_kategori">
+        <item>Seminar</item>
+        <item>Mentoring</item>
+    </string-array>
+
 </resources>

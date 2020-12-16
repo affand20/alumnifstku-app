@@ -43,7 +43,8 @@ class KelasListActivity : AppCompatActivity() {
             "filter" to "",
             "judul" to "",
             "tanggal" to "",
-            "order" to ""
+            "order" to "",
+            "kategori" to ""
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -133,18 +134,11 @@ class KelasListActivity : AppCompatActivity() {
             val dialog = BottomSheetDialog(this)
             dialog.setContentView(bindDialog.root)
 
-            bindDialog.toolbar.title = "Filter Loker"
+            bindDialog.toolbar.title = "Filter"
             bindDialog.toolbar.navigationIcon = ContextCompat.getDrawable(this, R.drawable.ic_round_close_24)
             bindDialog.toolbar.setNavigationOnClickListener {
                 dialog.dismiss()
             }
-
-            /* Populate spinner data */
-            val orders = resources.getStringArray(R.array.order_by)
-            // apply to adapter and spinner
-            bindDialog.edtOrder.setAdapter(
-                    ArrayAdapter(this, R.layout.simple_item_spinner, orders)
-            )
 
             /* Date Picker settings */
             val builder = MaterialDatePicker.Builder.datePicker()
@@ -165,17 +159,23 @@ class KelasListActivity : AppCompatActivity() {
 
             bindDialog.tvClearFilter.setOnClickListener {
                 query["order"] = ""
+                query["kategori"] = ""
                 query["filter"] = ""
                 query["judul"] = ""
-                query["tanggal"]
+                query["tanggal"] = ""
                 bindDialog.edtOrder.setText("")
                 bindDialog.edtTema.setText("")
                 bindDialog.edtDate.setText("")
+                bindDialog.edtKategori.setText("")
             }
 
             query.forEach {
                 if (it.key == "order" && it.value != "") {
                     bindDialog.edtOrder.setText(it.value)
+                    bindDialog.tvClearFilter.visibility = View.VISIBLE
+                }
+                if (it.key == "kategori" && it.value != "") {
+                    bindDialog.edtKategori.setText(it.value)
                     bindDialog.tvClearFilter.visibility = View.VISIBLE
                 }
                 if (it.key == "judul" && it.value != "") {
@@ -190,6 +190,17 @@ class KelasListActivity : AppCompatActivity() {
                     bindDialog.tvClearFilter.visibility = View.VISIBLE
                 }
             }
+
+            /* Populate spinner data */
+            val orders = resources.getStringArray(R.array.order_by)
+            val kategori = resources.getStringArray(R.array.kelas_kategori)
+            // apply to adapter and spinner
+            bindDialog.edtOrder.setAdapter(
+                    ArrayAdapter(this, R.layout.simple_item_spinner, orders)
+            )
+            bindDialog.edtKategori.setAdapter(
+                    ArrayAdapter(this, R.layout.simple_item_spinner, kategori)
+            )
 
             bindDialog.btnApply.setOnClickListener {
                 this.query = getFilter(bindDialog, query)
@@ -220,6 +231,13 @@ class KelasListActivity : AppCompatActivity() {
             this.query["filter"] = "true"
         } else {
             this.query["tanggal"] = ""
+        }
+
+        if (binding.edtKategori.toString().isNotEmpty()) {
+            this.query["kategori"] = binding.edtKategori.text.toString()
+            this.query["filter"] = "true"
+        } else {
+            this.query["kategori"] = ""
         }
 
         if (binding.edtOrder.text.toString().isNotEmpty()) {

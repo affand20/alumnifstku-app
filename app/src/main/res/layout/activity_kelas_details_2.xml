@@ -70,15 +70,28 @@
                 tools:text="Implementasi Digital Platform
 Instagram Untuk Generasi Milenial" />
 
-            <ImageView
-                android:id="@+id/imageView9"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
+            <TextView
+                android:id="@+id/tv_kategori"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/chip_bg"
+                android:fontFamily="@font/montserrat_semi_bold_italic"
+                android:textColor="@color/black_soft"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="@+id/tv_tema_kelas"
+                app:layout_constraintTop_toBottomOf="@+id/tv_tema_kelas"
+                tools:text="Seminar" />
+
+            <ImageView
+                android:id="@+id/imageView9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
                 android:src="@drawable/ic_round_calendar_today_24"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_tema_kelas" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_kategori" />
 
             <TextView
                 android:id="@+id/tv_date"

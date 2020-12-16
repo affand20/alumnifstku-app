@@ -62,6 +62,8 @@ class KelasListAdapter(private val context: Context, private val onClick: (Kelas
 
                 binding.itemBody.setOnClickListener { onClick(kelas) }
 
+                binding.tvKategori.text = kelas.kategori
+
                 GlideApp.with(context)
                         .asBitmap()
                         .fallback(R.color.grey)

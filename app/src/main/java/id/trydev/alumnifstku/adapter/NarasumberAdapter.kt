@@ -34,6 +34,7 @@ class NarasumberAdapter(private val context: Context): RecyclerView.Adapter<Nara
     inner class ViewHolder(private val binding: ItemNarasumberBinding): RecyclerView.ViewHolder(binding.root) {
         fun bindItem(item: DataSpeaker) {
             binding.tvSpeakerName.text = item.pembicara
+            binding.tvSpeakerAbout.text = item.tentang
 
             GlideApp.with(context)
                     .asBitmap()
