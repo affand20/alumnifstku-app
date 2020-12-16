@@ -46,13 +46,16 @@ class DetailFragmentLoker(private val item:Loker): BottomSheetDialogFragment() {
             binding.ivDetailLoker.setImageResource(R.color.grey)
         }
 
-        if (item.updatedAt != null) {
-            val formatter = SimpleDateFormat("EEE, dd MMM yyyy", Locale("in", "ID"))
-            val strToDate = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale("in", "ID"))
-                    .parse(item.updatedAt.toString())
-            binding.tvDetailLokerUpdate.text = formatter.format(strToDate)
+        if (item.createdAt != null) {
+            binding.tvDetailLokerUpdate.text = "Diposting pada: ${dateFormatter(item.createdAt.toString())}"
         } else {
             binding.tvDetailLokerUpdate.visibility = View.GONE
+        }
+
+        if (item.createdAt != null) {
+            binding.tvDetailLokerDeadline.text = "Deadline: ${dateFormatter(item.deadline.toString())}"
+        } else {
+            binding.tvDetailLokerDeadline.visibility = View.GONE
         }
 
         binding.tvDetailLokerPosition.text = item.jabatan
@@ -113,6 +116,14 @@ class DetailFragmentLoker(private val item:Loker): BottomSheetDialogFragment() {
 
     private fun getScreenHeight(): Int {
         return Resources.getSystem().displayMetrics.heightPixels
+    }
+
+    private fun dateFormatter(dateString: String): String {
+        val formatter = SimpleDateFormat("EEE, dd MMM yyyy", Locale("in", "ID"))
+        val parsedDate = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale("in", "ID"))
+                .parse(dateString)
+
+        return formatter.format(parsedDate)
     }
 
 }

@@ -165,6 +165,8 @@ class KelasDetailsActivity : AppCompatActivity() {
                         binding.tvResendTicket.visibility = View.INVISIBLE
                     }
 
+                    binding.tvKategori.text = response.data?.kategori
+
                 } else {
                     panggang(response.message.toString())
                 }

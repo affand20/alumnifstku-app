@@ -52,10 +52,24 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
+        android:textSize="12sp"
         android:fontFamily="@font/montserrat_regular"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/iv_loker"
         app:layout_constraintTop_toBottomOf="@+id/tv_loker_company"
+        tools:text="Terakhir diupdate: 6/12/2020" />
+
+    <TextView
+        android:id="@+id/tv_loker_deadline"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:textSize="12sp"
+        android:fontFamily="@font/montserrat_regular"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/iv_loker"
+        app:layout_constraintTop_toBottomOf="@+id/tv_loker_update"
         tools:text="Terakhir diupdate: 6/12/2020" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

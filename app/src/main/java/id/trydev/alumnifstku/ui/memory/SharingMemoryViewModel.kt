@@ -3,6 +3,7 @@ package id.trydev.alumnifstku.ui.memory
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.google.gson.Gson
 import id.trydev.alumnifstku.model.DefaultResponse
 import id.trydev.alumnifstku.model.Loker
 import id.trydev.alumnifstku.model.Post
@@ -53,7 +54,7 @@ class SharingMemoryViewModel: ViewModel() {
                     is Result.Error -> {
                         _state.postValue(RequestState.REQUEST_ERROR)
 //                        _response.postValue(Gson().fromJson(response.exception, DefaultResponse::class.java) as DefaultResponse<List<Loker>>?)
-                        _error.postValue(response.exception)
+                        _response.postValue(Gson().fromJson(response.exception, DefaultResponse::class.java) as DefaultResponse<List<Post>>)
                     }
                 }
             } catch (t: Throwable) {
@@ -61,6 +62,11 @@ class SharingMemoryViewModel: ViewModel() {
                 _error.postValue(t.localizedMessage)
             }
         }
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        job.cancel()
     }
 
 }

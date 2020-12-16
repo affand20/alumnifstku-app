@@ -40,6 +40,17 @@
         android:layout_gravity="center"
         style="@style/edittext_normal"/>
 
+    <EditText
+        android:id="@+id/et_tracing_domisili"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/edittext_normal"
+        android:inputType="text"
+        android:hint="Domisili"
+        android:layout_gravity="center"
+        style="@style/edittext_normal"
+        android:layout_marginTop="16dp"/>
+
     <TextView
         android:gravity="center"
         android:id="@+id/btn_search_tracing"

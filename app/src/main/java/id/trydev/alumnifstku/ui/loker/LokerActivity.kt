@@ -110,7 +110,7 @@ class LokerActivity : AppCompatActivity() {
             val dialog = BottomSheetDialog(this)
             dialog.setContentView(bindDialog.root)
 
-            bindDialog.toolbar.title = "Filter Loker"
+            bindDialog.toolbar.title = "Filter"
             bindDialog.toolbar.navigationIcon = ContextCompat.getDrawable(this, R.drawable.ic_round_close_24)
             bindDialog.toolbar.setNavigationOnClickListener {
                 dialog.dismiss()

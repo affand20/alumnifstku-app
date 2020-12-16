@@ -9,6 +9,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -57,6 +59,7 @@ class Page1Fragment : Fragment(), EasyPermissions.PermissionCallbacks {
 
         /* Navigate to page2 */
         binding.btnNext.setOnClickListener {
+            binding.errorMsg.visibility = View.GONE
             Log.d("CHECK PATH", "path = $filePath")
             if (validate(binding)) {
 
@@ -69,6 +72,7 @@ class Page1Fragment : Fragment(), EasyPermissions.PermissionCallbacks {
 
                 val map = hashMapOf(
                     "nama" to binding.edtFullname.text.toString(),
+                    "domisili" to binding.edtDomisili.text.toString(),
                     "alamat" to binding.edtAddress.text.toString(),
                     "umur" to binding.edtOld.text.toString(),
                     "jenis_kelamin" to jk,
@@ -81,8 +85,17 @@ class Page1Fragment : Fragment(), EasyPermissions.PermissionCallbacks {
 
                 viewModel.addBioAttr(map)
                 findNavController().navigate(R.id.action_page1Fragment_to_page2Fragment)
+            } else {
+                Log.d("VALIDATE", "FAILED")
             }
         }
+
+        /* populate string array city */
+        val cities = resources.getStringArray(R.array.cities)
+        // apply to adapter and spinner
+        binding.edtDomisili.setAdapter(
+                ArrayAdapter(requireContext(), R.layout.simple_item_spinner, cities)
+        )
 
         /* Date Picker settings */
         val builder = MaterialDatePicker.Builder.datePicker()
@@ -108,9 +121,13 @@ class Page1Fragment : Fragment(), EasyPermissions.PermissionCallbacks {
     }
 
     private fun validate(binding: FragmentPage1Binding): Boolean {
-        var msg = mutableListOf<String>()
+        val msg = mutableListOf<String>()
         if (binding.edtFullname.text.toString().isEmpty()) {
             binding.edtFullname.error = "Wajib diisi"
+            return false
+        }
+        if (binding.edtDomisili.text.toString().isEmpty()) {
+            binding.edtDomisili.error = "Wajib diisi"
             return false
         }
         if (binding.edtAddress.text.toString().isEmpty()) {
@@ -131,13 +148,17 @@ class Page1Fragment : Fragment(), EasyPermissions.PermissionCallbacks {
         }
         if (binding.radioGroup.checkedRadioButtonId == -1) {
             msg.add("Mohon isi bagian jenis kelamin")
+            binding.errorMsg.visibility = View.VISIBLE
+            binding.errorMsg.text = msg.joinToString("\n")
             return false
         }
         if (File(filePath).length()/1024 > 2048) {
             msg.add("Mohon pilih foto dengan ukuran file yg lebih kecil")
+            binding.errorMsg.visibility = View.VISIBLE
+            binding.errorMsg.text = msg.joinToString("\n")
             return false
         }
-
+        Log.d("DOMISILI", binding.edtDomisili.text.toString())
         return true
     }
 

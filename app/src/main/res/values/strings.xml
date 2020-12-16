@@ -74,4 +74,528 @@
     <string name="speaker_list_template">Oleh: %s dan %d lainnya</string>
     <string name="speaker_one_template">Oleh: %s</string>
     <string name="quota_left">%d Kuota tersisa</string>
+
+    <string-array name="cities">
+        <item>ACEH BARAT DAYA</item>
+        <item>ACEH BESAR</item>
+        <item>ACEH JAYA</item>
+        <item>ACEH SELATAN</item>
+        <item>ACEH SINGKIL</item>
+        <item>ACEH TAMIANG</item>
+        <item>ACEH TENGAH</item>
+        <item>ACEH TENGGARA</item>
+        <item>ACEH TIMUR</item>
+        <item>ACEH UTARA</item>
+        <item>AGAM</item>
+        <item>ALOR</item>
+        <item>AMBON</item>
+        <item>ASAHAN</item>
+        <item>ASMAT</item>
+        <item>B A T A M</item>
+        <item>BADUNG</item>
+        <item>BALANGAN</item>
+        <item>BALIKPAPAN</item>
+        <item>BANDA ACEH</item>
+        <item>BANDAR LAMPUNG</item>
+        <item>BANDUNG</item>
+        <item>BANDUNG</item>
+        <item>BANDUNG BARAT</item>
+        <item>BANGGAI</item>
+        <item>BANGGAI KEPULAUAN</item>
+        <item>BANGGAI LAUT</item>
+        <item>BANGKA</item>
+        <item>BANGKA BARAT</item>
+        <item>BANGKA SELATAN</item>
+        <item>BANGKA TENGAH</item>
+        <item>BANGKALAN</item>
+        <item>BANGLI</item>
+        <item>BANJAR</item>
+        <item>BANJAR</item>
+        <item>BANJAR BARU</item>
+        <item>BANJARMASIN</item>
+        <item>BANJARNEGARA</item>
+        <item>BANTAENG</item>
+        <item>BANTUL</item>
+        <item>BANYU ASIN</item>
+        <item>BANYUMAS</item>
+        <item>BANYUWANGI</item>
+        <item>BARITO KUALA</item>
+        <item>BARITO SELATAN</item>
+        <item>BARITO TIMUR</item>
+        <item>BARITO UTARA</item>
+        <item>BARRU</item>
+        <item>BARU</item>
+        <item>BATANG</item>
+        <item>BATANG HARI</item>
+        <item>BATU</item>
+        <item>BATU BARA</item>
+        <item>BAUBAU</item>
+        <item>BEKASI</item>
+        <item>BEKASI</item>
+        <item>BELITUNG</item>
+        <item>BELITUNG TIMUR</item>
+        <item>BELU</item>
+        <item>BENER MERIAH</item>
+        <item>BENGKALIS</item>
+        <item>BENGKAYANG</item>
+        <item>BENGKULU</item>
+        <item>BENGKULU SELATAN</item>
+        <item>BENGKULU TENGAH</item>
+        <item>BENGKULU UTARA</item>
+        <item>BERAU</item>
+        <item>BIAK NUMFOR</item>
+        <item>BIMA</item>
+        <item>BIMA</item>
+        <item>BINJAI</item>
+        <item>BINTAN</item>
+        <item>BIREUEN</item>
+        <item>BITUNG</item>
+        <item>BLITAR</item>
+        <item>BLITAR</item>
+        <item>BLORA</item>
+        <item>BOALEMO</item>
+        <item>BOGOR</item>
+        <item>BOGOR</item>
+        <item>BOJONEGORO</item>
+        <item>BOLAANG MONGONDOW</item>
+        <item>BOLAANG MONGONDOW SELATAN</item>
+        <item>BOLAANG MONGONDOW TIMUR</item>
+        <item>BOLAANG MONGONDOW UTARA</item>
+        <item>BOMBANA</item>
+        <item>BONDOWOSO</item>
+        <item>BONE</item>
+        <item>BONE BOLANGO</item>
+        <item>BONTANG</item>
+        <item>BOVEN DIGOEL</item>
+        <item>BOYOLALI</item>
+        <item>BREBES</item>
+        <item>BUKITTINGGI</item>
+        <item>BULELENG</item>
+        <item>BULUKUMBA</item>
+        <item>BULUNGAN</item>
+        <item>BUNGO</item>
+        <item>BUOL</item>
+        <item>BURU</item>
+        <item>BURU SELATAN</item>
+        <item>BUTON</item>
+        <item>BUTON SELATAN</item>
+        <item>BUTON TENGAH</item>
+        <item>BUTON UTARA</item>
+        <item>CIAMIS</item>
+        <item>CIANJUR</item>
+        <item>CILACAP</item>
+        <item>CILEGON</item>
+        <item>CIMAHI</item>
+        <item>CIREBON</item>
+        <item>CIREBON</item>
+        <item>D U M A I</item>
+        <item>DAIRI</item>
+        <item>DEIYAI</item>
+        <item>DELI SERDANG</item>
+        <item>DEMAK</item>
+        <item>DENPASAR</item>
+        <item>DEPOK</item>
+        <item>DHARMASRAYA</item>
+        <item>DOGIYAI</item>
+        <item>DOMPU</item>
+        <item>DONGGALA</item>
+        <item>EMPAT LAWANG</item>
+        <item>ENDE</item>
+        <item>ENREKANG</item>
+        <item>FAKFAK</item>
+        <item>FLORES TIMUR</item>
+        <item>GARUT</item>
+        <item>GAYO LUES</item>
+        <item>GIANYAR</item>
+        <item>GORONTALO</item>
+        <item>GORONTALO</item>
+        <item>GORONTALO UTARA</item>
+        <item>GOWA</item>
+        <item>GRESIK</item>
+        <item>GROBOGAN</item>
+        <item>GUNUNG KIDUL</item>
+        <item>GUNUNG MAS</item>
+        <item>GUNUNGSITOLI</item>
+        <item>HALMAHERA BARAT</item>
+        <item>HALMAHERA SELATAN</item>
+        <item>HALMAHERA TENGAH</item>
+        <item>HALMAHERA TIMUR</item>
+        <item>HALMAHERA UTARA</item>
+        <item>HULU SUNGAI SELATAN</item>
+        <item>HULU SUNGAI TENGAH</item>
+        <item>HULU SUNGAI UTARA</item>
+        <item>HUMBANG HASUNDUTAN</item>
+        <item>INDRAGIRI HILIR</item>
+        <item>INDRAGIRI HULU</item>
+        <item>INDRAMAYU</item>
+        <item>INTAN JAYA</item>
+        <item>JAKARTA BARAT</item>
+        <item>JAKARTA PUSAT</item>
+        <item>JAKARTA SELATAN</item>
+        <item>JAKARTA TIMUR</item>
+        <item>JAKARTA UTARA</item>
+        <item>JAMBI</item>
+        <item>JAYAPURA</item>
+        <item>JAYAPURA</item>
+        <item>JAYAWIJAYA</item>
+        <item>JEMBER</item>
+        <item>JEMBRANA</item>
+        <item>JENEPONTO</item>
+        <item>JEPARA</item>
+        <item>JOMBANG</item>
+        <item>kabupaten_kota</item>
+        <item>KAIMANA</item>
+        <item>KAMPAR</item>
+        <item>KAPUAS</item>
+        <item>KAPUAS HULU</item>
+        <item>KARANG ASEM</item>
+        <item>KARANGANYAR</item>
+        <item>KARAWANG</item>
+        <item>KARIMUN</item>
+        <item>KARO</item>
+        <item>KATINGAN</item>
+        <item>KAUR</item>
+        <item>KAYONG UTARA</item>
+        <item>KEBUMEN</item>
+        <item>KEDIRI</item>
+        <item>KEDIRI</item>
+        <item>KEEROM</item>
+        <item>KENDAL</item>
+        <item>KENDARI</item>
+        <item>KEPAHIANG</item>
+        <item>KEPULAUAN ANAMBAS</item>
+        <item>KEPULAUAN ARU</item>
+        <item>KEPULAUAN MENTAWAI</item>
+        <item>KEPULAUAN MERANTI</item>
+        <item>KEPULAUAN SANGIHE</item>
+        <item>KEPULAUAN SELAYAR</item>
+        <item>KEPULAUAN SERIBU</item>
+        <item>KEPULAUAN SULA</item>
+        <item>KEPULAUAN TALAUD</item>
+        <item>KEPULAUAN YAPEN</item>
+        <item>KERINCI</item>
+        <item>KETAPANG</item>
+        <item>KLATEN</item>
+        <item>KLUNGKUNG</item>
+        <item>KOLAKA</item>
+        <item>KOLAKA TIMUR</item>
+        <item>KOLAKA UTARA</item>
+        <item>KONAWE</item>
+        <item>KONAWE KEPULAUAN</item>
+        <item>KONAWE SELATAN</item>
+        <item>KONAWE UTARA</item>
+        <item>KOTAMOBAGU</item>
+        <item>KOTAWARINGIN BARAT</item>
+        <item>KOTAWARINGIN TIMUR</item>
+        <item>KUANTAN SINGINGI</item>
+        <item>KUBU RAYA</item>
+        <item>KUDUS</item>
+        <item>KULON PROGO</item>
+        <item>KUNINGAN</item>
+        <item>KUPANG</item>
+        <item>KUPANG</item>
+        <item>KUTAI BARAT</item>
+        <item>KUTAI KARTANEGARA</item>
+        <item>KUTAI TIMUR</item>
+        <item>LABUHAN BATU</item>
+        <item>LABUHAN BATU SELATAN</item>
+        <item>LABUHAN BATU UTARA</item>
+        <item>LAHAT</item>
+        <item>LAMANDAU</item>
+        <item>LAMONGAN</item>
+        <item>LAMPUNG BARAT</item>
+        <item>LAMPUNG SELATAN</item>
+        <item>LAMPUNG TENGAH</item>
+        <item>LAMPUNG TIMUR</item>
+        <item>LAMPUNG UTARA</item>
+        <item>LANDAK</item>
+        <item>LANGKAT</item>
+        <item>LANGSA</item>
+        <item>LANNY JAYA</item>
+        <item>LEBAK</item>
+        <item>LEBONG</item>
+        <item>LEMBATA</item>
+        <item>LHOKSEUMAWE</item>
+        <item>LIMA PULUH KOTA</item>
+        <item>LINGGA</item>
+        <item>LOMBOK BARAT</item>
+        <item>LOMBOK TENGAH</item>
+        <item>LOMBOK TIMUR</item>
+        <item>LOMBOK UTARA</item>
+        <item>LUBUKLINGGAU</item>
+        <item>LUMAJANG</item>
+        <item>LUWU</item>
+        <item>LUWU TIMUR</item>
+        <item>LUWU UTARA</item>
+        <item>MADIUN</item>
+        <item>MADIUN</item>
+        <item>MAGELANG</item>
+        <item>MAGELANG</item>
+        <item>MAGETAN</item>
+        <item>MAHAKAM HULU</item>
+        <item>MAJALENGKA</item>
+        <item>MAJENE</item>
+        <item>MAKASSAR</item>
+        <item>MALAKA</item>
+        <item>MALANG</item>
+        <item>MALANG</item>
+        <item>MALINAU</item>
+        <item>MALUKU BARAT DAYA</item>
+        <item>MALUKU TENGAH</item>
+        <item>MALUKU TENGGARA</item>
+        <item>MALUKU TENGGARA BARAT</item>
+        <item>MAMASA</item>
+        <item>MAMBERAMO RAYA</item>
+        <item>MAMBERAMO TENGAH</item>
+        <item>MAMUJU</item>
+        <item>MAMUJU TENGAH</item>
+        <item>MAMUJU UTARA</item>
+        <item>MANADO</item>
+        <item>MANDAILING NATAL</item>
+        <item>MANGGARAI</item>
+        <item>MANGGARAI BARAT</item>
+        <item>MANGGARAI TIMUR</item>
+        <item>MANOKWARI</item>
+        <item>MANOKWARI SELATAN</item>
+        <item>MAPPI</item>
+        <item>MAROS</item>
+        <item>MATARAM</item>
+        <item>MAYBRAT</item>
+        <item>MEDAN</item>
+        <item>MELAWI</item>
+        <item>MEMPAWAH</item>
+        <item>MERANGIN</item>
+        <item>MERAUKE</item>
+        <item>MESUJI</item>
+        <item>METRO</item>
+        <item>MIMIKA</item>
+        <item>MINAHASA</item>
+        <item>MINAHASA SELATAN</item>
+        <item>MINAHASA TENGGARA</item>
+        <item>MINAHASA UTARA</item>
+        <item>MOJOKERTO</item>
+        <item>MOJOKERTO</item>
+        <item>MOROWALI</item>
+        <item>MOROWALI UTARA</item>
+        <item>MUARA ENIM</item>
+        <item>MUARO JAMBI</item>
+        <item>MUKOMUKO</item>
+        <item>MUNA</item>
+        <item>MUNA BARAT</item>
+        <item>MURUNG RAYA</item>
+        <item>MUSI BANYUASIN</item>
+        <item>MUSI RAWAS</item>
+        <item>MUSI RAWAS UTARA</item>
+        <item>NABIRE</item>
+        <item>NAGAN RAYA</item>
+        <item>NAGEKEO</item>
+        <item>NATUNA</item>
+        <item>NDUGA</item>
+        <item>NGADA</item>
+        <item>NGANJUK</item>
+        <item>NGAWI</item>
+        <item>NIAS</item>
+        <item>NIAS BARAT</item>
+        <item>NIAS SELATAN</item>
+        <item>NIAS UTARA</item>
+        <item>NUNUKAN</item>
+        <item>OGAN ILIR</item>
+        <item>OGAN KOMERING ILIR</item>
+        <item>OGAN KOMERING ULU</item>
+        <item>OGAN KOMERING ULU SELATAN</item>
+        <item>OGAN KOMERING ULU TIMUR</item>
+        <item>PACITAN</item>
+        <item>PADANG</item>
+        <item>PADANG LAWAS</item>
+        <item>PADANG LAWAS UTARA</item>
+        <item>PADANG PANJANG</item>
+        <item>PADANG PARIAMAN</item>
+        <item>PADANGSIDIMPUAN</item>
+        <item>PAGAR ALAM</item>
+        <item>PAKPAK BHARAT</item>
+        <item>PALANGKA RAYA</item>
+        <item>PALEMBANG</item>
+        <item>PALOPO</item>
+        <item>PALU</item>
+        <item>PAMEKASAN</item>
+        <item>PANDEGLANG</item>
+        <item>PANGANDARAN</item>
+        <item>PANGKAJENE DAN KEPULAUAN</item>
+        <item>PANGKAL PINANG</item>
+        <item>PANIAI</item>
+        <item>PAREPARE</item>
+        <item>PARIAMAN</item>
+        <item>PARIGI MOUTONG</item>
+        <item>PASAMAN</item>
+        <item>PASAMAN BARAT</item>
+        <item>PASER</item>
+        <item>PASURUAN</item>
+        <item>PASURUAN</item>
+        <item>PATI</item>
+        <item>PAYAKUMBUH</item>
+        <item>PEGUNUNGAN ARFAK</item>
+        <item>PEGUNUNGAN BINTANG</item>
+        <item>PEKALONGAN</item>
+        <item>PEKALONGAN</item>
+        <item>PEKANBARU</item>
+        <item>PELALAWAN</item>
+        <item>PEMALANG</item>
+        <item>PEMATANG SIANTAR</item>
+        <item>PENAJAM PASER UTARA</item>
+        <item>PENUKAL ABAB LEMATANG ILIR</item>
+        <item>PESAWARAN</item>
+        <item>PESISIR BARAT</item>
+        <item>PESISIR SELATAN</item>
+        <item>PIDIE</item>
+        <item>PIDIE JAYA</item>
+        <item>PINRANG</item>
+        <item>POHUWATO</item>
+        <item>POLEWALI MANDAR</item>
+        <item>PONOROGO</item>
+        <item>PONTIANAK</item>
+        <item>POSO</item>
+        <item>PRABUMULIH</item>
+        <item>PRINGSEWU</item>
+        <item>PROBOLINGGO</item>
+        <item>PROBOLINGGO</item>
+        <item>PULANG PISAU</item>
+        <item>PULAU MOROTAI</item>
+        <item>PULAU TALIABU</item>
+        <item>PUNCAK</item>
+        <item>PUNCAK JAYA</item>
+        <item>PURBALINGGA</item>
+        <item>PURWAKARTA</item>
+        <item>PURWOREJO</item>
+        <item>RAJA AMPAT</item>
+        <item>REJANG LEBONG</item>
+        <item>REMBANG</item>
+        <item>ROKAN HILIR</item>
+        <item>ROKAN HULU</item>
+        <item>ROTE NDAO</item>
+        <item>S I A K</item>
+        <item>SABANG</item>
+        <item>SABU RAIJUA</item>
+        <item>SALATIGA</item>
+        <item>SAMARINDA</item>
+        <item>SAMBAS</item>
+        <item>SAMOSIR</item>
+        <item>SAMPANG</item>
+        <item>SANGGAU</item>
+        <item>SARMI</item>
+        <item>SAROLANGUN</item>
+        <item>SAWAH LUNTO</item>
+        <item>SEKADAU</item>
+        <item>SELUMA</item>
+        <item>SEMARANG</item>
+        <item>SEMARANG</item>
+        <item>SERAM BAGIAN BARAT</item>
+        <item>SERAM BAGIAN TIMUR</item>
+        <item>SERANG</item>
+        <item>SERANG</item>
+        <item>SERDANG BEDAGAI</item>
+        <item>SERUYAN</item>
+        <item>SIAU TAGULANDANG BIARO</item>
+        <item>SIBOLGA</item>
+        <item>SIDENRENG RAPPANG</item>
+        <item>SIDOARJO</item>
+        <item>SIGI</item>
+        <item>SIJUNJUNG</item>
+        <item>SIKKA</item>
+        <item>SIMALUNGUN</item>
+        <item>SIMEULUE</item>
+        <item>SINGKAWANG</item>
+        <item>SINJAI</item>
+        <item>SINTANG</item>
+        <item>SITUBONDO</item>
+        <item>SLEMAN</item>
+        <item>SOLOK</item>
+        <item>SOLOK</item>
+        <item>SOLOK SELATAN</item>
+        <item>SOPPENG</item>
+        <item>SORONG</item>
+        <item>SORONG</item>
+        <item>SORONG SELATAN</item>
+        <item>SRAGEN</item>
+        <item>SUBANG</item>
+        <item>SUBULUSSALAM</item>
+        <item>SUKABUMI</item>
+        <item>SUKABUMI</item>
+        <item>SUKAMARA</item>
+        <item>SUKOHARJO</item>
+        <item>SUMBA BARAT</item>
+        <item>SUMBA BARAT DAYA</item>
+        <item>SUMBA TENGAH</item>
+        <item>SUMBA TIMUR</item>
+        <item>SUMBAWA</item>
+        <item>SUMBAWA BARAT</item>
+        <item>SUMEDANG</item>
+        <item>SUMENEP</item>
+        <item>SUNGAI PENUH</item>
+        <item>SUPIORI</item>
+        <item>SURABAYA</item>
+        <item>SURAKARTA</item>
+        <item>TABALONG</item>
+        <item>TABANAN</item>
+        <item>TAKALAR</item>
+        <item>TAMBRAUW</item>
+        <item>TANA TIDUNG</item>
+        <item>TANA TORAJA</item>
+        <item>TANAH BUMBU</item>
+        <item>TANAH DATAR</item>
+        <item>TANAH LAUT</item>
+        <item>TANGERANG</item>
+        <item>TANGERANG</item>
+        <item>TANGERANG SELATAN</item>
+        <item>TANGGAMUS</item>
+        <item>TANJUNG BALAI</item>
+        <item>TANJUNG JABUNG BARAT</item>
+        <item>TANJUNG JABUNG TIMUR</item>
+        <item>TANJUNG PINANG</item>
+        <item>TAPANULI SELATAN</item>
+        <item>TAPANULI TENGAH</item>
+        <item>TAPANULI UTARA</item>
+        <item>TAPIN</item>
+        <item>TARAKAN</item>
+        <item>TASIKMALAYA</item>
+        <item>TASIKMALAYA</item>
+        <item>TEBING TINGGI</item>
+        <item>TEBO</item>
+        <item>TEGAL</item>
+        <item>TEGAL</item>
+        <item>TELUK BINTUNI</item>
+        <item>TELUK WONDAMA</item>
+        <item>TEMANGGUNG</item>
+        <item>TERNATE</item>
+        <item>TIDORE KEPULAUAN</item>
+        <item>TIMOR TENGAH SELATAN</item>
+        <item>TIMOR TENGAH UTARA</item>
+        <item>TOBA SAMOSIR</item>
+        <item>TOJO UNA-UNA</item>
+        <item>TOLIKARA</item>
+        <item>TOLI-TOLI</item>
+        <item>TOMOHON</item>
+        <item>TORAJA UTARA</item>
+        <item>TRENGGALEK</item>
+        <item>TUAL</item>
+        <item>TUBAN</item>
+        <item>TULANG BAWANG BARAT</item>
+        <item>TULANGBAWANG</item>
+        <item>TULUNGAGUNG</item>
+        <item>WAJO</item>
+        <item>WAKATOBI</item>
+        <item>WAROPEN</item>
+        <item>WAY KANAN</item>
+        <item>WONOGIRI</item>
+        <item>WONOSOBO</item>
+        <item>YAHUKIMO</item>
+        <item>YALIMO</item>
+        <item>YOGYAKARTA</item>
+
+    </string-array>
+
+    <string-array name="kelas_kategori">
+        <item>Seminar</item>
+        <item>Mentoring</item>
+    </string-array>
+
 </resources>

@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.google.gson.Gson
 import id.trydev.alumnifstku.model.Alumni
 import id.trydev.alumnifstku.model.Biodata
 import id.trydev.alumnifstku.model.DefaultResponse
@@ -52,51 +53,6 @@ class BiodataViewModel: ViewModel() {
         Log.d("FOTO PATH", "${biodataAttribute["foto"]}")
     }
 
-    /* Upload Biodata function
-    * ========================
-    * Params:
-    * 1. apiToken
-    * Another params fetched from biodataAttribute variable
-    *  */
-    fun uploadBio(apiToken: String,) {
-        _state.postValue(RequestState.REQUEST_START)
-        uiScope.launch {
-            try {
-                val file = File(filePath)
-
-                when(val response = ApiFactory.uploadBio(
-                    apiToken,
-                    RequestBody.create(MultipartBody.FORM, biodataAttribute["nama"] as String),
-                    RequestBody.create(MultipartBody.FORM, biodataAttribute["alamat"] as String),
-                    RequestBody.create(MultipartBody.FORM, biodataAttribute["umumr"] as String),
-                    RequestBody.create(MultipartBody.FORM, biodataAttribute["ttl"] as String),
-                    RequestBody.create(MultipartBody.FORM, biodataAttribute["jenis_kelamin"] as String),
-                    RequestBody.create(MultipartBody.FORM, biodataAttribute["angkatan"] as String),
-                    RequestBody.create(MultipartBody.FORM, biodataAttribute["jurusan"] as String),
-                    RequestBody.create(MultipartBody.FORM, biodataAttribute2["linkedin"] as String?),
-                    MultipartBody.Part.createFormData(
-                        "foto",
-                        file.name,
-                        RequestBody.create(MediaType.parse("image/*"), file)
-                    )
-                )) {
-                    is Result.Success -> {
-                        _state.postValue(RequestState.REQUEST_END)
-                        _response.postValue(response.data)
-                    }
-
-                    is Result.Error -> {
-                        _state.postValue(RequestState.REQUEST_ERROR)
-                        _error.postValue(response.exception)
-                    }
-                }
-            } catch (t: Throwable) {
-                _state.postValue(RequestState.REQUEST_ERROR)
-                _error.postValue(t.localizedMessage)
-            }
-        }
-    }
-
     fun uploadBioWithTracing(apiToken: String) {
         Log.d("VIEWMODEL" , "LAUNCH!")
 
@@ -120,6 +76,7 @@ class BiodataViewModel: ViewModel() {
                 when(val response = ApiFactory.uploadBioAndTracing(
                         apiToken,
                         RequestBody.create(MultipartBody.FORM, biodataAttribute["nama"].toString()),
+                        RequestBody.create(MultipartBody.FORM, biodataAttribute["domisili"].toString()),
                         RequestBody.create(MultipartBody.FORM, biodataAttribute["alamat"].toString()),
                         RequestBody.create(MultipartBody.FORM, biodataAttribute["umur"].toString()),
                         RequestBody.create(MultipartBody.FORM, biodataAttribute["ttl"].toString()),
@@ -140,7 +97,7 @@ class BiodataViewModel: ViewModel() {
 
                     is Result.Error -> {
                         _state.postValue(RequestState.REQUEST_ERROR)
-                        _error.postValue(response.exception)
+                        _response.postValue(Gson().fromJson(response.exception, DefaultResponse::class.java) as DefaultResponse<Biodata>)
                     }
                 }
             } catch (t: Throwable) {
@@ -148,6 +105,11 @@ class BiodataViewModel: ViewModel() {
                 _error.postValue(t.localizedMessage)
             }
         }
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        job.cancel()
     }
 
 }

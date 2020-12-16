@@ -22,23 +22,25 @@
         android:layout_marginEnd="16dp"
         android:fontFamily="@font/montserrat_semibold"
         android:textColor="@color/black_soft"
-        app:layout_constraintBottom_toBottomOf="@+id/iv_speaker_pic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/iv_speaker_pic"
         app:layout_constraintTop_toTopOf="@+id/iv_speaker_pic"
         tools:text="Affandy Fahrizain, S.Kom" />
 
-<!--    <TextView-->
-<!--        android:id="@+id/tv_speaker_background"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginStart="16dp"-->
-<!--        android:layout_marginTop="8dp"-->
-<!--        android:layout_marginEnd="16dp"-->
-<!--        android:fontFamily="@font/montserrat_regular"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toEndOf="@+id/iv_speaker_pic"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/tv_speaker_name"-->
-<!--        tools:text="Data Analyst Tokopedia" />-->
+    <TextView
+        android:id="@+id/tv_speaker_about"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/montserrat_regular"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/iv_speaker_pic"
+        app:layout_constraintTop_toBottomOf="@+id/tv_speaker_name"
+        app:layout_constraintVertical_bias="0.0"
+        tools:text="Data Analyst Tokopedia" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

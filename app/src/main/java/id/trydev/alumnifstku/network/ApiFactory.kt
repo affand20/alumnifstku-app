@@ -16,7 +16,8 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 object ApiFactory {
 
     // prod
-    const val BASE_URL = "http://alumnifstku.trydev.my.id/api/"
+//    const val BASE_URL = "http://alumnifstku.trydev.my.id/api/"
+    const val BASE_URL = "http://192.168.43.91:8000/api/"
 
     private val interceptor = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
     private val client = OkHttpClient().newBuilder()
@@ -140,6 +141,7 @@ object ApiFactory {
     suspend fun uploadBioAndTracing(
             apiToken: String,
             nama: RequestBody,
+            domisili: RequestBody,
             alamat: RequestBody,
             umur: RequestBody,
             ttl: RequestBody,
@@ -157,6 +159,7 @@ object ApiFactory {
         return safeApiCall { apiService.uploadBioAndTracing(
                 "Bearer $apiToken",
                 nama,
+                domisili,
                 alamat,
                 umur,
                 ttl,
@@ -176,6 +179,7 @@ object ApiFactory {
     suspend fun updateBio(
             apiToken: String,
             nama: RequestBody,
+            domisili: RequestBody,
             alamat: RequestBody,
             umur: RequestBody,
             ttl: RequestBody,
@@ -187,6 +191,7 @@ object ApiFactory {
         return safeApiCall { apiService.updateBio(
             "Bearer $apiToken",
                 nama,
+                domisili,
                 alamat,
                 umur,
                 ttl,

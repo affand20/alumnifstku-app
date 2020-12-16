@@ -22,6 +22,9 @@ data class Kelas (
     @SerializedName("deskripsi")
     val deskripsi: String? = null,
 
+    @SerializedName("kategori")
+    val kategori: String? = null,
+
     @SerializedName("uploader")
     val uploader: Admin? = null,
 

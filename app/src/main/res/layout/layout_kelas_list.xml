@@ -45,21 +45,34 @@ Instagram Untuk Generasi Milenial"
         android:layout_height="wrap_content"
         />
 
-    <ImageView
-        android:id="@+id/imageView9"
+    <TextView
+        android:id="@+id/tv_kategori"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/chip_bg"
+        android:fontFamily="@font/montserrat_semi_bold_italic"
+        android:textColor="@color/black_soft"
+        android:textSize="12sp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="@+id/tv_speaker"
+        app:layout_constraintTop_toBottomOf="@+id/tv_speaker"
+        tools:text="Seminar" />
+
+    <ImageView
+        android:id="@+id/imageView9"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:src="@drawable/ic_round_calendar_today_24"
         app:layout_constraintStart_toEndOf="@id/iv_poster_kelas"
-        app:layout_constraintTop_toBottomOf="@id/tv_speaker" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_kategori" />
 
     <TextView
         android:id="@+id/tv_date"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="8dp"
         android:layout_marginEnd="16dp"
         android:textSize="12sp"
         android:fontFamily="@font/montserrat_regular"
@@ -71,8 +84,8 @@ Instagram Untuk Generasi Milenial"
 
     <ImageView
         android:id="@+id/imageView10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="16dp"
@@ -85,7 +98,7 @@ Instagram Untuk Generasi Milenial"
         android:id="@+id/tv_quota_left"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="8dp"
         android:layout_marginEnd="16dp"
         android:fontFamily="@font/montserrat_regular"
         android:textSize="12sp"

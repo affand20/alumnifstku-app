@@ -3,6 +3,7 @@ package id.trydev.alumnifstku.ui.memory.detail
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.google.gson.Gson
 import id.trydev.alumnifstku.model.Comment
 import id.trydev.alumnifstku.model.DefaultResponse
 import id.trydev.alumnifstku.model.Post
@@ -64,8 +65,8 @@ class DetailFragmentViewModel: ViewModel() {
 
                     is Result.Error -> {
                         _state.postValue(RequestState.REQUEST_ERROR)
-//                        _response.postValue(Gson().fromJson(response.exception, DefaultResponse::class.java) as DefaultResponse<List<Loker>>?)
-                        _error.postValue(response.exception)
+                        _response.postValue(Gson().fromJson(response.exception, DefaultResponse::class.java) as DefaultResponse<Post>)
+//                        _error.postValue(response.exception)
                     }
                 }
             } catch (t: Throwable) {
@@ -87,8 +88,8 @@ class DetailFragmentViewModel: ViewModel() {
 
                     is Result.Error -> {
                         _stateComment.postValue(RequestState.REQUEST_ERROR)
-//                        _responseComment.postValue(Gson().fromJson(response.exception, DefaultResponse::class.java) as DefaultResponse<List<Loker>>?)
-                        _error.postValue(response.exception)
+                        _responseComment.postValue(Gson().fromJson(response.exception, DefaultResponse::class.java) as DefaultResponse<List<Comment>>)
+//                        _error.postValue(response.exception)
                     }
                 }
             } catch (t: Throwable) {
@@ -110,8 +111,8 @@ class DetailFragmentViewModel: ViewModel() {
 
                     is Result.Error -> {
                         _stateComment.postValue(RequestState.REQUEST_ERROR)
-//                        _responseComment.postValue(Gson().fromJson(response.exception, DefaultResponse::class.java) as DefaultResponse<List<Loker>>?)
-                        _error.postValue(response.exception)
+                        _responseComment.postValue(Gson().fromJson(response.exception, DefaultResponse::class.java) as DefaultResponse<List<Comment>>)
+//                        _error.postValue(response.exception)
                     }
                 }
             } catch (t: Throwable) {
@@ -132,8 +133,8 @@ class DetailFragmentViewModel: ViewModel() {
 
                     is Result.Error -> {
                         _state.postValue(RequestState.REQUEST_ERROR)
-//                        _responseComment.postValue(Gson().fromJson(response.exception, DefaultResponse::class.java) as DefaultResponse<List<Loker>>?)
-                        _error.postValue(response.exception)
+                        _responseComment.postValue(Gson().fromJson(response.exception, DefaultResponse::class.java) as DefaultResponse<List<Comment>>)
+//                        _error.postValue(response.exception)
                     }
                 }
             } catch (t: Throwable) {
@@ -154,8 +155,8 @@ class DetailFragmentViewModel: ViewModel() {
 
                     is Result.Error -> {
                         _state.postValue(RequestState.REQUEST_ERROR)
-//                        _responseComment.postValue(Gson().fromJson(response.exception, DefaultResponse::class.java) as DefaultResponse<List<Loker>>?)
-                        _error.postValue(response.exception)
+                        _responseComment.postValue(Gson().fromJson(response.exception, DefaultResponse::class.java) as DefaultResponse<List<Comment>>)
+//                        _error.postValue(response.exception)
                     }
                 }
             } catch (t: Throwable) {
@@ -177,8 +178,8 @@ class DetailFragmentViewModel: ViewModel() {
 
                     is Result.Error -> {
                         _stateComment.postValue(RequestState.REQUEST_ERROR)
-//                        _responseComment.postValue(Gson().fromJson(response.exception, DefaultResponse::class.java) as DefaultResponse<List<Loker>>?)
-                        _error.postValue(response.exception)
+                        _responseComment.postValue(Gson().fromJson(response.exception, DefaultResponse::class.java) as DefaultResponse<List<Comment>>)
+//                        _error.postValue(response.exception)
                     }
                 }
             } catch (t: Throwable) {
@@ -200,8 +201,8 @@ class DetailFragmentViewModel: ViewModel() {
 
                     is Result.Error -> {
                         _state.postValue(RequestState.REQUEST_ERROR)
-//                        _responsePost.postValue(Gson().fromJson(response.exception, DefaultResponse::class.java) as DefaultResponse<List<Loker>>?)
-                        _error.postValue(response.exception)
+                        _responseRemovePost.postValue(Gson().fromJson(response.exception, DefaultResponse::class.java) as DefaultResponse<Post>)
+//                        _error.postValue(response.exception)
                     }
                 }
             } catch (t: Throwable) {
@@ -209,6 +210,11 @@ class DetailFragmentViewModel: ViewModel() {
                 _error.postValue(t.localizedMessage)
             }
         }
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        job.cancel()
     }
 
 }
