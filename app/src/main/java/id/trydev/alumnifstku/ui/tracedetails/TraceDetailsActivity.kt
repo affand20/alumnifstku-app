@@ -89,6 +89,7 @@ class TraceDetailsActivity : AppCompatActivity() {
                         binding.traceAngkatanDetails.text = alumni.angkatan
                         binding.traceLinkedinDetails.text = alumni.linkedin
                         binding.traceAlamatDetails.text = alumni.alamat
+                        binding.traceDomisiliDetails.text = alumni.domisili
 
                     }
 

@@ -98,6 +98,10 @@ class PengaturanActivity : AppCompatActivity() {
                         binding.traceAngkatanDetails.text = alumni.angkatan
                         binding.traceLinkedinDetails.text = alumni.linkedin
                         binding.traceAlamatDetails.text = alumni.alamat
+                        binding.traceDomisiliDetails.text = alumni.domisili
+                        binding.traceUmurDetails.text = alumni.umur.toString()
+                        binding.traceTtlDetails.text = alumni.ttl
+                        binding.traceJkDetails.text = alumni.jenisKelamin
                     }
 
                     response.data?.tracing?.let {

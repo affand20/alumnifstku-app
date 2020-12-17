@@ -17,7 +17,8 @@ object ApiFactory {
 
     // prod
 //    const val BASE_URL = "http://alumnifstku.trydev.my.id/api/"
-    const val BASE_URL = "http://192.168.43.91:8000/api/"
+//    const val BASE_URL = "http://192.168.43.91:8000/api/"
+    const val BASE_URL = "http://alumni.fst.unair.ac.id/webapp/api/"
 
     private val interceptor = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
     private val client = OkHttpClient().newBuilder()
