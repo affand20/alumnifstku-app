@@ -22,22 +22,22 @@
         style="@style/splash_title_dark"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Mari"
+        android:text="Let\'s Stay"
         android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/textView5"
+        app:layout_constraintStart_toStartOf="@+id/imageView4"
         app:layout_constraintTop_toBottomOf="@+id/imageView4" />
 
     <TextView
         android:id="@+id/textView5"
         style="@style/splash_title_dark"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Berkolaborasi\!"
+        android:text="Connected\!"
         android:textSize="34sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/imageView4"
+        app:layout_constraintStart_toStartOf="@+id/textView4"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
     <TextView
@@ -46,7 +46,7 @@
         android:layout_width="290dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:text="@string/lorem_ipsum"
+        android:text="@string/splash_four"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/textView5"

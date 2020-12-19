@@ -74,6 +74,16 @@
     <string name="speaker_list_template">Oleh: %s dan %d lainnya</string>
     <string name="speaker_one_template">Oleh: %s</string>
     <string name="quota_left">%d Kuota tersisa</string>
+    <string name="splash_two">
+        Sebuah aplikasi yang difasilitasi oleh Fakultas Sains dan Teknologi Universitas Airlangga
+        bertujuan untuk menjadi rumah virtual bagi teman-teman alumni FST Unair maupun mahasiswa
+        FST Unair untuk bisa tetap terhubung sehingga dapat meningkatkan tali silaturahmi tanpa
+        adanya batasan angkatan kelulusan.
+    </string>
+    <string name="splash_three">1. Tracing Alumni\nPencarian data alumni dengan berbagai kategori\n\n2. Info Loker\nUpdate informasi lowongan kerja sesuai dengan program studi yang ada di FST Unair\n\n3. Sharing Memory\nBerbagi momen atau kenangan melalui media foto yang bisa dipublish di fitur ini, terdapat fitur like dan comment seperti pada media sosial pada umumnya\n\n4. Kelas Alumni\nTempat untuk saling bertukar ilmu, diskusi, ngobrol asik dengan para alumni FST Unair melalui media webinar, diskusi online hingga talkshow dengan para alumni FST Unair.\n\n5. FST News\nBerita terkini dari Fakultas Sains dan Teknologi Universitas Airlangga</string>
+    <string name="splash_four">
+        Jika terdapat kendala dalam penggunaan aplikasi ini, jangan ragu untuk menghubungi kami di alumnifstku@gmail.com
+    </string>
 
     <string-array name="cities">
         <item>ACEH BARAT DAYA</item>
