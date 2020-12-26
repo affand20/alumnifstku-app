@@ -4,6 +4,7 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.lifecycle.ViewModelProvider
@@ -87,7 +88,12 @@ class TraceDetailsActivity : AppCompatActivity() {
                         binding.traceNamaDetails.text = alumni.nama
                         binding.traceJurusanDetails.text = alumni.jurusan
                         binding.traceAngkatanDetails.text = alumni.angkatan
-                        binding.traceLinkedinDetails.text = alumni.linkedin
+                        if (alumni.linkedin == null) {
+                            binding.traceLinkedinDetails.visibility = View.VISIBLE
+                            binding.traceLinkedinDetails.text = alumni.linkedin
+                        } else {
+                            binding.traceLinkedinDetails.visibility = View.GONE
+                        }
                         binding.traceAlamatDetails.text = alumni.alamat
                         binding.traceDomisiliDetails.text = alumni.domisili
 
@@ -116,7 +122,7 @@ class TraceDetailsActivity : AppCompatActivity() {
         })
 
         binding.traceLinkedinDetails.setOnClickListener {
-            if (binding.traceLinkedinDetails.text.isNotEmpty()) {
+            if (binding.traceLinkedinDetails.text.isNotEmpty() && binding.traceLinkedinDetails.text != "-") {
                 val builder = CustomTabsIntent.Builder()
                 val customTab = builder.build()
                 customTab.launchUrl(this, Uri.parse(binding.traceLinkedinDetails.text.toString()))
