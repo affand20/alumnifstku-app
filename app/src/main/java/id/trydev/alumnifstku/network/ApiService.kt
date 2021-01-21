@@ -508,4 +508,13 @@ interface ApiService {
         @Header("Accept") accept: String = "application/json",
     ): Response<DefaultResponse<List<Comment>>>
 
+    /*
+     *Get My Notif
+     * ======================
+     */
+    @GET("sharing/notif")
+    suspend fun getNotif(
+        @Header("Authorization") apiToken: String,
+        @Header("Accept") accept: String = "application/json"
+    ) : Response<DefaultResponse<List<Notif>>>
 }

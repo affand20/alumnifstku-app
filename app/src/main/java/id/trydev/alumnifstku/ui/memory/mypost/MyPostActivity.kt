@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import id.trydev.alumnifstku.R
+import id.trydev.alumnifstku.adapter.NotifMemoryAdapter
 import id.trydev.alumnifstku.adapter.SharingMemoryAdapter
 import id.trydev.alumnifstku.databinding.ActivityMyPostBinding
 import id.trydev.alumnifstku.network.RequestState
@@ -18,6 +19,7 @@ import id.trydev.alumnifstku.prefs.AppPreferences
 import id.trydev.alumnifstku.ui.biodata.pages.Page1Fragment
 import id.trydev.alumnifstku.ui.memory.create.CreatePostActivity
 import id.trydev.alumnifstku.ui.memory.detail.DetailPostActivity
+import id.trydev.alumnifstku.ui.memory.notif.NotifMemoryActivity
 import id.trydev.alumnifstku.utils.ItemDecorationPost
 import id.trydev.alumnifstku.utils.RealPathUtil
 import pub.devrel.easypermissions.AfterPermissionGranted
@@ -39,7 +41,6 @@ class MyPostActivity : AppCompatActivity(), EasyPermissions.PermissionCallbacks 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_my_post)
 
         binding = ActivityMyPostBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -116,6 +117,10 @@ class MyPostActivity : AppCompatActivity(), EasyPermissions.PermissionCallbacks 
 
         binding.fabPost.setOnClickListener{
             storageTask()
+        }
+
+        binding.ibMyNotif.setOnClickListener {
+            startActivity(Intent(this, NotifMemoryActivity::class.java))
         }
 
     }

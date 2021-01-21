@@ -382,4 +382,12 @@ object ApiFactory {
         return safeApiCall { apiService.getComments("Bearer $apiToken", id) }
     }
 
+    /* Get My Notif */
+    suspend fun getNotif(apiToken: String): Result<DefaultResponse<List<Notif>>> {
+        Log.d("GET NOTIF", "executed")
+        return safeApiCall { apiService.getNotif("Bearer $apiToken") }
+    }
+
+
+
 }
