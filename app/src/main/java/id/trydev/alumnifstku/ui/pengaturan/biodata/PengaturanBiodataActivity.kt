@@ -46,6 +46,7 @@ class PengaturanBiodataActivity : AppCompatActivity(), EasyPermissions.Permissio
             "angkatan" to "",
             "jurusan" to "",
             "linkedin" to "",
+            "foto" to "",
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {

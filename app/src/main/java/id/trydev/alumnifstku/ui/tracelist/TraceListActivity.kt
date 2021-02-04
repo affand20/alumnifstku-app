@@ -75,16 +75,16 @@ class TraceListActivity : AppCompatActivity() {
             when(state) {
                 RequestState.REQUEST_START -> {
                     /* Show progress bar */
-
-                    // aku belum bikin mas
+                    binding.swipeRefresh.isRefreshing = true
+                    binding.stateEmpty.visibility = View.GONE
                 }
                 RequestState.REQUEST_END -> {
-
                     /* Hide progress bar and fetch response */
-                    // aku belum bikin mas
+                    binding.swipeRefresh.isRefreshing = false
                 }
                 RequestState.REQUEST_ERROR -> {
                     /* Something happen.. Hide progress bar and fetch errors */
+                    binding.swipeRefresh.isRefreshing = false
                 }
                 else -> { /* do nothing */ }
             }
@@ -102,8 +102,9 @@ class TraceListActivity : AppCompatActivity() {
                     response.data?.let { vAdapter.setData(it) }
                 } else {
                     // memunculkan sesuatu jika kosong
-                    // binding.stateEmpty.visibility = View.VISIBLE
-                    // binding.stateEmpty.text = response.message
+                    binding.stateEmpty.visibility = View.VISIBLE
+                    binding.stateEmpty.text = response.message
+                    response.data?.let { vAdapter.setData(it) }
                 }
             }
         })
@@ -111,11 +112,14 @@ class TraceListActivity : AppCompatActivity() {
         /* Observe another Error possibility changes */
         viewModel.error.observe({ lifecycle }, { error ->
             if (error.isNotEmpty()) {
-                // binding.stateEmpty.visibility = View.VISIBLE
-                // binding.stateEmpty.text = error
+                binding.stateEmpty.visibility = View.VISIBLE
+                binding.stateEmpty.text = error
             }
         })
 
+        binding.swipeRefresh.setOnRefreshListener {
+            viewModel.getAlumni(prefs.token.toString(), query)
+        }
 
         // tombol cari orang untuk memunculkan bottom dilaog
         binding.floating.btnCarii.setOnClickListener {
@@ -159,7 +163,8 @@ class TraceListActivity : AppCompatActivity() {
 
                 // var str = "Nama : ${cariOrang.nama}, Angkatan : ${cariOrang.angkatan}, Jurusan ${cariOrang.jurusan}"
                 // Toast.makeText(this, str, Toast.LENGTH_SHORT).show()
-
+                // Log.d("QUERY:", query.toString())
+                activateFilter(true)
                 dialog.dismiss()
             }
 
@@ -224,7 +229,7 @@ class TraceListActivity : AppCompatActivity() {
                 // Log.d("QUERY:", query.toString())
                 query["filter"] = "true"
                 viewModel.getAlumni(prefs.token.toString(), query)
-
+                activateFilter(true)
                 dialog.dismiss()
 
             }
@@ -233,6 +238,11 @@ class TraceListActivity : AppCompatActivity() {
             dialog.show()
         }
 
+        binding.floating.btnClear.setOnClickListener {
+            resetquery()
+            viewModel.getAlumni(prefs.token.toString(), query)
+            activateFilter(false)
+        }
     }
 
     fun resetquery(){
@@ -241,5 +251,18 @@ class TraceListActivity : AppCompatActivity() {
             this.query[key] = ""
         }
     }
+
+    fun activateFilter(boolean: Boolean){
+        if (boolean) {
+            binding.floating.separatorClear.visibility = View.VISIBLE
+            binding.floating.btnClear.visibility = View.VISIBLE
+        }else {
+            binding.floating.separatorClear.visibility = View.GONE
+            binding.floating.btnClear.visibility = View.GONE
+        }
+
+    }
+
+
 
 }

@@ -48,10 +48,6 @@ class TraceListAdapter(private val context: Context): RecyclerView.Adapter<Trace
 
                 itemView.setOnClickListener{
                     val intent = Intent(itemView.context, TraceDetailsActivity::class.java)
-
-                    // gimana caranya naruh BIODATA buat dikirim ??
-                    // apa dibikin parcelable ?
-
                     intent.putExtra(TraceDetailsActivity.ARG_UID, alumni.id)
                     itemView.context.startActivity(intent)
                 }

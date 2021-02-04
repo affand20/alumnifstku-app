@@ -92,7 +92,8 @@ class TraceDetailsActivity : AppCompatActivity() {
                             binding.traceLinkedinDetails.visibility = View.VISIBLE
                             binding.traceLinkedinDetails.text = alumni.linkedin
                         } else {
-                            binding.traceLinkedinDetails.visibility = View.GONE
+                            binding.traceLinkedinDetails.visibility = View.VISIBLE
+                            binding.traceLinkedinDetails.text = "null"
                         }
                         binding.traceAlamatDetails.text = alumni.alamat
                         binding.traceDomisiliDetails.text = alumni.domisili

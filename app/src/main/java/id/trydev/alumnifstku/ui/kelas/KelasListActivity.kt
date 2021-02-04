@@ -113,6 +113,7 @@ class KelasListActivity : AppCompatActivity() {
                 } else {
                     binding.stateEmpty.visibility = View.VISIBLE
                     binding.stateEmpty.text = response.message
+                    response.data?.let { adapter.setData(it) }
                 }
             }
         })
@@ -207,10 +208,17 @@ class KelasListActivity : AppCompatActivity() {
                 Log.d("FILTER_QUERY", "$query")
                 /* Call API again with filters */
                 viewModel.getKelas(prefs.token.toString(), query)
+                activateFilter(true)
                 dialog.dismiss()
             }
 
             dialog.show()
+        }
+
+        binding.floating.btnClear.setOnClickListener {
+            activateFilter(false)
+            resetquery()
+            viewModel.getKelas(prefs.token.toString(), query)
         }
 
     }
@@ -263,4 +271,23 @@ class KelasListActivity : AppCompatActivity() {
         setTextColor(colors[0])
         paint.shader = textShader
     }
+
+    fun activateFilter(boolean: Boolean){
+        if (boolean) {
+            binding.floating.separatorClear.visibility = View.VISIBLE
+            binding.floating.btnClear.visibility = View.VISIBLE
+        }else {
+            binding.floating.separatorClear.visibility = View.GONE
+            binding.floating.btnClear.visibility = View.GONE
+        }
+
+    }
+
+    fun resetquery(){
+        this.query.forEach {
+            var key = it.key
+            this.query[key] = ""
+        }
+    }
+
 }

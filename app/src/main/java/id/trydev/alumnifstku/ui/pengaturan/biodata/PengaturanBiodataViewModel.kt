@@ -1,5 +1,6 @@
 package id.trydev.alumnifstku.ui.pengaturan.biodata
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -52,6 +53,7 @@ class PengaturanBiodataViewModel: ViewModel() {
 
     fun addBioAttr(mapAttr: HashMap<String, String>) {
         biodataAttribute.putAll(mapAttr)
+        Log.d("FOTO PATH", "${biodataAttribute["foto"]}")
     }
 
     fun getBiodata(apiToken: String){
@@ -84,8 +86,8 @@ class PengaturanBiodataViewModel: ViewModel() {
 
         _state.postValue(RequestState.REQUEST_START)
         var foto: MultipartBody.Part? = null
-        if (filePath != null) {
-            val file = File(filePath)
+        if (biodataAttribute["foto"] != null) {
+            val file = File(biodataAttribute["foto"].toString())
             foto = MultipartBody.Part.createFormData(
                     "foto",
                     file.name,
